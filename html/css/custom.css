@@ -172,14 +172,13 @@
 .product .action{
     font-size: 14px;
 }
-.product span.amount{
+.productlist .price .amount{
     display: block;
+    font-size: 25px;
     margin-top: 10px;
 }
-.product .price .amount{
-    font-size: 25px;
-}
-.product del .amount{
+.productlist del .amount{
+    display: block;
     font-size: 20px;
 }
 
@@ -193,6 +192,127 @@
     padding: 10px 0;
 }
 
+.woocommerce .product .product_wrapper{
+    padding-left: 0;
+}
+
+.woocommerce .product .product_wrapper .product_image_wrapper .thumbnails .image_frame{
+    width: auto;
+    margin-top: 10px;
+}
+.woocommerce .product .product_wrapper .product_image_wrapper > .image_frame{
+    float: none;
+}
+
+.product .product-meta{
+    display: block;
+}
+
+.product .excerpt{
+    display: block;
+    padding: 10px 0;
+}
+.woocommerce .quantity input.qty{
+    height: 46px;
+    width: 60px;
+}
+
+.product_meta span{
+    display: block;
+    margin-top: 10px;
+}
+
+
+.tabsanpham{
+  z-index: 6000;
+  width: 100%;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
+.tabsanpham .tablist{
+  text-align: center;
+}
+.tabsanpham .nav-tabs{
+  border: none;
+}
+.tabsanpham .nav-tabs li{
+  float: left;
+  display: inline-block;
+  margin: 0;
+  padding: 10px !important;
+  text-transform: uppercase;
+  font-size: 16px;
+  background-color: transparent; !important;
+  color: #c4c4c4;
+  border-bottom: 2px solid transparent !important;
+  text-align: center;
+}
+
+.tabsanpham .nav-tabs li a{
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: none !important;
+  background-color: transparent !important;
+}
+.tabsanpham .nav-tabs li:last-child{
+  /*padding-right: 0 !important;*/
+}
+.tabsanpham .nav-tabs li.active{
+  color: #333;
+  border-bottom: 2px solid #EC7A5C !important;
+}
+.tabsanpham .nav-tabs li a:hover{
+  color: #333;
+  border: none !important;
+  background-color: transparent !important;
+}
+.affix{
+  top: 0px;
+  z-index: 5000;
+  position: fixed !important;
+  background-color: #fff;
+}
+@media only screen and (min-width: 992px) {
+    .affix{
+      top: 60px;
+    }
+}
+#gioithieu .post-content, #specs .specs-content, #reviewbox .review-content, #respond .review-content, .related-content{
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 6px;
+  text-align: justify;
+}
+
+.section-more.alignright{
+    font-size: 16px;
+    margin: 0;
+}
+.review-rating{
+    display: block;
+    margin-bottom: 20px;
+}
+.review-rating .star{
+    margin-right: 15px;
+    padding:0;
+    border: none !important;
+    cursor: pointer;
+    text-decoration: none;
+}
+.review-rating .star:last-child{
+    margin-right: 0;
+}
+
+.review-rating [class^="icon-"]:before, .review-rating [class*=" icon-"]:before{
+    margin: 0;
+}
+
+#comments > :first-child, .woocommerce .product .related.products{
+    border: none !important;
+}
+
 
 /* POST */
 
@@ -204,6 +324,9 @@
 
 #respond input[type="text"]{
     margin-bottom: 20px;
+}
+#respond .review-content textarea{
+    width: 100%;
 }
 textarea#body_popup{
     width: 100%;
