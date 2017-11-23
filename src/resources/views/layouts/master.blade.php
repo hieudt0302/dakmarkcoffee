@@ -73,10 +73,9 @@
 		<!-- End Navigation panel -->
 		@yield('content')
 
-		<!-- Foter -->
-		{{--@include('layouts.footer')--}}
-		<!-- End Foter -->
-		<!-- End Main Page -->
+		<!-- Footer -->
+		@include('layouts.footer')
+		<!-- End Footer -->
 
  	</div>
 	<!-- JS -->
@@ -182,7 +181,7 @@
                 var retinaEl = jQuery("#logo img");
                 var retinaLogoW = retinaEl.width();
                 var retinaLogoH = retinaEl.height();
-                retinaEl.attr("src", "images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
+                retinaEl.attr("src", "frontend/images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
             }
         });
 	</script>
