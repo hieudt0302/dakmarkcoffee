@@ -30,6 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $bodyclass = "page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $about_us = InfoPage::where('slug','about')->first();
         $product_origin = InfoPage::where('slug','product-origin')->first();
         $product_quality = InfoPage::where('slug','product-quality')->first();
@@ -63,7 +64,7 @@ class HomeController extends Controller
         $sliders = Slider::where('is_show',1)->get();      
 
         //var_dump($best_sellers_products); die();  
-        return View("front/home/index",compact('about_us', 'product_origin', 'product_quality', 'new_products', 'best_sellers_products', 'sale_products', 'new_blogs','sliders'));
+        return View("front/home/index",compact('about_us', 'product_origin', 'product_quality', 'new_products', 'best_sellers_products', 'sale_products', 'new_blogs','sliders', 'bodyclass'));
 
     }
 

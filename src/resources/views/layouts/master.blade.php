@@ -55,7 +55,7 @@
 	@yield('header')
 <meta name="google-site-verification" content="SBNKsjbUQHBBai8E7O5TxOH4R1pHOiD1F2qaSZbPxBk" />	
 </head>
-<body class="page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left">
+<body class="{{ (isset($bodyclass) ? $bodyclass : 'page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left') }}">
 	 
 	<!-- Mobile Menu -->
 	{{--<div class="mobile-menu">--}}

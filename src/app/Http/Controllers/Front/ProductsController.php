@@ -22,9 +22,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        $bodyclass = "page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $tags = Tag::has('products')->get();
-        $results = Product::where('published',1)->paginate(12);
-        return View('front/products/index',compact('results','tags'));
+        $results = Product::where('published',1)->paginate(5);
+        return View('front/products/index',compact('results','tags', 'bodyclass'));
     }
   
     /**
