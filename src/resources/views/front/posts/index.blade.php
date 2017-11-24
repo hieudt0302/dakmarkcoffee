@@ -1,164 +1,157 @@
 @extends('layouts.master')
 @section('title','Poko Farms - Post') 
-@section('header')
-<!-- Share Nav -->
-@include('layouts.share')
-@endsection
+{{--@section('header')--}}
+{{--<!-- Share Nav -->--}}
+{{--@include('layouts.share')--}}
+{{--@endsection--}}
 @section('content')
-
-<div class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                @if(!empty($search_key))
-                    <h1>@lang('common.search-results')</h1>
-                @else               
-                    <h1>{{$posts[0]->category->translation->name}}</h1>
-                    <ul class="breadcumb">
-                        <li><a href="#">@lang('common.home')</a></li>
-                        <li><span>/</span><a href="#">@lang('common.posts')</a></li>
-                        <li><span>/</span>{{$posts[0]->category->translation->name}}</li>
-                    </ul>
-
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-<section class="bloglistpost-v1 bloglistpost-v2">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-sm-8 col-xs-12">
-
-                <div class="left">
-                    @if(!empty($search_key) && count($posts)==0)
-                        @lang('common.zero-search-message')&nbsp;{{$search_key}}
-                    @endif 
-                </div>
-
-                @if(!empty($search_key) && count($posts)!=0)
-                    <!-- Post -->
-                    @foreach($posts as $post_tran)
-                        @if($post_tran->post->published)
-                        <div class="blogpost-v2">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="video2">
-                                        <img src="{{asset('/storage/images/blog/')}}/{{$post_tran->post->img}}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="blog-it-content2">
-                                        <div class="date">
-                                            <span>@lang('blog.posted-by') {{$post_tran->post->author->last_name}} {{$post_tran->post->author->first_name}}, {{ date('d-m-Y', strtotime($post_tran->post->created_at)) }}</span>
-                                        </div>                                
-                                        <h2><a href="{{url('/')}}/posts/{{$post_tran->post->slug}}">{{$post_tran->title}}</a></h2>
-                                        <p>{{$post_tran->excerpt}} </p>
-                                        <a class="readmore2" href="{{url('/')}}/posts/{{$post_tran->post->slug}}">/ &nbsp; @lang('common.read-more')</a>
-                                    </div>
+    <div id="Content">
+        <div class="content_wrapper clearfix">
+            <!-- Content -->
+            <div class="sections_group">
+                <div class="entry-content">
+                    <!-- Header -->
+                    <div class="section head-sect" style="padding-top:30px; padding-bottom:30px;">
+                        <div class="section_wrapper">
+                            <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
+                                <div class="image_wrapper">
+                                    <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_subheader.png')}}" alt="" width="58" height="65">
                                 </div>
                             </div>
-                        </div>
-                        <hr>
-                        @endif
-                    @endforeach
-                    <!-- End Post -->
-                @else
-                <!-- Post -->
-                @foreach($posts as $post)
-                <div class="blogpost-v2">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="video2">
-                                <img src="{{asset('/storage/images/blog/')}}/{{$post->img}}" alt="">
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="blog-it-content2">
-                                <div class="date">
-                                    <span>@lang('blog.posted-by') {{$post->author->last_name}} {{$post->author->first_name}}, {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
-                                </div>                                
-                                <h2><a href="{{url('/')}}/posts/{{$post->slug}}">{{$post->translation->title}}</a></h2>
-                                <p>{{$post->translation->excerpt}} </p>
-                                <a class="readmore2" href="{{url('/')}}/posts/{{$post->slug}}">/ &nbsp; @lang('common.read-more')</a>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">BLOG</h2>
+                            <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
+                                <div class="image_wrapper">
+                                    <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_heading.png')}}" alt="" width="78" height="10">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                @endforeach
-                <!-- End Post -->
-                @endif                
-                
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="bg-sidebar">
-                    <div class="search">
-                        {!! Form::open(array('method'=>'post','url' => '/posts','class'=>'form-inline form','role'=>'form')) !!}
-                            <div class="search-wrap">
-                                <button class="search-button hidden" type="submit" title="Start Search">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                @if(!empty($search_key))
-                                    <input type="text" class="search-input" name="key" placeholder="{{$search_key}}">
-                                    <i class="fa fa-search" aria-hidden="true"></i>                                                                
-                                @else
-                                    <input type="text" class="search-input" name="key" placeholder="{{ __('common.search') }}">
-                                    <i class="fa fa-search" aria-hidden="true"></i>                                                               
-                                @endif  
+                    <!-- END Header -->
+
+                    <!-- Blog List -->
+                    <div class="section mcb-section" style="padding-top:30px; padding-bottom:30px;">
+                        <div class="section_wrapper mcb-section-inner">
+                            <div class="wrap mcb-wrap one clearfix">
+                                <div class="column one column_blog">
+                                    <div class="blog_wrapper isotope_wrapper">
+                                        <!-- Masonry blog posts -->
+                                        <div class="posts_group lm_wrapper grid col-2 isotope">
+                                            @foreach($posts as $post)
+                                            <div class="post has-post-thumbnail post-item isotope-item clearfix">
+
+                                                <div class="image_frame post-photo-wrapper scale-with-grid">
+                                                    <div class="image_wrapper">
+                                                        <a href="{{url('/')}}/posts/{{$post->slug}}">
+                                                            <div class="mask"></div>
+                                                            <img src="{{asset('/storage/images/blog/')}}/{{$post->img??'no-image.png'}}" alt="{{$post->translation->title??$post->title}}">
+                                                        </a>
+                                                        <div class="image_links">
+                                                            <a href="{{url('/')}}/posts/{{$post->slug}}" class="link"><i class="icon-link"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="post-desc-wrapper">
+                                                    <div class="post-desc">
+                                                        <div class="post-meta clearfix">
+                                                            <div class="author-date">
+                                                                <span class="author"><i class="icon-user"></i> <a href="#">{{$post->author->last_name}} {{$post->author->first_name}}</a></span>
+                                                                <span class="date"><i class="icon-clock"></i> {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="post-title">
+                                                            <h2 class="entry-title"><a href="{{url('/')}}/posts/{{$post->slug}}">{{$post->translation->title??$post->title}}</a></h2>
+                                                        </div>
+                                                        <div class="post-excerpt">
+                                                            <span>{{$post->translation->excerpt??$post->excerpt}}</span>
+                                                        </div>
+                                                        <div class="post-footer">
+                                                            <div class="button-love">
+                                                                <i class="icon-comment-empty-fa"></i> <a href="{{url('/')}}/posts/{{$post->slug}}#comments" class="post-comments">{{count($post->comments)}}</a>
+                                                            </div>
+                                                            <div class="post-links">
+                                                                <i class="icon-doc-text"></i><a href="{{url('/')}}/posts/{{$post->slug}}" class="post-more">@lang('common.read-more')</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ $posts->links() }}
                             </div>
+                        </div>
+                    </div>
+                    <!-- END Blog List -->
+                </div>
+            </div>
+            <!-- End Content -->
+
+            <!-- Sidebar -->
+            <div class="sidebar sidebar-1 four columns">
+                <div class="widget-area clearfix " style="min-height: 2064px;">
+                    <!-- Search form-->
+                    <aside class="widget widget_search">
+                        <h3>@lang('header.search')</h3>
+                        {!! Form::open(array('url' => '/search', 'class' => 'form')) !!}
+                        <div class="search-wrap">
+                            <input type="hidden" name="searchtype" value="blog">
+                            <input type="text" class="form-control search-field" id="s" name="key" placeholder="@lang('header.enter-keyword')">
+                        </div>
                         {!! Form::close() !!}
-                    </div>
-                    <br><br>
+                    </aside>
 
-                    <div class="categories">
-                        <h1 class="cate-heading">@lang('common.categories')</h1>
-                        <ul>
-                            @foreach($categories as $category)
-                            <li>
-                                <a href="{{url('/menu')}}/{{$post_category->slug}}/{{$category->slug}}" title="">{{$category->translation->name}}</a>
-                                <small>
-                                    - {{$category->postsCount}}
-                                </small>
-                            </li>
-                            @endforeach                            
-                        </ul>
-                    </div>
-                    <div class="pp-posts">
-                        <h1 class="cate-heading">@lang('blog.last-posts')</h1>
-                        @foreach($lastPosts as $post)                        
-                        <div class="pp-post-it">
-                            <img src="{{asset('/storage/images/blog/preview/')}}/{{$post->img}}" alt="post1">
-                            <div class="pp-infor">
-                                <div class="date">
-                                    <span>@lang('blog.posted-by') {{$post->author->last_name}} {{$post->author->first_name}} {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
-                                </div>
-                                <h5><a href="{{url('/posts')}}/{{$post->slug}}">{{$post->translation->title}}</a></h5>
-                            </div>
+                    <aside class="widget widget_mfn_recent_posts">
+                        <h3>@lang('blog.last-posts')</h3>
+                        <div class="Recent_posts">
+                            <ul>
+                                @foreach($lastPosts as $recentpost)
+                                    <li class="post ">
+                                        <a href="{{url('/posts')}}/{{$recentpost->slug}}">
+                                            <div class="photo">
+                                                <img width="80" height="80" src="{{ asset('images/blog/' . $recentpost->img) }}" class="scale-with-grid wp-post-image" alt="beauty_portfolio_2">
+                                            </div>
+                                            <div class="desc">
+                                                <h6>{{$recentpost->translation->title??$recentpost->title}}</h6><span class="date"><i class="icon-clock"></i>{{ date('d-m-Y', strtotime($recentpost->created_at)) }}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                @endforeach
+                            </ul>
+
                         </div>
-                        @endforeach        
-                    </div>
-                    <br><br>
+                    </aside>
 
-                    <div class="searchbytag">
-                        <h1 class="cate-heading">Tags</h1>
-                        <ul class="tags">
-                            @foreach($tags as $tag)
-                            <li><a href="{{url('/subject/posts/tags')}}/{{$tag->slug}}">{{$tag->name}}</a></li>
+                    <!-- Categories Area -->
+                    <aside class="widget widget_categories">
+                        <h3>@lang('common.categories')</h3>
+                        <ul>
+                            @foreach($categories as $cat)
+                                <li class="cat-item">
+                                    <a href="{{url('/blog')}}/{{$cat->slug}}" title="">
+                                        <i class="fa fa-circle-thin" aria-hidden="true"></i>  {{$cat->translation->name??$cat->name}}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
-                    </div>
+                    </aside>
+
+                    <!--Tag Cloud -->
+                    <aside class="widget widget_tag_cloud">
+                        <h3>Tags (CHƯA CÓ LANG)</h3>
+                        <div class="tagcloud">
+                            @foreach($tags as $tag)
+                                <a href="{{url('/tag')}}/{{$tag->slug}}" class="tag-link-20" title="">{{$tag->translation->name??$tag->name}}</a>
+                            @endforeach
+
+                        </div>
+                    </aside>
                 </div>
             </div>
+            <!-- End Sidebar -->
+
         </div>
     </div>
-</section>
-<div class="blogpanigation">
-    <div class="container">
-        <div class="col-md-9">
-            {{ $posts->links() }}
-        </div>
-    </div>
-</div>
-<!-- End Section -->
 @endsection

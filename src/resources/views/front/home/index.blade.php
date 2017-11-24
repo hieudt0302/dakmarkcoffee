@@ -14,6 +14,10 @@
                 @include('front.home.part.intro')
                 <!-- End Intro -->
 
+                <!-- Products -->
+                @include('front.home.part.product-home')
+                <!-- End Products -->
+
                 <!-- Quality -->
                 @include('front.home.part.quality')
                 <!-- End Quality -->

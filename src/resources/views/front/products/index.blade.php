@@ -1,152 +1,118 @@
 @extends('layouts.master')
 @section('title','Poko Farms - Product')
-@section('header')
-<!-- Share Nav -->
-@include('layouts.share')
-<style>
-.search-form div input{
-    padding: 12px;
-    /* border: none; */
-    font-family: "Lato", 'Source Sans Pro', serif;
-    color: #ababab;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-.search-form button{
-    padding: 5px 20px 5px 20px;
-    text-transform: uppercase;
-    background-color: #8eb35a;
-    border: 1px solid #8eb35a;
-    border-radius: 25px;
-    font-family: "Lato", 'Source Sans Pro', serif;
-    font-size: 14px;
-    color: #ffffff;
-    font-weight: 700;
-    font-style: Bold;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-.search-form button:hover{
-    color: #8eb35a;
-    background-color: #ffffff;
-    border: 1px solid #8eb35a;
-    text-decoration: none;
-}
-</style>
-@endsection
 @section('content')
+{{--@section('header')--}}
+<!-- Share Nav -->
+{{--@include('layouts.share')--}}
 
-<div class="hero">
-    <div class="container">
-        @if(!empty($promo)&&$promo==true)
-        <div class="row">
-            <div class="col-md-12">
-                <h1>@lang('header.promotion')</h1>
-                <ul class="breadcumb">
-                    <li><a href="#">@lang('common.home')</a></li>
-                    <li><span>/</span><a href="#">@lang('product.product')</a></li>
-                    <li><span>/</span>@lang('header.promotion')</li>
-                </ul>
-            </div>
-        </div>
-        @else
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{$category->translation->name??'List'}}</h1>
-                <ul class="breadcumb">
-                    <li><a href="#">@lang('common.home')</a></li>
-                    <li><span>/</span><a href="#">@lang('product.product')</a></li>
-                    <li><span>/</span>{{$category->translation->name??'List'}}</li>
-                </ul>
-            </div>
-        </div>
-        @endif
-    </div>
-</div>
-
-<section class="shopgrid products">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="left-it">
-					<h5>@lang('common.showing') <span class="sub">{{($results->currentPage()- 1) * 21 + 1}}-{{$results->total() * $results->currentPage() }} @lang('common.of') {{$results->count()}}</span> </h5>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div class="right-it">
-                    <form action="{{url('/subject/')}}/{{$parent}}/{{$slug}}" method="GET" class="form-inline search-form"  autocomplete="true">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Search" name="search" type="text" value="{{old('search')}}">
+<div id="Content">
+    <div class="content_wrapper clearfix">
+        <div class="sections_group">
+            <div class="entry-content">
+                <!-- Header -->
+                <div class="section head-sect" style="padding-top:30px; padding-bottom:30px;">
+                    <div class="section_wrapper">
+                        <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
+                            <div class="image_wrapper">
+                                <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_subheader.png')}}" alt="" width="58" height="65">
+                            </div>
                         </div>
-                        <button type="submit">Search</button>
-                    </form>
-				</div>
-			</div>
-        </div>
-        @php($index = 0)
-        @foreach($results as $product)
-            @if($index == 0 || $index % 4 == 0)
-            <div class="row">
-                <div class="products-it">
-            @endif                    
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="pro-it">
-                        <a href="{{url('/products')}}/{{$product->slug}}">
-                        <img class="pro-img" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
-                        </a>
-                        <div class="pro-infor">
-                            <h2>{{$product->translation->name??$product->name}}</h2>
-                            <span class="pro-cost">{{FormatPrice::price($product->price)}}</span>
+                        <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">@lang('header.products')</h2>
+                        <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
+                            <div class="image_wrapper">
+                                <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_heading.png')}}" alt="" width="78" height="10">
+                            </div>
                         </div>
                     </div>
                 </div>
-            @if(($index > 0 && $index % 3 === 0) || $index + 1 === count($results))
+                <!-- END Header -->
+
+                <!-- New Products Section -->
+                <div class="section woocommerce productlist" style="padding-top:30px; padding-bottom:60px;">
+                    <div class="section_wrapper clearfix">
+                        <div class="items_group clearfix">
+                            <!-- Product Items-->
+                            <div class="column one woocommerce-content">
+                                <div class="products_wrapper isotope_wrapper">
+                                    <ul class="products grid">
+                                    @foreach($results as $key => $product)
+                                        <!-- Product Item -->
+                                        <li class="product has-post-thumbnail">
+                                            <div class="item_wrapper">
+                                                <div class="hover_box hover_box_product">
+                                                    <a href="{{url('/product')}}/{{$product->slug}}">
+                                                        <div class="image_wrapper">
+                                                            <img class="scale-with-grid" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
+                                                        </div>
+
+                                                    </a>
+                                                </div>
+                                                <div class="desc">
+                                                    <h4 class="title themecolor">
+                                                        <a href="{{url('/product')}}/{{$product->slug}}" class="themecolor">{{$product->translation->name??$product->name}}</a>
+                                                    </h4>
+                                                    @if($product->special_price != 0 && $product->special_price_start_date  <= $product->special_price_end_date )
+                                                        <del>
+                                                            <span class="amount">{{FormatPrice::price($product->price)}}</span>
+                                                        </del>
+                                                        <span class="price">
+                                                            <span class="amount">{{FormatPrice::price($product->special_price)}}</span>
+                                                        </span>
+                                                    @else
+                                                        @if($product->old_price > 0)
+                                                            <del>
+                                                                <span class="amount">{{FormatPrice::price($product->old_price)}}</span>
+                                                            </del>
+                                                        @endif
+                                                        <span class="price">
+                                                            <span class="amount">{{FormatPrice::price($product->price)}}</span>
+                                                        </span>
+                                                    @endif
+
+                                                    <span class="description ">
+                                                        <hr class="hr_narrow hr_color">
+                                                        {{$product->translation->summary??''}}
+                                                    </span>
+                                                </div>
+                                                <div class="action aligncenter">
+                                                    <!-- <a class="mfn-link mfn-link-1 " href="#" data-hover="Phasellus"><i class="icon-heart-empty-fa"></i></a> -->
+                                                    <a class="yeuthich add-wishlist button button_grey button_js" href="#" target="_blank"><span class="button_icon"><i class="icon-heart-empty-fa"></i></span></a>
+                                                    <a class="add-shoopingcart button button_orange button_right button_js kill_the_icon" href="#" target="_blank"><span class="button_icon"><i class="icon-basket"></i></span><span class="button_label">Thêm Vào Giỏ Hàng</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Product Item -->
+                                    @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- End Product Items-->
+
+                            <!-- Product Link -->
+                            {{ $results->links() }}
+                            {{--<div class="column one pager_wrapper">--}}
+                                {{--<!-- Navigation Area -->--}}
+                                {{--<div class="pager">--}}
+                                    {{--<div class="pages">--}}
+                                        {{--<a href="blog-full-classic.html" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a>--}}
+                                    {{--</div><a class="next_page" href="#">Next page<i class="icon-right-open"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            <!-- End Product Link -->
+                        </div>
+
+                        <!-- Product Futured -->
+                        @include('front.products.futuredproduct')
+                        <!-- End Product Futured -->
+
+
+                    </div>
                 </div>
+                <!-- End New Products Section -->
+
             </div>
-            @endif
-        @endforeach
-		
-        
-		<div class="row">
-			<div class="blogpanigation">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-                    {{ $results->links() }}
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+        </div>
+    </div>
+</div>
 
-@endsection
-@section('scripts')
-
-
-<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script type="text/javascript" src="{{ asset('js/flytocart.js') }}"></script>
-<script>
-     $(document).ready(function(){      
-        // $('.add-shoopingcart').click(function() {
-        //     var id = $("input[name='product_id']").val();
-        //     var name = $("input[name='product_name']").val();
-        //     var price = $("input[name='product_price']").val();
-        //     var quantity = 1;//$("input[name='quantity']").val();
-        //     $.ajax({
-        //        type:'POST',
-        //        url:'{{ url("/add-to-cart") }}',              
-        //        data: {
-        //             'id': id, //just test
-        //             'name': name,//just test
-        //             'price': price,//just test
-        //             'quantity': quantity,//just test
-        //         },
-        //        success:function(response){
-        //         console.log(response['message']);
-        //        },
-        //        error:function(response){
-        //           console.log(response['message']);
-        //        }
-        //     });
-        // });
-    });
-</script>
 @endsection

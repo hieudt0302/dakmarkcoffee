@@ -320,6 +320,13 @@
     text-align: justify;
 }
 
+.author-date .date{
+  padding-left: 10px;
+}
+
+.widget .date{
+  font-size: 14px;
+}
 /* POST COMMENT */
 
 #respond input[type="text"]{
