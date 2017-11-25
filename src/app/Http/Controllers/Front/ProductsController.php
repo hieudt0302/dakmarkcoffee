@@ -57,6 +57,7 @@ class ProductsController extends Controller
      */
     public function show($slug)
     {
+        $bodyclass = 'single single-product postid-70 woocommerce woocommerce-page template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left';
         $product = Product::where('slug',$slug)->firstOrFail();
         if(empty($product))
             return abort(404);
@@ -69,7 +70,7 @@ class ProductsController extends Controller
             }
         }
 
-        return View('front.products.show', compact('product','starAvg','is_sales'));
+        return View('front.products.show', compact('product','starAvg','is_sales', 'bodyclass'));
     }
 
     /**

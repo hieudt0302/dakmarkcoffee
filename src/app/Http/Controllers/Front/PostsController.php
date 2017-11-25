@@ -79,11 +79,13 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
+        $bodyclass = "single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $post = Post::where('slug',$slug)->firstOrFail();
         $post_category = Category::where('slug','posts')->firstOrFail();
         $categories = Category::where('parent_id',$post_category->id)->get();
-        $last_posts = Post::take(10)->get(); ///TODO: move number limit to database setting        
-        return View('front/posts/show', compact('post','categories','last_posts','post_category'));
+        $tags = Tag::has('posts')->get();
+        $last_posts = Post::take(10)->get(); ///TODO: move number limit to database setting
+        return View('front/posts/show', compact('post','categories','last_posts','post_category', 'tags', 'bodyclass'));
     }
 
     /**
