@@ -77,7 +77,7 @@
                                                 <div class="action aligncenter">
                                                     <!-- <a class="mfn-link mfn-link-1 " href="#" data-hover="Phasellus"><i class="icon-heart-empty-fa"></i></a> -->
                                                     <a class="yeuthich add-wishlist button button_grey button_js" href="#" target="_blank"><span class="button_icon"><i class="icon-heart-empty-fa"></i></span></a>
-                                                    <a class="add-shoopingcart button button_orange button_right button_js kill_the_icon" href="#" target="_blank"><span class="button_icon"><i class="icon-basket"></i></span><span class="button_label">Thêm Vào Giỏ Hàng</span></a>
+                                                    <a class="add-shoopingcart button button_orange button_right button_js kill_the_icon" href="#" target="_blank"><span class="button_icon"><i class="icon-basket"></i></span><span class="button_label">@lang('shoppings.add-cart')</span></a>
                                                 </div>
                                             </div>
                                         </li>
