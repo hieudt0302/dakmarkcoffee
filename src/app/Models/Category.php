@@ -71,7 +71,13 @@ class Category extends Model
      public function publishedPosts()
      {
          return $this->posts()->where('published','=', 1);
-     }     
+     }
+
+    public function GetChildPublishedPost()
+    {
+        $childIds = Category::where('parent_id',$this->id)->select('id')->get();
+        return Post::where('published','=', 1)->whereIn('category_id' , $childIds );
+    }
 
      public function postsCount()
      {

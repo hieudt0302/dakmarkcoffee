@@ -1,7 +1,7 @@
 (function($) {
     "use strict";
 
-    jQuery("#menu-secondary-menu li.menu-item").click(function(e) {
+    jQuery("#menu-secondary-menu li.menu-item").on('tap', function(e) {
 		e.preventDefault();
 		if ($(this).hasClass("hover")){
 			$(this).removeClass("hover");

@@ -20,7 +20,8 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {     
+    {
+
         $tags = Tag::has('posts')->get();
         $comments = Tag::has('posts')->get();
         $lastPosts = Post::take(10)->get(); ///TODO: move number limit to database setting
@@ -29,7 +30,7 @@ class PostsController extends Controller
     }
 
     public function filterByTag($slug)
-    {     
+    {
         $tags = Tag::has('posts')->get();
         $lastPosts = Post::where('published',1)->take(4)->get(); ///TODO: move number limit to database setting
         $post_category = Category::where('slug','posts')->firstOrFail();
@@ -41,6 +42,43 @@ class PostsController extends Controller
         
         return View('front/posts/index', compact('posts', 'lastPosts','tags','post_category','categories'))
         ->with('i', ($page??1 - 1) * 21);    
+    }
+
+    public function cat($slug)
+    {
+        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        //RELATED
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $parID = $category->id;
+        $tags = Tag::has('posts')->get();
+        $comments = Tag::has('posts')->get();
+        $lastPosts = Post::where('published',1)->take(5)->get(); ///TODO: move number limit to database setting
+        $post_category = Category::where('slug',$slug)->firstOrFail();
+        $categories = Category::where('parent_id',$post_category->id)->get();
+        //POSTS
+        $posts = $category->GetChildPublishedPost()->paginate(10);  ///TODO: move number limit to database setting
+
+
+        return View('front/posts/index', compact('posts', 'lastPosts','tags','comments','post_category','categories','category', 'bodyclass'))
+            ->with('i', ($page??1 - 1) * 10);
+    }
+
+    public function showcat($parent, $slug)
+    {
+        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        //RELATED
+        $category = Category::where('slug', $slug)->firstOrFail();
+//        {{dd($category);}}
+        $tags = Tag::has('posts')->get();
+        $comments = Tag::has('posts')->get();
+        $lastPosts = Post::where('published',1)->take(5)->get(); ///TODO: move number limit to database setting
+        $post_category = Category::where('slug',$slug)->firstOrFail();
+        $categories = Category::where('parent_id',$post_category->id)->get();
+        //POSTS
+        $posts = $category->publishedPosts()->paginate(10);  ///TODO: move number limit to database setting
+
+        return View('front/posts/index', compact('posts', 'lastPosts','tags','comments','post_category','categories','category', 'bodyclass'))
+            ->with('i', ($page??1 - 1) * 10);
     }
 
 
@@ -73,11 +111,13 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
+        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $post = Post::where('slug',$slug)->firstOrFail();
-        $post_category = Category::where('slug','posts')->firstOrFail();
-        $categories = Category::where('parent_id',$post_category->id)->get();
+        $tags = Tag::has('posts')->get();
+        $post_category = Category::where('id',$post->category_id)->firstOrFail();
+//        $categories = Category::where('parent_id',$post_category->id)->get();
         $last_posts = Post::take(10)->get(); ///TODO: move number limit to database setting        
-        return View('front/posts/show', compact('post','categories','last_posts','post_category'));
+        return View('front/posts/show', compact('post','last_posts','post_category', 'bodyclass', 'tags'));
     }
 
     /**

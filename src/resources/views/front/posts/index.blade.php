@@ -18,7 +18,7 @@
                                     <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_subheader.png')}}" alt="" width="58" height="65">
                                 </div>
                             </div>
-                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">BLOG</h2>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">{{$category->translation->name??$category->name}}</h2>
                             <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
                                 <div class="image_wrapper">
                                     <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_heading.png')}}" alt="" width="78" height="10">

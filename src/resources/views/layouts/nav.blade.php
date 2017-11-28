@@ -33,25 +33,26 @@
                                             <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="http://dak.dev/chung-nhan/tieu-chuan-iso-22000/"><span>Tiêu chuẩn ISO 22000</span></a></li>
                                         </ul>
                                         <span class="menu-toggle"></span></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/san-pham-ca-phe-dakmark/"><span>SẢN PHẨM</span></a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="http://dak.dev/goc-ca-phe/"><span>GÓC CÀ PHÊ</span></a>
-                                        <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/goc-ca-phe/ca-phe-va-du-lich/"><span>Cà phê và du lịch</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/goc-ca-phe/ca-phe-va-doanh-nhan/"><span>Cà phê và doanh nhân</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/goc-ca-phe/ca-phe-va-suc-khoe/"><span>Cà phê và sức khỏe</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/goc-ca-phe/ca-phe-va-nghe-thuat/"><span>Cà phê và nghệ thuật</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="http://dak.dev/goc-ca-phe/ca-phe-va-sach/"><span>Cà phê và sách</span></a></li>
-                                        </ul>
-                                        <span class="menu-toggle"></span></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/kien-thuc/"><span>KIẾN THỨC</span></a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu last"><a href="http://dak.dev/tin-tuc/"><span>TIN TỨC</span></a>
-                                        <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/tin-tuc/tin-cong-ty/"><span>Tin công ty</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/tin-tuc/tin-tuc-chung/"><span>Tin tức chung</span></a></li>
-                                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category last-item"><a href="http://dak.dev/category/tin-tuc/tin-tuyen-dung/"><span>Tin tuyển dụng</span></a></li>
-                                        </ul>
-                                        <span class="menu-toggle"></span></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page last"><a href="http://dak.dev/lien-he/"><span>LIÊN HỆ</span></a></li>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{url('/products')}}"><span>{{$product_menu->translation->name??$product_menu->name}}</span></a></li>
+
+                                    @foreach($blog_menu as $menu)
+
+                                        @if ( !$menu->GetMenuSubLevel1()->isEmpty() )
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu">
+                                                <a href="{{url('/cat/')}}/{{$menu->slug}}"><span>{{$menu->translation->name??$menu->name}}</span></a>
+                                                <ul class="sub-menu" style="display: none;">
+                                                @foreach($menu->GetMenuSubLevel1() as $sub)
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                        <a href="{{url('/cat/')}}/{{$menu->slug}}/{{$sub->slug}}"><span>{{$sub->translation->name??$sub->name}}</span></a>
+                                                    </li>
+                                                @endforeach
+                                                </ul>
+                                            </li>
+                                        @else
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{url('/cat/')}}/{{$menu->slug}}"><span>{{$menu->translation->name??$menu->name}}</span></a></li>
+                                        @endif
+                                    @endforeach
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page last"><a href="{{url('/contact')}}"><span>@lang('header.contact')</span></a></li>
                                 </ul>
                             </nav><a class="responsive-menu-toggle" href="#"><i class="icon-menu"></i></a>
                         </div>
@@ -60,35 +61,56 @@
                             <nav id="secondary-menu" class="menu-secondary-menu-container">
                                 <ul id="menu-secondary-menu" class="secondary-menu">
                                     <li class="menu-item">
-                                        <a id="wishlist" href="#"><i class="icon-heart-empty-fa"></i></a>
+                                        <a id="wishlist" href="{{ url('/wishlist') }}"><i class="icon-heart-empty-fa"></i></a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#"><i class="icon-basket"></i></a>
+                                        <a href="{{ url('/cart') }}"><i class="icon-basket"></i></a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="#"><i class="icon-user-line"></i></a>
                                         <ul class="sub-menu">
-                                            <li class="menu-item">
-                                                <a href="#">Login</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="#">Register</a>
-                                            </li>
+                                        @if (Auth::guest())
+                                        <!-- Sub Column -->
+                                            <li class="menu-item"><a href="{{ url('/login') }}">@lang('auth.login')</a></li>
+                                            <li class="menu-item"><a href="{{ url('/register') }}">@lang('auth.register')</a></li>
+                                            <!-- End Sub Column -->
+                                        @else
+                                            <li class="menu-item"><a href="{{ url('/cart') }}">@lang('footer.view-cart')</a></li>
+                                            <li class="menu-item"><a href="{{ url('/wishlist') }}">@lang('footer.my-wishlist')</a></li>
+                                            <li class="menu-item"><a href="{{ url('/Account/Orders') }}">@lang('footer.order-history')</a></li>
+                                            <li class="menu-item"><a href="{{ url('/logout') }}">@lang('auth.logout')</a></li>
+                                        @endif
                                         </ul>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="">VN<i class="icon-down-open-mini"></i>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item">
-                                                    <a href="#">English</a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="#">Vietnamese</a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="#">Frances</a>
-                                                </li>
-                                            </ul>
+                                        <a href="">{{ strtoupper(app()->getLocale()) }}<i class="icon-down-open-mini"></i></a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item">
+                                                <a href="{{URL::asset('')}}language/vi">
+                                                    Tiếng Việt
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="{{URL::asset('')}}language/en">
+                                                    English
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="{{URL::asset('')}}language/cn">
+                                                    中文
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="{{URL::asset('')}}language/jp">
+                                                    日本語
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="{{URL::asset('')}}language/kr">
+                                                    한국어
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </nav>

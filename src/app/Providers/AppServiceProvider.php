@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
                 $blogCategory = Category::where('slug','posts')->first();
 
 				$blog_menu = Category::where('is_menu_avaiable',1)
-                ->where('parent_id',$blogCategory->id??0)
+                ->whereNull('parent_id')
+                ->where('slug','!=','products')
 				->orderBy('order','asc')
 				->get();
 

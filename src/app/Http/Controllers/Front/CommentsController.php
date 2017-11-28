@@ -63,7 +63,7 @@ class CommentsController extends Controller
         if(!empty($request->reader_id))
             $comment->author_id = $request->reader_id;
 
-        $post = Post::find($request->post_id); 
+        $post = Post::find($request->post_id);
 
         $review = $post->comments()->save($comment);
 

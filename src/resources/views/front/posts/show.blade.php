@@ -18,7 +18,7 @@
                                     <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_subheader.png')}}" alt="" width="58" height="65">
                                 </div>
                             </div>
-                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">{{$post->translation->title}}</h2>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">{{$post->translation->title??$post->title}}</h2>
                             <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
                                 <div class="image_wrapper">
                                     <img class="scale-with-grid" src="{{asset('frontend/images/home/home_coffee_heading.png')}}" alt="" width="78" height="10">
@@ -45,7 +45,7 @@
                                             <div class="section the_content has_content">
                                                 <div class="section_wrapper">
                                                     <div class="the_content_wrapper">
-                                                        {!! $post->translation->content !!}
+                                                        {!! $post->translation->content??$post->content !!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +88,7 @@
                                     <h4 id="comments-title">({{count($post->comments)}}) {{ __('blog.comment') }}</h4>
                                     <!-- Comment List-->
                                     <ol class="commentlist">
-                                        @foreach($post->comments as  $comment)
+                                        @foreach($post->comments as $comment)
                                         <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent" id="{{$comment->id}}">
                                             <div id="div-comment-4" class="comment-body">
                                                 <div class="comment-author vcard">
@@ -125,6 +125,7 @@
                                                         <!-- <span><input type="text" name="subject_popup" id="subject_popup" aria-required="true" aria-invalid="false" placeholder="Subject"></span> -->
                                                         @else
                                                         <input type="hidden" id="reader_id" name="reader_id" value="{{Auth::user()->id}}">
+                                                        <input type="hidden" id="post_id" name="post_id" value="{{$post->id}}">
                                                         <input type="hidden" id="name" name="name" value="{{Auth::user()->last_name}} {{Auth::user()->first_name}}">
                                                         <input type="hidden" id="email" name="email" value="{{Auth::user()->email}}">
                                                         <!-- <span><input type="text" name="subject_popup" id="subject_popup" aria-required="true" aria-invalid="false" placeholder="Subject"></span> -->
@@ -189,7 +190,7 @@
                     <aside class="widget widget_categories">
                         <h3>@lang('common.categories')</h3>
                         <ul>
-                            @foreach($categories as $cat)
+                            @foreach($blog_menu as $cat)
                                 <li class="cat-item">
                                     <a href="{{url('/blog')}}/{{$cat->slug}}" title="">
                                         <i class="fa fa-circle-thin" aria-hidden="true"></i>  {{$cat->translation->name??$cat->name}}
