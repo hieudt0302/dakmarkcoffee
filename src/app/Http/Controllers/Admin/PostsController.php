@@ -40,8 +40,13 @@ class PostsController extends Controller
     public function create()
     {      
         $languages = Language::all();
-        $blogCategory = Category::where('slug','posts')->firstOrFail();
-        $categories = Category::where('parent_id',$blogCategory->id)->get();     
+
+         // $blogCategory = Category::where('slug','posts')->firstOrFail();
+        // $categories = Category::where('parent_id',$blogCategory->id)->get();  
+        
+        $productCategory = Category::where('slug','products')->firstOrFail();        
+        $categories = Category::whereNotNull('parent_id')
+        ->where('parent_id','!=',$productCategory->id)->get();     
         
         $tags = Tag::all();
         return View('admin.posts.create',compact('languages','categories','tags'));
@@ -128,8 +133,12 @@ class PostsController extends Controller
             ->with('status', 'danger');
         }
         $languages = Language::all();
-        $blogCategory = Category::where('slug','posts')->firstOrFail();
-        $categories = Category::where('parent_id',$blogCategory->id)->get();  
+        // $blogCategory = Category::where('slug','posts')->firstOrFail();
+        // $categories = Category::where('parent_id',$blogCategory->id)->get();  
+        $productCategory = Category::where('slug','products')->firstOrFail();
+        
+        $categories = Category::whereNotNull('parent_id')
+        ->where('parent_id','!=',$productCategory->id)->get();    
         
         $language_id = Input::get('language_id')??0;
         $tab = 1;
