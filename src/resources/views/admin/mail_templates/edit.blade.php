@@ -58,6 +58,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="{{$tab==2?'active':''}} tab-pane" id="content">
                             <div class="panel-group">
                                 <form id="getTranslation" action="{{url('/admin/mail_templates')}}/{{$mailTemplate->id}}/edit" method="GET">
@@ -88,6 +89,12 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="form-group">
+                                                <label class="control-label col-md-3">Tiêu Đề</label>
+                                                <div class="col-md-8">
+                                                    <input id="title_translate" class="form-control" name="title_translate"  value="{{ $translation->title??'' }}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="control-label col-md-3">Nội dung</label>
                                                 <div class="col-md-8">
                                                     <textarea id="content_translate" class="form-control ckeditor" name="content_translate" rows="3"  placeholder="" contenteditable="true">{!! $translation->content??'' !!}</textarea>
@@ -104,16 +111,34 @@
                                     </div>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>    
         </div>
     </div>
-</section>        
+
+</section>      
+   
 @endsection
 
 @section('scripts')
+<script src="{{asset('backend/dist/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('backend/dist/ckfinder/ckfinder.js')}}"></script>
+<script type="text/javascript">
+
+    CKEDITOR.replace( 'content_translate',
+    {
+        filebrowserBrowseUrl : '/backend/dist/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl : '/backend/dist/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl : '/backend/dist/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl : '/backend/dist/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl : '/backend/dist/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : '/backend/dist/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+
+</script>  
 <script>
   $(function () {
     // TAB: CONTENT
@@ -123,4 +148,5 @@
     })    
   })
 </script>
+
 @endsection

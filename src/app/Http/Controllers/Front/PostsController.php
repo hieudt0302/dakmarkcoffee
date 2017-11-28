@@ -20,18 +20,12 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
-        $bodyclass = "page-parent template-slider with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+    {     
         $tags = Tag::has('posts')->get();
-//        $comments = Comment::has('posts')->get();
-        $post_category = Category::where('slug','posts')->firstOrFail();
-        $categories = Category::where('parent_id',$post_category->id)->get();
+        $comments = Tag::has('posts')->get();
         $lastPosts = Post::take(10)->get(); ///TODO: move number limit to database setting
         $post_group = Post::all()->groupBy('category_id');  ///TODO: move number limit to database setting
-        $posts = Post::paginate(6);
-
-        return View('front/posts/index', compact('post_group','tags', 'lastPosts', 'posts', 'bodyclass', 'categories'));
+        return View('front/posts/index-allcat', compact('post_group','tags','comments', 'lastPosts'));        
     }
 
     public function filterByTag($slug)
@@ -79,13 +73,11 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        $bodyclass = "single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $post = Post::where('slug',$slug)->firstOrFail();
         $post_category = Category::where('slug','posts')->firstOrFail();
         $categories = Category::where('parent_id',$post_category->id)->get();
-        $tags = Tag::has('posts')->get();
-        $last_posts = Post::take(10)->get(); ///TODO: move number limit to database setting
-        return View('front/posts/show', compact('post','categories','last_posts','post_category', 'tags', 'bodyclass'));
+        $last_posts = Post::take(10)->get(); ///TODO: move number limit to database setting        
+        return View('front/posts/show', compact('post','categories','last_posts','post_category'));
     }
 
     /**
