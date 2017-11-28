@@ -51,10 +51,15 @@ Route::post('/add-to-cart', 'Front\ProductsController@addToCart');
 Route::post('/add-to-wishlist', 'Front\ProductsController@addToWishlist');
 
 /* POST */
-Route::get('/posts', 'Front\PostsController@index');
-Route::get('/subject/posts/tags/{slug}', 'Front\PostsController@filterByTag');
+//Route::get('/posts', 'Front\PostsController@index');
+//Route::get('/subject/posts/tags/{slug}', 'Front\PostsController@filterByTag');
+//Route::get('/posts/{slug}', 'Front\PostsController@show');
+//Route::post('/posts','Front\PostsController@search');
+Route::get('/cat/{parent}/{slug}', 'Front\PostsController@showcat');
+Route::get('/cat/{slug}', 'Front\PostsController@cat');
 Route::get('/posts/{slug}', 'Front\PostsController@show');
-Route::post('/posts','Front\PostsController@search');  
+Route::get('/posts','Front\PostsController@search');
+Route::post('/posts','Front\PostsController@search');
 
 /* REVIEW - PRODUCT */
 Route::post('/products/{id}/review', 'Front\ReviewsController@store');
