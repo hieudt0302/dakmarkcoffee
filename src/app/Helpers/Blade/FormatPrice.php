@@ -16,3 +16,10 @@ class FormatPrice {
         } 
     }
 }
+
+class Gravatar{
+    public static function getdefault($email){
+        $amil =  md5( strtolower( trim( $email ) ) );
+        return 'https://www.gravatar.com/avatar/'.$amil;
+    }
+}

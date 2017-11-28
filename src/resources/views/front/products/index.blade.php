@@ -37,12 +37,12 @@
                                     <ul class="products grid">
                                     @foreach($results as $key => $product)
                                         <!-- Product Item -->
-                                        <li class="product has-post-thumbnail">
+                                        <li class="product item has-post-thumbnail">
                                             <div class="item_wrapper">
                                                 <div class="hover_box hover_box_product">
                                                     <a href="{{url('/product')}}/{{$product->slug}}">
                                                         <div class="image_wrapper">
-                                                            <img class="scale-with-grid" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
+                                                            <img class="scale-with-grid product-main-img" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
                                                         </div>
 
                                                     </a>
@@ -76,8 +76,8 @@
                                                 </div>
                                                 <div class="action aligncenter">
                                                     <!-- <a class="mfn-link mfn-link-1 " href="#" data-hover="Phasellus"><i class="icon-heart-empty-fa"></i></a> -->
-                                                    <a class="yeuthich add-wishlist button button_grey button_js" href="#" target="_blank"><span class="button_icon"><i class="icon-heart-empty-fa"></i></span></a>
-                                                    <a class="add-shoopingcart button button_orange button_right button_js kill_the_icon" href="#" target="_blank"><span class="button_icon"><i class="icon-basket"></i></span><span class="button_label">@lang('shoppings.add-cart')</span></a>
+                                                    <a data-id="{{$product->id}}" data-name="{{$product->name}}" class="yeuthich add-wishlist button button_grey button_js"><span class="button_icon"><i class="add-wishlist icon-heart-empty-fa"></i></span></a>
+                                                    <a data-id="{{$product->id}}" data-name="{{$product->name}}" class="add-shoopingcart button button_orange button_right button_js kill_the_icon"><span class="button_icon"><i class="icon-basket"></i></span><span class="button_label">@lang('shoppings.add-cart')</span></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -115,4 +115,74 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ asset('js/flytocart.js') }}"></script>
+    <script>
+        (function($) {
+            "use strict";
+            jQuery('.add-shoopingcart').click(function() {
+                var id = $(this).attr("data-id")
+                var name = $(this).attr("data-name")
+                var price = 0;
+                var quantity = 1;
+                $.ajax({
+                    type:'POST',
+                    url:'{{ url("/add-to-cart") }}',
+                    data: {
+                        'id': id, //just test
+                        'name': name,//just test
+                        'price': price,//just test
+                        'quantity': quantity,//just test
+                    },
+                    success:function(response){
+                        console.log(response['message']);
+                    },
+                    error:function(response){
+                        console.log(response['message']);
+                    }
+                });
+            });
+            jQuery('.add-wishlist').click(function() {
+                var id = $(this).attr("data-id")
+                var name = $(this).attr("data-name")
+                var price = 0;
+                var quantity = 1;
+                $(this).effect("shake", {
+                    times: 1
+                }, 200);
+
+                $.ajax({
+                    type:'POST',
+                    url:'{{ url("/add-to-wishlist") }}',
+                    data: {
+                        'id': id, //just test
+                        'name': name,//just test
+                        'price': price,//just test
+                        'quantity': quantity,//just test
+                    },
+                    success:function(response){
+                        console.log(response['message']); //debug
+                    },
+                    error:function(response){
+                        console.log(response['message']); //debug
+                    }
+                });
+            });
+            jQuery('.call').click(function() {
+                var target = $( event.target );
+                var x = document.getElementById("call-number");
+                target.text('');
+                target.html(x.innerHTML);
+//		    if (x.style.display === "none") {
+//		        x.style.display = "block";
+//		    } else {
+//		        x.style.display = "none";
+//		    }
+            });
+        })(jQuery);
+    </script>
 @endsection

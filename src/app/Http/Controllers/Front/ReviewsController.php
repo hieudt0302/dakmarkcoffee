@@ -46,12 +46,16 @@ class ReviewsController extends Controller
             'comment' => 'required|string',
         ]);
 
+//        {{dd($request);}}
+
         if ($validator->fails()) {
             return redirect()->back()
             ->with('message', 'ERROR-INPUT: Code EI1004')
             ->with('status', 'danger')
             ->withInput();
         }
+
+
 
         $review = new Comment();
         $review->name = $request->name;
@@ -62,7 +66,11 @@ class ReviewsController extends Controller
         if(!empty($request->reviewer_id))
             $review->author_id = $request->reviewer_id;
 
+
+
+
         $product = Product::find($request->product_id);
+
 
         $review = $product->comments()->save($review);
 
