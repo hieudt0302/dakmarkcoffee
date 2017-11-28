@@ -1,7 +1,7 @@
 /*
-    Add to cart fly effect with jQuery. - May 05, 2013
-    (c) 2013 @ElmahdiMahmoud - fikra-masri.by
-    license: https://www.opensource.org/licenses/mit-license.php
+	Add to cart fly effect with jQuery. - May 05, 2013
+	(c) 2013 @ElmahdiMahmoud - fikra-masri.by
+	license: https://www.opensource.org/licenses/mit-license.php
 */
 (function($) {
     "use strict";
@@ -11,14 +11,6 @@
         // var imgtodrag = $(this).parent('.item').find("img").eq(0);
 
         var imgtodrag = $('.product-main-img');
-        // If is single
-        if ($('.single-product').length) {
-            imgtodrag = $('.single-product .product-main-img');
-        } else {
-            //Not single (multiple product image)
-            imgtodrag = $(this).closest('.item').find('.product-main-img').first();
-            console.log(imgtodrag);
-        }
 
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
@@ -41,7 +33,6 @@
                     'height': 75
                 }, 1000, 'easeInOutExpo');
 
-            //Error
             setTimeout(function() {
                 cart.effect("shake", {
                     times: 2
@@ -62,14 +53,6 @@
         // var imgtodrag = $(this).parent('.item').find("img").eq(0);
 
         var imgtodrag = $('.product-main-img');
-        // If is single
-        if ($('.single-product').length) {
-            imgtodrag = $('.single-product .product-main-img');
-        } else {
-            //Not single (multiple product image)
-            imgtodrag = $(this).closest('.item').find('.product-main-img').first();
-            console.log(imgtodrag);
-        }
 
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
@@ -92,7 +75,6 @@
                     'height': 75
                 }, 1000, 'easeInOutExpo');
 
-            //Error
             setTimeout(function() {
                 cart.effect("shake", {
                     times: 2

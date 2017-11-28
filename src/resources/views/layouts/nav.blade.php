@@ -61,9 +61,9 @@
                             <nav id="secondary-menu" class="menu-secondary-menu-container">
                                 <ul id="menu-secondary-menu" class="secondary-menu">
                                     <li class="menu-item">
-                                        <a id="wishlist" href="{{ url('/wishlist') }}"><i class="icon-heart-empty-fa"></i></a>
+                                        <a id="wishlist" href="{{ url('/wishlist') }}"><i class="wishlist-icon icon-heart-empty-fa"></i></a>
                                     </li>
-                                    <li class="menu-item">
+                                    <li class="menu-item shopping-cart-icon">
                                         <a href="{{ url('/cart') }}"><i class="icon-basket"></i></a>
                                     </li>
                                     <li class="menu-item">

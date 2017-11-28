@@ -92,7 +92,7 @@
                                         <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent" id="{{$comment->id}}">
                                             <div id="div-comment-4" class="comment-body">
                                                 <div class="comment-author vcard">
-                                                    <img alt="" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" class="avatar avatar-64 photo" height="64" width="64">
+                                                    <img alt="" src="{{ \App\Helpers\Blade\Gravatar::getdefault($comment->email) }}" class="avatar avatar-64 photo" height="64" width="64">
                                                     <cite class="fn">{{$comment->name}}</cite><span class="says"></span>
                                                 </div>
                                                 <div class="comment-meta commentmetadata">

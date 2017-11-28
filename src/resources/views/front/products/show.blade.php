@@ -23,7 +23,7 @@
 													@if($key === 0)
 														<div class="images image_wrapper">
 															<a href="{{asset('/storage')}}/{{$media->source}}" class="woocommerce-main-image zoom" title="{{$media->description}}" data-rel="prettyPhoto[product-gallery]">
-																<div class="mask"></div><img width="500" height="500" src="{{asset('/storage')}}/{{$media->source}}" class="scale-with-grid wp-post-image" alt="{{$media->description}}" title="{{$media->description}}" />
+																<div class="mask"></div><img width="500" height="500" src="{{asset('/storage')}}/{{$media->source}}" class="scale-with-grid wp-post-image product-main-img" alt="{{$media->description}}" title="{{$media->description}}" />
 															</a>
 														</div>
 													@else
@@ -53,7 +53,7 @@
 											@else
 												<div class="images image_wrapper">
 													<a href="{{asset('storage/images/no-image.png') }}" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
-														<div class="mask"></div><img width="500" height="500" src="{{asset('storage/images/no-image.png') }}" class="scale-with-grid wp-post-image" alt="" title="" />
+														<div class="mask"></div><img width="500" height="500" src="{{asset('storage/images/no-image.png') }}" class="scale-with-grid wp-post-image product-main-img" alt="" title="" />
 													</a>
 												</div>
 											@endif
@@ -157,7 +157,7 @@
 														<ol class="commentlist">
 															@foreach($product->comments as  $review)
 															<li itemscope itemtype="http://schema.org/Review" class="comment even thread-even depth-1" id="li-comment-{{$review->id}}">
-																<div id="comment-{{$review->id}}" class="comment_container"><img alt='{{$review->name}}' src='http://1.gravatar.com/avatar/f0cde930b42c79145194679d5b6e3b1d?s=60&amp;d=&amp;r=G' class='avatar avatar-60 photo' height='60' width='60' />
+																<div id="comment-{{$review->id}}" class="comment_container"><img alt='{{$review->name}}' src='{{ \App\Helpers\Blade\Gravatar::getdefault($review->email) }}' class='avatar avatar-60 photo' height='60' width='60' />
 																	<div class="comment-text">
 																		<div itemscope itemtype="http://schema.org/Rating" class="star-rating" title="Rated 4 out of 5">
 																			<span style="width:{{$starAvg*20}}%"><strong >4</strong> out of 5</span>
@@ -189,7 +189,8 @@
 										<div class="column one" id="respond">
 											<h3 class="section-title">@lang('product.add-review')</h3>
 											<!-- Form -->
-											<form method="post" action="#" id="form" role="form" class="form review-content">
+											<form method="post" action="{{url('/products')}}/{{$product->slug}}/review" id="form" role="form" class="form review-content">
+												{{ csrf_field() }}
 												@guest
 												<input type="text" name="name" id="name" class="input-md form-control" placeholder="Name *" maxlength="100" required>
 												<input type="email" name="email" id="email" class="input-md form-control" placeholder="Email*" maxlength="100" required>
@@ -197,6 +198,7 @@
 													<input type="hidden" id="reviewer_id" name="reviewer_id" value="{{Auth::user()->id}}">
 													<input type="hidden" id="name" name="name" value="{{Auth::user()->last_name}} {{Auth::user()->first_name}}">
 													<input type="hidden" id="email" name="email" value="{{Auth::user()->email}}">
+													<input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
 													<input type="hidden" id="website" name="website" value="">
 												@endguest
 												<div class="review-rating">
@@ -227,7 +229,7 @@
 													</a>
 												</div>
 												<div class="column one" style="display: none">
-													<select class="input-md round form-control" id="yourrating">
+													<select class="input-md round form-control" id="yourrating" name="rate">
 														<option selected>-- Select one --</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
@@ -237,7 +239,7 @@
 													</select>
 												</div>
 												<!-- Comment -->
-												<textarea name="text" id="" class="" rows="6" placeholder="{{ __('product.comment')}}*" maxlength="400"></textarea>
+												<textarea name="comment" id="" class="" rows="6" placeholder="{{ __('product.comment')}}*" maxlength="400"></textarea>
 
 												<!-- Send Button -->
 												<button type="submit " class="btn btn-mod btn-medium btn-round ">
@@ -261,66 +263,65 @@
 
 @section('scripts')
 
-
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript" src="{{ asset('js/flytocart.js') }}"></script>
 <script>
-     $(document).ready(function(){
-         $(document).ready(function(){
-             $('.add-shoopingcart').click(function() {
-                 var quantity = $("input[name='quantity']").val();
-                 $.ajax({
-                     type:'POST',
-                     url:'{{ url("/add-to-cart") }}',
-                     data: {
-                         'id': '{{$product->id}}',
-                         'name': '{{$product->name}}',
-                         'price': {{$product->price}},
-                         'quantity': quantity,
-                     },
-                     success:function(response){
-                         console.log(response['message']); //debug
-                         //$('.cartItemCount').html($('.cartItemCount').html().replace (/\((.*?)\)/g,"(" + response['newCartItemCount'] + ")"));
-                         $('.cartItemCount').html(response['newCartItemCount']);
-                     },
-                     error:function(response){
-                         console.log(response['message']); //debug
-                     }
-                 });
-             });
-             $('.add-wishlist').click(function() {
-                 $(this).effect("shake", {
-                     times: 1
-                 }, 200);
+    (function($) {
+        "use strict";
+        jQuery('.add-shoopingcart').click(function() {
+			 var quantity = $("input[name='quantity']").val();
+			 $.ajax({
+				 type:'POST',
+				 url:'{{ url("/add-to-cart") }}',
+				 data: {
+					 'id': '{{$product->id}}',
+					 'name': '{{$product->name}}',
+					 'price': {{$product->price}},
+					 'quantity': quantity,
+				 },
+				 success:function(response){
+					 console.log(response['message']); //debug
+					 //$('.cartItemCount').html($('.cartItemCount').html().replace (/\((.*?)\)/g,"(" + response['newCartItemCount'] + ")"));
+					 $('.cartItemCount').html(response['newCartItemCount']);
+				 },
+				 error:function(response){
+					 console.log(response['message']); //debug
+				 }
+			 });
+		 });
+        jQuery('.add-wishlist').click(function() {
+			 $(this).effect("shake", {
+				 times: 1
+			 }, 200);
 
-                 $.ajax({
-                     type:'POST',
-                     url:'{{ url("/add-to-wishlist") }}',
-                     data: {
-                         'id': '{{$product->id}}',
-                         'name': '{{$product->name}}',
-                         'price': {{$product->price}},
-                         'quantity': 1,
-                     },
-                     success:function(response){
-                         console.log(response['message']); //debug
-                     },
-                     error:function(response){
-                         console.log(response['message']); //debug
-                     }
-                 });
-             });
-             $('.call').click(function(event) {
-                 var target = $( event.target );
-                 var x = document.getElementById("call-number");
-                 target.text('');
-                 target.html(x.innerHTML);
+			 $.ajax({
+				 type:'POST',
+				 url:'{{ url("/add-to-wishlist") }}',
+				 data: {
+					 'id': '{{$product->id}}',
+					 'name': '{{$product->name}}',
+					 'price': {{$product->price}},
+					 'quantity': 1,
+				 },
+				 success:function(response){
+					 console.log(response['message']); //debug
+				 },
+				 error:function(response){
+					 console.log(response['message']); //debug
+				 }
+			 });
+		 });
+	jQuery('.call').click(function() {
+			 var target = $( event.target );
+			 var x = document.getElementById("call-number");
+			 target.text('');
+			 target.html(x.innerHTML);
 //		    if (x.style.display === "none") {
 //		        x.style.display = "block";
 //		    } else {
 //		        x.style.display = "none";
 //		    }
-             });
-         });
-    });
+		 });
+    })(jQuery);
 </script>
 @endsection
