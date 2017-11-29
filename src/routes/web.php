@@ -27,6 +27,7 @@ Route::get('/about', 'Front\HomeController@about');
 Route::get('/returns', 'Front\HomeController@returns');
 Route::get('/showrooms', 'Front\HomeController@showrooms');
 Route::get('/purchase-flow', 'Front\HomeController@purchase_flow');
+Route::get('/search', 'Front\HomeController@search');
 Route::post('/search', 'Front\HomeController@search');
 Route::get('/product-origin', 'Front\HomeController@product_origin');
 Route::get('/product-quality', 'Front\HomeController@product_quality');
@@ -60,6 +61,9 @@ Route::get('/cat/{slug}', 'Front\PostsController@cat');
 Route::get('/posts/{slug}', 'Front\PostsController@show');
 Route::get('/posts','Front\PostsController@search');
 Route::post('/posts','Front\PostsController@search');
+
+/* TAG */
+Route::get('/tag/{slug}', 'Front\HomeController@tag');
 
 /* REVIEW - PRODUCT */
 Route::post('/products/{id}/review', 'Front\ReviewsController@store');

@@ -122,11 +122,12 @@
                         {{--</div>--}}
                         <!-- Header Searchform area-->
                         <div class="search_wrapper">
-                            <form method="get" action="#">
+                            {!! Form::open(array('url' => '/search')) !!}
                                 <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
-                                <input type="text" class="field" name="s" placeholder="Enter your search" />
-                                <input type="submit flv_disp_none" class="submit flv_disp_none" value="" />
-                            </form>
+                                <input type="text" class="field" name="key" placeholder="Enter your search" />
+                                <input type="submit" class="submit flv_disp_none" value="" />
+                                <input type="hidden" name="searchtype" id="searchtype" value="all">
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     <div class="top_bar_right coffee_bottom_nav">

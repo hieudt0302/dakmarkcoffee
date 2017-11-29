@@ -46,7 +46,7 @@ class PostsController extends Controller
 
     public function cat($slug)
     {
-        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        $bodyclass="blog-page single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         //RELATED
         $category = Category::where('slug', $slug)->firstOrFail();
         $parID = $category->id;
@@ -65,7 +65,7 @@ class PostsController extends Controller
 
     public function showcat($parent, $slug)
     {
-        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        $bodyclass="blog-page single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         //RELATED
         $category = Category::where('slug', $slug)->firstOrFail();
 //        {{dd($category);}}
@@ -111,7 +111,7 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        $bodyclass="single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        $bodyclass="blog-page single single-post with_aside aside_left template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $post = Post::where('slug',$slug)->firstOrFail();
         $tags = Tag::has('posts')->get();
         $post_category = Category::where('id',$post->category_id)->firstOrFail();

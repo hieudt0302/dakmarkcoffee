@@ -38,7 +38,6 @@
                                         <div class="posts_group lm_wrapper grid col-2 isotope">
                                             @foreach($posts as $post)
                                             <div class="post has-post-thumbnail post-item isotope-item clearfix">
-
                                                 <div class="image_frame post-photo-wrapper scale-with-grid">
                                                     <div class="image_wrapper">
                                                         <a href="{{url('/')}}/posts/{{$post->slug}}">

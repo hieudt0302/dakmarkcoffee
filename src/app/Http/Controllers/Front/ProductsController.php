@@ -22,9 +22,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        $bodyclass = 'product-page page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left';
         $tags = Tag::has('products')->get();
         $results = Product::where('published',1)->paginate(12);
-        return View('front/products/index',compact('results','tags'));
+        return View('front/products/index',compact('results','tags', 'bodyclass'));
     }
   
     /**
@@ -56,7 +57,7 @@ class ProductsController extends Controller
      */
     public function show($slug)
     {
-        $bodyclass="single single-product postid-70 woocommerce woocommerce-page template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
+        $bodyclass="product-page single single-product postid-70 woocommerce woocommerce-page template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $product = Product::where('slug',$slug)->firstOrFail();
         if(empty($product))
             return abort(404);

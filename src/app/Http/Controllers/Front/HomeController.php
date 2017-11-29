@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -213,19 +214,64 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        $search_key = $request->input('key'); 
-        
+//        $search_key = $request->input('key');
+//        $products = ProductTranslation::where("name", "LIKE", "%$search_key%")
+//        ->paginate(12);
+//        $posts = PostTranslation::where("title", "LIKE", "%$search_key%")
+//        ->paginate(4);
+//        return view('front/home/search',compact('products','posts','search_key'));
+        $search_key = $request->input('key');
+        $search_type = $request->input('searchtype');
+        $products = null;
+        $posts = null;
 
-        $products = ProductTranslation::where("name", "LIKE", "%$search_key%")
-        ->paginate(12);             
+        switch ($search_type){
+            case "all":
+                $products = Product::where('published',1)
+                    ->where('products.name', 'LIKE', '%'. $search_key . '%')
+                    ->whereNull('deleted_at')
+                    ->orWhereIn('products.id', function($query) use ($search_key){
+                        $query->select('product_id')->from('product_translations')
+                            ->Where('name','LIKE', '%'. $search_key . '%');
+                    })->paginate(9, ['*'], 'product_page');
+                $posts = Post::where('published',1)
+                    ->where('posts.title', 'LIKE', '%'. $search_key . '%')
+                    ->orWhereIn('posts.id', function($query) use ($search_key){
+                        $query->select('post_id')->from('post_translations')
+                            ->Where('title','LIKE', '%'. $search_key . '%');
+                    })->paginate(6, ['*'], 'post_page');
+                break;
 
+            case "product":
+                $products = Product::where('published',1)
+                    ->where('products.name', 'LIKE', '%'. $search_key . '%')
+                    ->whereNull('deleted_at')
+                    ->orWhereIn('products.id', function($query) use ($search_key){
+                        $query->select('product_id')->from('product_translations')
+                            ->Where('name','LIKE', '%'. $search_key . '%');
+                    })->paginate(9, ['*'], 'product_page');
+                break;
 
-        $posts = PostTranslation::where("title", "LIKE", "%$search_key%")
-        ->paginate(4);             
+            case "blog":
+                $posts = Post::where('published',1)
+                    ->where('posts.title', 'LIKE', '%'. $search_key . '%')
+                    ->orWhereIn('posts.id', function($query) use ($search_key){
+                        $query->select('post_id')->from('post_translations')
+                            ->Where('title','LIKE', '%'. $search_key . '%');
+                    })->paginate(6, ['*'], 'post_page');
+                break;
+        }
+        return view('front/home/search',compact('products','search_key', 'posts', 'search_type'))->with(compact('product_page','post_page'));
+    }
 
+    public function tag($slug){
+        $tagobj = Tag::where('slug', '=', $slug)->whereNull('deleted_at')->firstOrFail();
 
-        return view('front/home/search',compact('products','posts','search_key'));
-    }      
+        $search_key = $tagobj->name;
+        $products = $tagobj->products()->paginate(9, ['*'], 'product_page');
+        $posts = $tagobj->posts()->paginate(6, ['*'], 'post_page');
+        return view('front/home/tag',compact('products','search_key', 'posts'))->with(compact('product_page','post_page'));
+    }
 
     function getInfoPageTranslation($slug){
         $language_id = 1; //make vietnamese as default alternative
@@ -236,8 +282,7 @@ class HomeController extends Controller
         }
         $info_page = InfoPage::where('slug',$slug)->first(); 
         $info_page_translation = InfoPageTranslation::where('info_page_id',$info_page->id)->where('language_id',$language_id)->first();  
-        return $info_page_translation;      
-
+        return $info_page_translation;
     }
 
 
