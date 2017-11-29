@@ -23,10 +23,23 @@ Auth::routes();
 
 /* HOME */
 Route::get('/', 'Front\HomeController@index');
+//About
 Route::get('/about', 'Front\HomeController@about');
+Route::get('/tht-san-xuat-ca-phe-ben-vung', 'Front\HomeController@sx_coffee_ben_vung');
+Route::get('/htx-cscc', 'Front\HomeController@htx_cscc');
+Route::get('/album-dakmark', 'Front\HomeController@album_dakmark');
+
+//Cers
+Route::get('/chung-nhan', 'Front\HomeController@chung_nhan');
+Route::get('/chung-nhan-rainforest-alliance', 'Front\HomeController@chung_nhan_rainforest_alliance');
+Route::get('/chung-nhan-4c', 'Front\HomeController@chung_nhan_4c');
+Route::get('/chung-nhan-haccp', 'Front\HomeController@chung_nhan_haccp');
+Route::get('/tieu-chuan-iso-22000', 'Front\HomeController@tieu_chuan_iso_22000');
+
 Route::get('/returns', 'Front\HomeController@returns');
 Route::get('/showrooms', 'Front\HomeController@showrooms');
 Route::get('/purchase-flow', 'Front\HomeController@purchase_flow');
+Route::get('/search', 'Front\HomeController@search');
 Route::post('/search', 'Front\HomeController@search');
 Route::get('/product-origin', 'Front\HomeController@product_origin');
 Route::get('/product-quality', 'Front\HomeController@product_quality');
@@ -60,6 +73,9 @@ Route::get('/cat/{slug}', 'Front\PostsController@cat');
 Route::get('/posts/{slug}', 'Front\PostsController@show');
 Route::get('/posts','Front\PostsController@search');
 Route::post('/posts','Front\PostsController@search');
+
+/* TAG */
+Route::get('/tag/{slug}', 'Front\HomeController@tag');
 
 /* REVIEW - PRODUCT */
 Route::post('/products/{id}/review', 'Front\ReviewsController@store');

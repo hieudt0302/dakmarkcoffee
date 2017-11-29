@@ -1,6 +1,14 @@
 (function($) {
     "use strict";
 
+    if ($("body").hasClass("product-page")){
+        $("#searchtype").prop('value', 'product');
+    }
+    if ($("body").hasClass("blog-page")){
+        $("#searchtype").prop('value', 'blog');
+    }
+    console.log($("#searchtype").val());
+
     jQuery("#menu-secondary-menu li.menu-item").on('tap', function(e) {
 		e.preventDefault();
 		if ($(this).hasClass("hover")){

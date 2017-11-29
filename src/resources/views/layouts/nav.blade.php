@@ -17,20 +17,20 @@
                             <nav id="menu">
                                 <ul id="menu-main-menu" class="menu">
                                     <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ url('/')}}"><span>@lang('common.home')</span></a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="http://dak.dev/gioi-thieu/"><span>GIỚI THIỆU</span></a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/about')}}"><span>GIỚI THIỆU</span></a>
                                         <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/gioi-thieu/"><span>Giới thiệu về công ty</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/gioi-thieu/tht-san-xuat-ca-phe-ben-vung/"><span>THT Sản xuất cà phê bền vững</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/gioi-thieu/htx-cscc/"><span>HTX CSCC</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="http://dak.dev/album-dakmark/"><span>ALBUM DAKMARK</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/about')}}"><span>GIỚI THIỆU</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/tht-san-xuat-ca-phe-ben-vung/')}}"><span>THT Sản xuất cà phê bền vững</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/htx-cscc')}}"><span>HTX CSCC</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/album-dakmark')}}"><span>ALBUM DAKMARK</span></a></li>
                                         </ul>
                                         <span class="menu-toggle"></span></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="http://dak.dev/chung-nhan/"><span>CHỨNG NHẬN</span></a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/chung-nhan/')}}"><span>CHỨNG NHẬN</span></a>
                                         <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/chung-nhan/chung-nhan-rainforest-alliance/"><span>Chứng nhận Rainforest Alliance</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/chung-nhan/chung-nhan-4c/"><span>Chứng nhận 4C</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dak.dev/chung-nhan/chung-nhan-haccp/"><span>Chứng Nhận HACCP</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="http://dak.dev/chung-nhan/tieu-chuan-iso-22000/"><span>Tiêu chuẩn ISO 22000</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-rainforest-alliance/')}}"><span>Chứng nhận Rainforest Alliance</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-4c/')}}"><span>Chứng nhận 4C</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-haccp/')}}"><span>Chứng Nhận HACCP</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/tieu-chuan-iso-22000/')}}"><span>Tiêu chuẩn ISO 22000</span></a></li>
                                         </ul>
                                         <span class="menu-toggle"></span></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{url('/products')}}"><span>{{$product_menu->translation->name??$product_menu->name}}</span></a></li>
@@ -122,11 +122,12 @@
                         {{--</div>--}}
                         <!-- Header Searchform area-->
                         <div class="search_wrapper">
-                            <form method="get" action="#">
+                            {!! Form::open(array('url' => '/search')) !!}
                                 <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
-                                <input type="text" class="field" name="s" placeholder="Enter your search" />
-                                <input type="submit flv_disp_none" class="submit flv_disp_none" value="" />
-                            </form>
+                                <input type="text" class="field" name="key" placeholder="Enter your search" />
+                                <input type="submit" class="submit flv_disp_none" value="" />
+                                <input type="hidden" name="searchtype" id="searchtype" value="all">
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     <div class="top_bar_right coffee_bottom_nav">
