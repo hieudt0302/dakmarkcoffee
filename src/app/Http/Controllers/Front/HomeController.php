@@ -74,6 +74,55 @@ class HomeController extends Controller
         return View("front.home.infopage",compact('info_page_translation'));
     }
 
+    public function sx_coffee_ben_vung()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('tht-san-xuat-ca-phe-ben-vung');
+        return View("front.home.infopart.sx-coffee-ben-vung",compact('info_page_translation'));
+    }
+
+    public function htx_cscc()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('htx-cscc');
+        return View("front.home.infopart.htx-cscc",compact('info_page_translation'));
+    }
+
+    public function album_dakmark()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('album-dakmark');
+        return View("front.home.infopart.album-dakmark",compact('info_page_translation'));
+    }
+
+    public function chung_nhan()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan');
+        return View("front.home.cers.chung-nhan",compact('info_page_translation'));
+    }
+
+    public function chung_nhan_rainforest_alliance()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-rainforest-alliance');
+        return View("front.home.cers.chung-nhan-rainforest-alliance",compact('info_page_translation'));
+    }
+
+    public function chung_nhan_4c()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-4c');
+        return View("front.home.cers.chung-nhan-4c",compact('info_page_translation'));
+    }
+
+    public function chung_nhan_haccp()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-haccp');
+        return View("front.home.cers.chung-nhan-haccp",compact('info_page_translation'));
+    }
+
+    public function tieu_chuan_iso_22000()
+    {
+        $info_page_translation = $this->getInfoPageTranslation('tieu-chuan-iso-22000');
+        return View("front.home.cers.tieu-chuan-iso-22000",compact('info_page_translation'));
+    }
+
+
     public function returns()
     {
         $info_page_translation = $this->getInfoPageTranslation('returns');
