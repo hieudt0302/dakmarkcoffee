@@ -34,13 +34,13 @@
                             <div class="wrap mcb-wrap one clearfix">
                                 <div class="column one column_blog">
                                     <div class="blog_wrapper isotope_wrapper">
-                                        <div class="column one single-photo-wrapper">
-                                            <div class="image_frame scale-with-grid disabled">
-                                                <div class="image_wrapper">
-                                                    <img width="800" height="480" src="images/home/blog-2.jpg" class="scale-with-grid wp-post-image" alt="lịch sử và ý nghĩa của ngày valentine" itemprop="image">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {{--<div class="column one single-photo-wrapper">--}}
+                                            {{--<div class="image_frame scale-with-grid disabled">--}}
+                                                {{--<div class="image_wrapper">--}}
+                                                    {{--<img width="800" height="480" src="images/home/blog-2.jpg" class="scale-with-grid wp-post-image" alt="lịch sử và ý nghĩa của ngày valentine" itemprop="image">--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                         <div class="post-wrapper-content">
                                             <div class="section the_content has_content">
                                                 <div class="section_wrapper">
@@ -49,17 +49,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="section section-post-footer">
-                                                <div class="section_wrapper clearfix">
-                                                    <div class="column one post-pager">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
-                                    <div class="column one author-box">
+                                    <div class="column one author-box" style="padding-top: 50px;">
                                         <div class="author-box-wrapper">
                                             <div class="avatar-wrapper">
                                                 <img alt="Muffin Group" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" class="avatar avatar-64 photo" height="64" width="64">
