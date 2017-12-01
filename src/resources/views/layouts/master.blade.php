@@ -77,6 +77,34 @@
 		@include('layouts.footer')
 		<!-- End Footer -->
 
+		<!-- FOr Testing
+		<a href="#popup-subscribe" rel="prettyphoto" class="popup-link button button_js"><span class="button_label">Click to open Popup</span></a>
+		-->
+		{{--<div id="popup-subscribe" class="popup-content">--}}
+			{{--<div class="popup-inner">--}}
+				{{--<div class="fancy_heading fancy_heading_icon">--}}
+					{{--<span class="icon_top"><i class="icon-paper-plane-line"></i></span>--}}
+					{{--<h2 class="title">ĐỪNG BỎ LỞ!</h2>--}}
+					{{--<div class="inside">--}}
+						{{--<p style="line-height: 1.5em;">--}}
+							{{--Đăng ký ngay để nhận được những khuyến mãi hấp dẫn nhất từ DAKMARK COFFEE--}}
+						{{--</p>--}}
+						{{--<div class="popup-subscribe_popup">--}}
+							{{--<form id="popup-subscribe_popup" class="form aligncenter">--}}
+							{{--<span>--}}
+								{{--<input type="email" name="email" id="email" aria-required="true" aria-invalid="false" placeholder="email *" style="width: 90%; text-align: center; margin: 10px auto;">--}}
+							{{--</span>--}}
+								{{--<span>--}}
+								{{--<input type="submit" value="Send Message" id="submit_popup" onclick="return check_values_popup();">--}}
+							{{--</span>--}}
+							{{--</form>--}}
+							{{--<div id="confirmation_popup"></div>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+
  	</div>
 	<!-- JS -->
 	<script src="{{asset('frontend/js/jquery-2.1.4.min.js')}}"></script>
@@ -87,6 +115,7 @@
 	<script src="{{asset('frontend/js/email.js')}}"></script>
 	<script src="{{asset('frontend/js/scripts.js')}}"></script>
 	<script src="{{asset('frontend/js/bootstrapscrollspy.min.js')}}"></script>
+	{{--<script src="{{asset('frontend/js/jquery.cookie.js')}}"></script>--}}
 	<script src="{{asset('frontend/js/custom-scripts.js')}}"></script>
 	<script src="{{asset('frontend/plugins/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
 	<script src="{{asset('frontend/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
