@@ -13,6 +13,76 @@
                     </div>
                     <!-- End Head -->
 
+                    <!-- Product Result -->
+                    @if ($search_type =="all" || $search_type =="product")
+                        <div class="content_wrapper clearfix">
+                            <div class="sections_group">
+                                <div class="entry-content">
+                                    <div class="section head-sect" style="padding-top:30px; padding-bottom:30px;">
+                                        <div class="section_wrapper">
+                                            <h3 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><strong>@lang('header.products')</strong></h>
+                                        </div>
+                                    </div>
+                                    <!-- New Products Section -->
+                                    <div class="section woocommerce productlist" style="padding-top:30px; padding-bottom:60px;">
+                                        <div class="section_wrapper clearfix">
+                                            <div class="items_group clearfix">
+                                                <!-- One full width row-->
+                                                <div class="column one woocommerce-content">
+                                                    <div class="products_wrapper isotope_wrapper">
+                                                        <ul class="products grid">
+                                                        @foreach($products as $product)
+                                                            <!-- Product Item -->
+                                                                <li class="product item has-post-thumbnail">
+                                                                    <div class="item_wrapper">
+                                                                        <div class="hover_box hover_box_product">
+                                                                            <a href="{{url('/product')}}/{{$product->slug}}">
+                                                                                <div class="image_wrapper">
+                                                                                    <img class="scale-with-grid product-main-img" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
+                                                                                </div>
+
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="desc">
+                                                                            <h4 class="title themecolor">
+                                                                                <a href="{{url('/product')}}/{{$product->slug}}" class="themecolor">{{$product->translation->name??$product->name}}</a>
+                                                                            </h4>
+                                                                            @if($product->special_price != 0 && $product->special_price_start_date  <= $product->special_price_end_date )
+                                                                                <del>
+                                                                                    <span class="amount">{{FormatPrice::price($product->price)}}</span>
+                                                                                </del>
+                                                                                <span class="price"><span class="amount">{{FormatPrice::price($product->special_price)}}</span></span>
+                                                                            @else
+                                                                                @if($product->old_price > 0)
+                                                                                    <del>
+                                                                                        <span class="amount">{{FormatPrice::price($product->old_price)}}</span>
+                                                                                    </del>
+                                                                                @endif
+                                                                                <span class="price"><span class="amount">{{FormatPrice::price($product->price)}}</span></span>
+                                                                            @endif
+
+                                                                            <span class="description "><hr class="hr_narrow hr_color">{{$product->translation->summary??''}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <!-- End Product Item -->
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="column one pager_wrapper">
+                                                    <!-- Navigation Area -->
+                                                    {{ $products->appends(request()->all())->render() }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <!-- End Product Result -->
+
                     <!-- Blog Result -->
                     @if ($search_type =="all" || $search_type =="blog")
                         <div class="section mcb-section" style="padding-top:30px; padding-bottom:30px;">
@@ -76,77 +146,6 @@
                         </div>
                     @endif
                     <!-- End Blog Result -->
-
-                    <!-- Product Result -->
-                    @if ($search_type =="all" || $search_type =="product")
-                        <div class="content_wrapper clearfix">
-                            <div class="sections_group">
-                                <div class="entry-content">
-                                    <div class="section head-sect" style="padding-top:30px; padding-bottom:30px;">
-                                        <div class="section_wrapper">
-                                            <h3 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><strong>@lang('header.products')</strong></h>
-                                        </div>
-                                    </div>
-                                    <!-- New Products Section -->
-                                    <div class="section woocommerce productlist" style="padding-top:30px; padding-bottom:60px;">
-                                        <div class="section_wrapper clearfix">
-                                            <div class="items_group clearfix">
-                                                <!-- One full width row-->
-                                                <div class="column one woocommerce-content">
-                                                    <div class="products_wrapper isotope_wrapper">
-                                                        <ul class="products grid">
-                                                            @foreach($products as $product)
-                                                            <!-- Product Item -->
-                                                                <li class="product item has-post-thumbnail">
-                                                                    <div class="item_wrapper">
-                                                                        <div class="hover_box hover_box_product">
-                                                                            <a href="{{url('/product')}}/{{$product->slug}}">
-                                                                                <div class="image_wrapper">
-                                                                                    <img class="scale-with-grid product-main-img" src="{{asset('/storage')}}/{{$product->GetMediaByOrderAsc()->thumb??'images/no-image.png'}}" alt="">
-                                                                                </div>
-
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="desc">
-                                                                            <h4 class="title themecolor">
-                                                                                <a href="{{url('/product')}}/{{$product->slug}}" class="themecolor">{{$product->translation->name??$product->name}}</a>
-                                                                            </h4>
-                                                                            @if($product->special_price != 0 && $product->special_price_start_date  <= $product->special_price_end_date )
-                                                                                <del>
-                                                                                    <span class="amount">{{FormatPrice::price($product->price)}}</span>
-                                                                                </del>
-                                                                                <span class="price"><span class="amount">{{FormatPrice::price($product->special_price)}}</span></span>
-                                                                            @else
-                                                                                @if($product->old_price > 0)
-                                                                                    <del>
-                                                                                        <span class="amount">{{FormatPrice::price($product->old_price)}}</span>
-                                                                                    </del>
-                                                                                @endif
-                                                                                <span class="price"><span class="amount">{{FormatPrice::price($product->price)}}</span></span>
-                                                                            @endif
-
-                                                                            <span class="description "><hr class="hr_narrow hr_color">{{$product->translation->summary??''}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <!-- End Product Item -->
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="column one pager_wrapper">
-                                                    <!-- Navigation Area -->
-                                                    {{ $products->appends(request()->all())->render() }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <!-- End Product Result -->
-
 
                 </div>
             </div>

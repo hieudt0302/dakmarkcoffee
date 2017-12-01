@@ -1,8 +1,12 @@
 .flv_disp_none{
 	display: none;
 }
+#Top_bar .menu > li{
+  text-transform: uppercase;
+}
 #Top_bar .menu li ul li{
 	width: 280px;
+  text-transform: none;
 }
 
 #Top_bar .list-dropdown {

@@ -12,17 +12,16 @@
                 <div class="blog_wrapper isotope_wrapper">
                     <!-- Masonry blog posts -->
                     <div class="posts_group lm_wrapper masonry isotope">
+                        @foreach($new_blogs as $post)
                         <div class="post has-post-thumbnail post-item isotope-item clearfix">
-                            <div class="date_label">
-                                May 13, 2014
-                            </div>
                             <div class="image_frame post-photo-wrapper scale-with-grid">
                                 <div class="image_wrapper">
-                                    <a href="#">
-                                        <div class="mask"></div><img width="576" height="450" src="{{asset('frontend/images/home/home_store_blog1-576x450.jpg')}}" class="scale-with-grid wp-post-image" alt="beauty_portfolio_2" />
+                                    <a href="{{url('/')}}/posts/{{$post->slug}}">
+                                        <div class="mask"></div>
+                                        <img src="{{asset('/storage/images/blog/')}}/{{$post->img??'no-image.png'}}" alt="{{$post->translation->title??$post->title}}">
                                     </a>
                                     <div class="image_links">
-                                        <a href="#" class="link"><i class="icon-link"></i></a>
+                                        <a href="{{url('/')}}/posts/{{$post->slug}}" class="link"><i class="icon-link"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -30,105 +29,28 @@
                                 <div class="post-desc">
                                     <div class="post-meta clearfix">
                                         <div class="author-date">
-                                            <span class="author"><span>Viết bởi </span><i class="icon-user"></i> <a href="#">Hiếu</a>
-                                            </span><span class="date"><span> lúc </span><i class="icon-clock"></i> 13/10/2017</span>
+                                            <span class="author"><i class="icon-user"></i> <a href="#">{{$post->author->last_name}} {{$post->author->first_name}}</a></span>
+                                            <span class="date"><i class="icon-clock"></i> {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
                                         </div>
                                     </div>
                                     <div class="post-title">
-                                        <h2 class="entry-title"><a href="#">Tiêu Đề Bài Viết</a></h2>
+                                        <h2 class="entry-title"><a href="{{url('/')}}/posts/{{$post->slug}}">{{$post->translation->title??$post->title}}</a></h2>
                                     </div>
                                     <div class="post-excerpt">
-                                        <span>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac ele molestie id viverra aifend ante lobortis id. In viverra ipsum stie id viverra a.</span>
+                                        <span>{{$post->translation->excerpt??$post->excerpt}}</span>
                                     </div>
                                     <div class="post-footer">
                                         <div class="button-love">
-                                            <i class="icon-comment-empty-fa"></i> <a href="##comments" class="post-comments">4</a>
+                                            <i class="icon-comment-empty-fa"></i> <a href="{{url('/')}}/posts/{{$post->slug}}#comments" class="post-comments">{{count($post->comments)}}</a>
                                         </div>
                                         <div class="post-links">
-                                            <i class="icon-doc-text"></i><a href="#" class="post-more">Đọc Thêm</a>
+                                            <i class="icon-doc-text"></i><a href="{{url('/')}}/posts/{{$post->slug}}" class="post-more">@lang('common.read-more')</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="post has-post-thumbnail post-item isotope-item clearfix">
-                            <div class="date_label">
-                                May 13, 2014
-                            </div>
-                            <div class="image_frame post-photo-wrapper scale-with-grid">
-                                <div class="image_wrapper">
-                                    <a href="#">
-                                        <div class="mask"></div><img width="576" height="450" src="{{asset('frontend/images/home/home_store_blog1-576x450.jpg')}}" class="scale-with-grid wp-post-image" alt="beauty_portfolio_2" />
-                                    </a>
-                                    <div class="image_links">
-                                        <a href="#" class="link"><i class="icon-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-desc-wrapper">
-                                <div class="post-desc">
-                                    <div class="post-meta clearfix">
-                                        <div class="author-date">
-                                            <span class="author"><span>Viết bởi </span><i class="icon-user"></i> <a href="#">Hiếu</a>
-                                            </span><span class="date"><span> lúc </span><i class="icon-clock"></i> 13/10/2017</span>
-                                        </div>
-                                    </div>
-                                    <div class="post-title">
-                                        <h2 class="entry-title"><a href="#">Tiêu Đề Bài Viết</a></h2>
-                                    </div>
-                                    <div class="post-excerpt">
-                                        <span>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac ele molestie id viverra aifend ante lobortis id. In viverra ipsum stie id viverra a.</span>
-                                    </div>
-                                    <div class="post-footer">
-                                        <div class="button-love">
-                                            <i class="icon-comment-empty-fa"></i> <a href="##comments" class="post-comments">4</a>
-                                        </div>
-                                        <div class="post-links">
-                                            <i class="icon-doc-text"></i><a href="#" class="post-more">Đọc Thêm</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post has-post-thumbnail post-item isotope-item clearfix">
-                            <div class="date_label">
-                                May 13, 2014
-                            </div>
-                            <div class="image_frame post-photo-wrapper scale-with-grid">
-                                <div class="image_wrapper">
-                                    <a href="#">
-                                        <div class="mask"></div><img width="576" height="450" src="{{asset('frontend/images/home/home_store_blog1-576x450.jpg')}}" class="scale-with-grid wp-post-image" alt="beauty_portfolio_2" />
-                                    </a>
-                                    <div class="image_links">
-                                        <a href="#" class="link"><i class="icon-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-desc-wrapper">
-                                <div class="post-desc">
-                                    <div class="post-meta clearfix">
-                                        <div class="author-date">
-                                            <span class="author"><span>Viết bởi </span><i class="icon-user"></i> <a href="#">Hiếu</a>
-                                            </span><span class="date"><span> lúc </span><i class="icon-clock"></i> 13/10/2017</span>
-                                        </div>
-                                    </div>
-                                    <div class="post-title">
-                                        <h2 class="entry-title"><a href="#">Tiêu Đề Bài Viết</a></h2>
-                                    </div>
-                                    <div class="post-excerpt">
-                                        <span>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac ele molestie id viverra aifend ante lobortis id. In viverra ipsum stie id viverra a.</span>
-                                    </div>
-                                    <div class="post-footer">
-                                        <div class="button-love">
-                                            <i class="icon-comment-empty-fa"></i> <a href="##comments" class="post-comments">4</a>
-                                        </div>
-                                        <div class="post-links">
-                                            <i class="icon-doc-text"></i><a href="#" class="post-more">Đọc Thêm</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

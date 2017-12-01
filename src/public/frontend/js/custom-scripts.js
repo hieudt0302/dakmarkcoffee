@@ -1,14 +1,6 @@
 (function($) {
     "use strict";
 
-    if ($("body").hasClass("product-page")){
-        $("#searchtype").prop('value', 'product');
-    }
-    if ($("body").hasClass("blog-page")){
-        $("#searchtype").prop('value', 'blog');
-    }
-    console.log($("#searchtype").val());
-
     jQuery("#menu-secondary-menu li.menu-item").on('tap', function(e) {
 		e.preventDefault();
 		if ($(this).hasClass("hover")){
@@ -87,19 +79,25 @@
 
     }
 
-	// $( ".responsive-menu-toggle" ).click(function() {
-		
-	//     if ($( window ).width() < 768){
-	//     	var isMenu = $("#menu").css("display")=='block';
-	//     	var isActive = $(this).hasClass("active");
-	//     	console.log("IsMenu: "+isMenu);
-	//     	console.log("isActive: "+isMenu);
-	// 		if ( isActive || isMenu ){
-	// 			$("#menu-secondary-menu").css({"display": "none"});
-	// 		}else{
-	// 			$("#menu-secondary-menu").css({"display": "block"});
-	// 		}
-	// 	}
-	// });
+    /* SUBSCRIBE */
+    // var popDisplayed = $.cookie('popDisplayed');
+    // if(popDisplayed == '1'){
+    //     return false;
+    // }else{
+    //     setTimeout(function(){
+    //         showPopup()
+    //     }, 3000);
+    //     //expires in 1 day
+    //     $.cookie('popDisplayed', '1', { expires: 1 });
+    // }
+    // function showPopup(){
+    //     $.fn.prettyPhoto({
+    //         keyboard_shortcuts: true,
+    //         theme: 'pp_default',
+    //         horizontal_padding: 20,
+    //         social_tools: false
+    //     });
+    //     $.prettyPhoto.open("#popup-subscribe");
+    }
 	
 })(jQuery);
