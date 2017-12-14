@@ -29,7 +29,7 @@ return [
 	'headquarter-address' => '123 Hùng Vương, Đăk Hà, Kon Tum',              
 	'poko-message' => '우리는 사람들에게 바람이 세게 부는 고원의 깨끗하고 우수한 상품으로 더 즐겁고 행복하며 활기찬 삶을 해 주실 수 있기를 바랍니다.',                                                                       
 	'read-more' => '더 읽기 ',   
-	'video-header' => 'The Pokofarms farmers',                             
+	'video-header' => 'The Dakmark Coffee farmers',                             
 	'video-message' => 'We are different. We could not do best but we will try to do better everyday.',
 	'faq' => 'Frequently Asked Questions',
 	'product-list' => 'Product list',
