@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Poko Farms - Post')
+@section('title','Dakmark Coffee - Post')
 {{--@section('header')--}}
 {{--<!-- Share Nav -->--}}
 {{--@include('layouts.share')--}}

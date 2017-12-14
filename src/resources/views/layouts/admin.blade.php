@@ -542,7 +542,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.17.11.8
     </div>
-    <strong>Copyright &copy; 2018 <a href="#">Poko Farms</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="#">Dakmark Coffee</a>.</strong> All rights
     reserved.
   </footer>
 

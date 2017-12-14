@@ -15,7 +15,7 @@ return [
 
     '' => '',
     'home' => 'Trang chủ',
-    'about-us' => 'Pokofarms',
+    'about-us' => 'Dakmark Coffee',
     'cert' => 'Chứng chỉ',
     'shop' => 'Mua hàng',
     'product' => 'Sản phẩm',

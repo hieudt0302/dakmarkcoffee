@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Pokofarms - Tìm kiếm')
+@section('title','Dakmark Coffee - Tìm kiếm')
 @section('content')
     <div id="Content">
         <div class="content_wrapper clearfix">

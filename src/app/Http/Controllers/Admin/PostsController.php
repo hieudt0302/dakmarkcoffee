@@ -87,7 +87,7 @@ class PostsController extends Controller
         if (request()->hasFile('img')) {
             $image = $request->file('img');
             $img_path = $image->storeAs('images/blog',$image->getClientOriginalName());                              
-            $img = Image::make(Storage::get($img_path))->fit(370, 230)->encode();
+            $img = Image::make(Storage::get($img_path))->fit(576, 450)->encode();
             Storage::put($img_path, $img);                     
             $post->img = $image->getClientOriginalName();
             $img_path = $image->storeAs('images/blog/preview',$image->getClientOriginalName());                              
@@ -192,7 +192,7 @@ class PostsController extends Controller
 
             $image = $request->file('img');
             $img_path = $image->storeAs('images/blog',$image->getClientOriginalName());                              
-            $img = Image::make(Storage::get($img_path))->fit(370, 230)->encode();
+            $img = Image::make(Storage::get($img_path))->fit(576, 450)->encode();
             Storage::put($img_path, $img);                     
             $post->img = $image->getClientOriginalName();
             $img_path = $image->storeAs('images/blog/preview',$image->getClientOriginalName());                              
