@@ -8,10 +8,10 @@
                         <!-- <img src="images/logo-retina.png" alt="" class="aligncenter"> -->
                         <!-- <br /> -->
                         <p>
-                            DakMark Coffee là thương hiệu đã được đăng ký SHTT của Công ty TNHH MTV Cà phê Nguyên Huy Hùng. Chúng tôi đã có 10 năm kinh nghiệm sản xuất, phân phối và xuất khẩu cà phê.
+                            @lang('footer.message')
                         </p>
                         <a href="#">
-                            <i class="icon-location"></i> 472 Hùng Vương, TT. Đăk Hà, H. Đăk Hà, Tỉnh Kon Tum.
+                            <i class="icon-location"></i> {{ Setting::config('address') }}
                         </a>
                         <br />
                         <a href="tel:+842462531666" id="call-number">

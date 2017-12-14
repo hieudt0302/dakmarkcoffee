@@ -15,7 +15,7 @@ return [
 
     '' => '',
     'home' => 'ホーム',
-    'about-us' => 'ポコファーム',
+    'about-us' => 'DakMark Coffee',
     'shop' => 'ショップ',
     'product' => '商品一覧',    
     'products' => '商品',
@@ -27,5 +27,15 @@ return [
     'account' => 'アカウント',          
      'promotion' => 'キャンペーン',
     'enter-keyword' => '検索キーワードを入力',   
-    'call-us-now' => '私たちへ電話',           
+    'call-us-now' => '私たちへ電話',   
+
+    'introduction' => '紹介',
+    'dakmark-coffee' => 'Dakmark Coffee',    
+    'tht' => 'Tht JP',
+    'htx' => 'Htx JP',
+    'album' => 'アルバム',
+    'rainforest' => 'Rainforest Alliance',
+    '4c' => '4C',
+    'haccp' => 'HACCP',
+    'iso' => 'Iso 22000',            
 ];

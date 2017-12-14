@@ -81,9 +81,9 @@
     <!-- Logo -->
     <a href="javascript:void(0)" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>PK</b>F</span>
+      <span class="logo-mini"><b>DM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Poko</b>Farms</span>
+      <span class="logo-lg"><b>Dakmark</b>Coffee</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

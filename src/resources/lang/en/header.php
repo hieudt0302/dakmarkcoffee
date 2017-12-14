@@ -28,6 +28,17 @@ return [
     'account' => 'Account',          
     'promotion' => 'Promotion',
     'enter-keyword' => 'Enter keyword',   
-    'call-us-now' => 'Call us now',
-    'free-ship' => 'Free shipping on all domestic orders over',              
+
+    'introduction' => 'Introduction',
+    'dakmark-coffee' => 'About Dakmark Coffee',    
+    'tht' => 'Tht EN',
+    'htx' => 'Htx EN',
+    'album' => 'Album',
+    'rainforest' => 'Rainforest Alliance',
+    '4c' => '4C',
+    'haccp' => 'HACCP',
+    'iso' => 'Iso 22000',
+    '' => '',
+                                        
+
 ];
