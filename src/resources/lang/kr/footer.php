@@ -16,7 +16,7 @@ return [
     'newsletter-message' => 'Dakmark Coffee<br>의 구독 신청',  
     'subscribe' => '구독', 
     'about-us' => '연락', 
-    'subscribe-success' => 'You have successfully subscribed !',  
+    'subscribe-success' => '성공적으로 구독하셨습니다!',   
     'message' => 'CN:DakMark Coffee là thương hiệu đã được đăng ký SHTT của Công ty TNHH MTV Cà phê Nguyên Huy Hùng. Chúng tôi đã có 10 năm kinh nghiệm sản xuất, phân phối và xuất khẩu cà phê.',    
 
 ];
