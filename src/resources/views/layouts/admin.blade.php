@@ -285,13 +285,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('images/logo/poko.png')}}" class="user-image" alt="User Image">
+              <img src="{{asset('images/logo/logo.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{Auth::user()->last_name}} {{Auth::user()->first_name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('images/logo/poko.png')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('images/logo/logo.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                 {{Auth::user()->last_name}} {{Auth::user()->first_name}} - Admin
@@ -343,7 +343,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('/images/logo/poko.png')}}" class="img-circle" alt="User Image">
+          <img src="{{asset('/images/logo/logo.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{Auth::user()->last_name}} {{Auth::user()->first_name}}</p>
