@@ -8,10 +8,10 @@
                         <!-- <img src="images/logo-retina.png" alt="" class="aligncenter"> -->
                         <!-- <br /> -->
                         <p>
-                            DakMark Coffee là thương hiệu đã được đăng ký SHTT của Công ty TNHH MTV Cà phê Nguyên Huy Hùng. Chúng tôi đã có 10 năm kinh nghiệm sản xuất, phân phối và xuất khẩu cà phê.
+                            @lang('footer.message')
                         </p>
                         <a href="#">
-                            <i class="icon-location"></i> 472 Hùng Vương, TT. Đăk Hà, H. Đăk Hà, Tỉnh Kon Tum.
+                            <i class="icon-location"></i> {{ Setting::config('address') }}
                         </a>
                         <br />
                         <a href="tel:+842462531666" id="call-number">
@@ -63,7 +63,8 @@
                             <li><a href="{{ url('/cart') }}"><i class="icon-right-open-mini"></i> @lang('footer.view-cart')</i></a></li>
                             <li><a href="{{ url('/wishlist') }}"><i class="icon-right-open-mini"></i> @lang('footer.my-wishlist')</i></a></li>
                             <li><a href="{{ url('/Account/Orders') }}"><i class="icon-right-open-mini"></i> @lang('footer.order-history')</i></a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="icon-right-open-mini"></i> @lang('auth.logout')</i></a></li>
+                            <!-- <li><a href="{{ url('/logout') }}"><i class="icon-right-open-mini"></i> @lang('auth.logout')</i></a></li> -->
+                            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-right-open-mini"></i>@lang('auth.logout')</a></li>
                         @endif
                         </ul>
                     </div>

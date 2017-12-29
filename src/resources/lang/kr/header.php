@@ -28,5 +28,15 @@ return [
     'promotion' => '판매',
     'enter-keyword' => '키워드를 입력하십시오',   
     'call-us-now' => '지금 전화주세요',
-    'free-ship' => '국내 주문 이상으로 무료 배송',              
+    'free-ship' => '국내 주문 이상으로 무료 배송',  
+
+    'introduction' => '소개',
+    'dakmark-coffee' => 'Dakmark Coffee',    
+    'tht' => 'Tht KR',
+    'htx' => 'Htx KR',
+    'album' => '앨범',
+    'rainforest' => 'Rainforest Alliance',
+    '4c' => '4C',
+    'haccp' => 'HACCP',
+    'iso' => 'Iso 22000',                
 ];

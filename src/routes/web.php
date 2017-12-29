@@ -94,7 +94,7 @@ Route::post('/Cart/DeleteCartItem', 'Front\CartController@DeleteCartItem');
 Route::post('/Cart/MoveItemBetweenCartAndWishlist', 'Front\CartController@MoveItemBetweenCartAndWishlist');
 
 /* WISHLIST */
-Route::get('/wishlist', 'Front\ShoppingCartController@wishlist');
+Route::get('/wishlist',  ['uses'=> 'Front\ShoppingCartController@wishlist' , 'middleware' => 'auth']);
 Route::post('/Cart/UpdateWishlistItem', 'Front\CartController@UpdateWishlistItem');
 Route::post('/Cart/DeleteWishlistItem', 'Front\CartController@DeleteWishlistItem');
 Route::post('/Cart/MoveItemBetweenWishlistAndCart', 'Front\CartController@MoveItemBetweenWishlistAndCart');

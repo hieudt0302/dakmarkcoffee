@@ -74,7 +74,7 @@
                                                 <div class="col-md-4">
                                                     <select name="category_id" class="form-control">
                                                         @foreach($categories as  $category)
-                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        <option value="{{$category->id}}" {{$post->category->id == $category->id?'selected':''}}>{{$category->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -152,9 +152,9 @@
                                 </form>
 
                                 <form action="{{url('/admin/posts')}}/{{$post->id}}/translation" method="post">
-                                {!! method_field('patch') !!} 
-                                {{ csrf_field()}}
-                                <input type="hidden" name="language_id" value="{{$language_id}}">
+                                    {!! method_field('patch') !!} 
+                                    {{ csrf_field()}}
+                                    <input type="hidden" name="language_id" value="{{$language_id}}">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="form-group">
@@ -166,7 +166,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="title" title="">Lởi trích</label>
+                                                <label class="control-label col-md-3" for="title" title="">Đoạn trích</label>
                                                 <div class="col-md-8">
                                                     <textarea id="excerpt_translate" class="form-control" name="excerpt_translate" rows="3"  placeholder="">{{$translation->excerpt??''}}</textarea>
                                                 </div>

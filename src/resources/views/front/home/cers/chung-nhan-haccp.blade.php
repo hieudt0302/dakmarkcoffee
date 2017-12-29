@@ -1,5 +1,5 @@
 @extends('layouts.master') 
-@section('title','Poko Farms')
+@section('title','Dakmark Coffee')
 
 @section('content')
 

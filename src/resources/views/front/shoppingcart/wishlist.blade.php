@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Pokofarms - Wishlist')
+@section('title','Dakmark Coffee - Wishlist')
 
 @section('header')
 @parent
@@ -19,7 +19,11 @@
                         </div>
                         <div class="page-body">
                             <div class="order-summary-content">
-                                @if(Cart::instance('wishlist')->count() >0)
+
+                                @php(Cart::instance('wishlist')->restore(Auth::user()->id))
+                                @php(Cart::instance('wishlist')->store(Auth::user()->id))
+
+                                @if(Cart::instance('wishlist')->count()  > 0)
                                 <form action="{{url('/cart')}}" enctype="multipart/form-data" method="GET" novalidate="novalidate">
                                 <!-- {{ csrf_field() }} -->
                                     <div class="card">

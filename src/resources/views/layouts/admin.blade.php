@@ -81,9 +81,9 @@
     <!-- Logo -->
     <a href="javascript:void(0)" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>PK</b>F</span>
+      <span class="logo-mini"><b>DM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Poko</b>Farms</span>
+      <span class="logo-lg"><b>Dakmark</b>Coffee</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -285,13 +285,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('images/logo/poko.png')}}" class="user-image" alt="User Image">
+              <img src="{{asset('images/logo/logo.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{Auth::user()->last_name}} {{Auth::user()->first_name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('images/logo/poko.png')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('images/logo/logo.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                 {{Auth::user()->last_name}} {{Auth::user()->first_name}} - Admin
@@ -343,7 +343,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('/images/logo/poko.png')}}" class="img-circle" alt="User Image">
+          <img src="{{asset('/images/logo/logo.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{Auth::user()->last_name}} {{Auth::user()->first_name}}</p>
@@ -542,7 +542,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.17.11.8
     </div>
-    <strong>Copyright &copy; 2018 <a href="#">Poko Farms</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="#">Dakmark Coffee</a>.</strong> All rights
     reserved.
   </footer>
 

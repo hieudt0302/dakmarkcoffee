@@ -13,7 +13,7 @@ return [
 	'order-stat-cancel' => 'Hủy',
 	'order-stat-unclear' => 'Không xác định',	
 	'items' => 'Sản phẩm',
-	'add-cart' => 'Thêm vào giở hàng',
+	'add-cart' => 'Thêm vào giỏ hàng',
 	'filter' => 'Lọc',
 	'filter-price' => 'Lọc theo giá',	
 	'related-products' => 'Sản phẩm liên quan',
@@ -39,5 +39,5 @@ return [
 	'cart-empty' => 'Giỏ hàng của bạn trống',		
 	'goto-cart' => 'Giỏ Hàng',		
 	'wishlist-empty' => 'Bạn không có sản phẩm nào trong wishlist!',	  
-	'wishlist' => 'Wishlish',	  		  	 					    
+	'wishlist' => 'Wishlist',	  		  	 					    
 ];

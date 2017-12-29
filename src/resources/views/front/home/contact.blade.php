@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Pokofarms - '.__('header.contact'))
+@section('title','Dakmark Coffee - '.__('header.contact'))
 @section('content')
     <div id="Content">
         <div class="content_wrapper clearfix">

@@ -43,7 +43,7 @@ class SubscribeController extends Controller
         //         Mail::send('admin/subscribes/mail_template', $data, function($message) use ($data, $mail_template){
         //             $message
         //             ->to($data['email'])
-        //             ->subject(strlen($mail_template->title)> 0? $mail_template->title :'Pokofarms: Tin khuyến mãi');
+        //             ->subject(strlen($mail_template->title)> 0? $mail_template->title :'Dakmark Coffee: Tin khuyến mãi');
         //         }); 
 
         //     }
@@ -51,6 +51,7 @@ class SubscribeController extends Controller
 
         $mail_temp_id = $request->mail_temp_id;
         $mail_template = null;
+        $emails = Subscribe::all();
         if($mail_temp_id != '' && $mail_temp_id != null){
             foreach($emails as $email){
                 $language = Language::where('code',$email->locale)->first();
@@ -64,13 +65,14 @@ class SubscribeController extends Controller
                     Mail::send('admin/subscribes/mail_template', $data, function($message) use ($data, $mail_template){
                         $message
                         ->to($data['email'])
-                        ->subject(strlen($mail_template->title)> 0? $mail_template->title :'Pokofarms: Tin khuyến mãi');
+                        ->subject(strlen($mail_template->title)> 0? $mail_template->title :'Dakmark Coffee: Tin khuyến mãi');
                     }); 
                 }                
             } 
+            session()->flash('success_message', 'Send mail is successfully!');
+        }else{
+            session()->flash('error_message', 'Send mail is failed!');
         }
-        
-        session()->flash('success_message', 'Send mail successfully!');
         return redirect()->back();    
     }
 

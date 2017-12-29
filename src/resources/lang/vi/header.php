@@ -15,7 +15,7 @@ return [
 
     '' => '',
     'home' => 'Trang chủ',
-    'about-us' => 'Pokofarms',
+    'about-us' => 'Dakmark Coffee',
     'cert' => 'Chứng chỉ',
     'shop' => 'Mua hàng',
     'product' => 'Sản phẩm',
@@ -29,5 +29,15 @@ return [
     'promotion' => 'Khuyến mại',    
     'enter-keyword' => 'Nhập từ khoá',   
     'call-us-now' => 'Hãy gọi cho chúng tôi',
-    'free-ship' => 'Miễn phí vận chuyển cho đơn hàng trên',             
+    'free-ship' => 'Miễn phí vận chuyển cho đơn hàng trên', 
+
+    'introduction' => 'Giới thiệu',
+    'dakmark-coffee' => 'Dakmark Coffee',    
+    'tht' => 'Tht Sản xuất cà phê bề vững',
+    'htx' => 'Htx CSCC',
+    'album' => 'Album',
+    'rainforest' => 'Rainforest Alliance',
+    '4c' => '4C',
+    'haccp' => 'HACCP',
+    'iso' => 'Iso 22000',                
 ];

@@ -17,20 +17,20 @@
                             <nav id="menu">
                                 <ul id="menu-main-menu" class="menu">
                                     <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ url('/')}}"><span>@lang('common.home')</span></a></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/about')}}"><span>GIỚI THIỆU</span></a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/about')}}"><span>@lang('header.introduction')</span></a>
                                         <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/about')}}"><span>GIỚI THIỆU</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/tht-san-xuat-ca-phe-ben-vung/')}}"><span>THT Sản xuất cà phê bền vững</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/htx-cscc')}}"><span>HTX CSCC</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/album-dakmark')}}"><span>ALBUM DAKMARK</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/about')}}"><span>@lang('header.dakmark-coffee')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/tht-san-xuat-ca-phe-ben-vung/')}}"><span>@lang('header.tht')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/htx-cscc')}}"><span>@lang('header.htx')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/album-dakmark')}}"><span>@lang('header.album')</span></a></li>
                                         </ul>
                                         <span class="menu-toggle"></span></li>
-                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/chung-nhan/')}}"><span>CHỨNG NHẬN</span></a>
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children submenu"><a href="{{ url('/chung-nhan/')}}"><span>@lang('header.cert')</span></a>
                                         <ul class="sub-menu" style="display: none;">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-rainforest-alliance/')}}"><span>Chứng nhận Rainforest Alliance</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-4c/')}}"><span>Chứng nhận 4C</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-haccp/')}}"><span>Chứng Nhận HACCP</span></a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/tieu-chuan-iso-22000/')}}"><span>Tiêu chuẩn ISO 22000</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-rainforest-alliance/')}}"><span>@lang('header.rainforest')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-4c/')}}"><span>@lang('header.4c')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ url('/chung-nhan-haccp/')}}"><span>@lang('header.haccp')</span></a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page last-item"><a href="{{ url('/tieu-chuan-iso-22000/')}}"><span>@lang('header.iso')</span></a></li>
                                         </ul>
                                         <span class="menu-toggle"></span></li>
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{url('/products')}}"><span>{{$product_menu->translation->name??$product_menu->name}}</span></a></li>
@@ -78,7 +78,7 @@
                                             <li class="menu-item"><a href="{{ url('/cart') }}">@lang('footer.view-cart')</a></li>
                                             <li class="menu-item"><a href="{{ url('/wishlist') }}">@lang('footer.my-wishlist')</a></li>
                                             <li class="menu-item"><a href="{{ url('/Account/Orders') }}">@lang('footer.order-history')</a></li>
-                                            <li class="menu-item"><a href="{{ url('/logout') }}">@lang('auth.logout')</a></li>
+                                            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"></i>@lang('auth.logout')</a></li>
                                         @endif
                                         </ul>
                                     </li>
@@ -124,7 +124,7 @@
                         <div class="search_wrapper">
                             {!! Form::open(array('url' => '/search')) !!}
                                 <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
-                                <input type="text" class="field" name="key" placeholder="Enter your search" />
+                                <input type="text" class="field" name="key" placeholder="{{__('header.enter-keyword')}}" />
                                 <input type="submit" class="submit flv_disp_none" value="" />
                                 <input type="hidden" name="searchtype" id="searchtype" value="all">
                             {!! Form::close() !!}

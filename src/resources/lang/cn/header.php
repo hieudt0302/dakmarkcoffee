@@ -24,6 +24,16 @@ return [
     'contact' => '联系我们',
     'search' => '搜索',
     'cart' => '购物车',        
-    'account' => '帐号',        
+    'account' => '帐号',
+
+    'introduction' => '介绍',
+    'dakmark-coffee' => 'Dakmark Coffee',    
+    'tht' => 'Tht CN',
+    'htx' => 'Htx CN',
+    'album' => '专辑',
+    'rainforest' => 'Rainforest Alliance',
+    '4c' => '4C',
+    'haccp' => 'HACCP',
+    'iso' => 'Iso 22000',            
 
 ];
