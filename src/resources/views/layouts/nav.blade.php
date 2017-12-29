@@ -78,7 +78,7 @@
                                             <li class="menu-item"><a href="{{ url('/cart') }}">@lang('footer.view-cart')</a></li>
                                             <li class="menu-item"><a href="{{ url('/wishlist') }}">@lang('footer.my-wishlist')</a></li>
                                             <li class="menu-item"><a href="{{ url('/Account/Orders') }}">@lang('footer.order-history')</a></li>
-                                            <li class="menu-item"><a href="{{ url('/logout') }}">@lang('auth.logout')</a></li>
+                                            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"></i>@lang('auth.logout')</a></li>
                                         @endif
                                         </ul>
                                     </li>
