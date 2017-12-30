@@ -45,7 +45,7 @@
                                             <div class="section the_content has_content">
                                                 <div class="section_wrapper">
                                                     <div class="the_content_wrapper">
-                                                        {{$post->translation->content??$post->content}}
+                                                        {!! $post->translation->content??$post->content !!}
                                                     </div>
                                                 </div>
                                             </div>
