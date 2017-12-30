@@ -426,9 +426,11 @@ class PostsController extends Controller
    
 
         $posts = $query->paginate(21);
-        $postsCategory = Category::where('slug', 'posts')->first();
+        $productCategory = Category::where('slug','products')->firstOrFail();
+        
         $categories = Category::whereNotNull('parent_id')
-        ->where('parent_id','!=',$postsCategory->id)->get();  
+        ->where('parent_id','!=',$productCategory->id)->get(); 
+
         
         $request->flashOnly([ 'post_title', 'category_id']);
        
