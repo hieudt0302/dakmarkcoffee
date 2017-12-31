@@ -159,8 +159,8 @@
 															<li itemscope itemtype="http://schema.org/Review" class="comment even thread-even depth-1" id="li-comment-{{$review->id}}">
 																<div id="comment-{{$review->id}}" class="comment_container"><img alt='{{$review->name}}' src='{{ \App\Helpers\Blade\Gravatar::getdefault($review->email) }}' class='avatar avatar-60 photo' height='60' width='60' />
 																	<div class="comment-text">
-																		<div itemscope itemtype="http://schema.org/Rating" class="star-rating" title="Rated 4 out of 5">
-																			<span style="width:{{$starAvg*20}}%"><strong >4</strong> out of 5</span>
+																		<div itemscope itemtype="http://schema.org/Rating" class="star-rating">
+																			<span style="width:{{$review->rate*20}}%"></span>
 																		</div>
 																		<p class="meta">
 																			<strong>{{$review->name}}</strong> &ndash;
@@ -194,6 +194,7 @@
 												@guest
 												<input type="text" name="name" id="name" class="input-md form-control" placeholder="Name *" maxlength="100" required>
 												<input type="email" name="email" id="email" class="input-md form-control" placeholder="Email*" maxlength="100" required>
+												<input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">
 												@else
 													<input type="hidden" id="reviewer_id" name="reviewer_id" value="{{Auth::user()->id}}">
 													<input type="hidden" id="name" name="name" value="{{Auth::user()->last_name}} {{Auth::user()->first_name}}">
@@ -242,7 +243,7 @@
 												<textarea name="comment" id="" class="" rows="6" placeholder="{{ __('product.comment')}}*" maxlength="400"></textarea>
 
 												<!-- Send Button -->
-												<button type="submit " class="btn btn-mod btn-medium btn-round ">
+												<button type="submit" class="btn btn-mod btn-medium btn-round ">
 													{{ __('product.send-review') }}
 												</button>
 											</form>

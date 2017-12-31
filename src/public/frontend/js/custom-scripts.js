@@ -98,6 +98,6 @@
     //         social_tools: false
     //     });
     //     $.prettyPhoto.open("#popup-subscribe");
-    }
+    //}
 	
 })(jQuery);
