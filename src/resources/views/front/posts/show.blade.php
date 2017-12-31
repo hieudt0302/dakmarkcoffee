@@ -164,7 +164,7 @@
                                     <li class="post ">
                                         <a href="{{url('/posts')}}/{{$recentpost->slug}}">
                                             <div class="photo">
-                                                <img width="80" height="80" src="{{ asset('images/blog/' . $recentpost->img) }}" class="scale-with-grid wp-post-image" alt="beauty_portfolio_2">
+                                                <img width="80" height="80" src="{{asset('/storage/images/blog')}}/{{$recentpost->img??'no-image.png'}}" alt="{{$recentpost->translation->title??$recentpost->title}}">
                                             </div>
                                             <div class="desc">
                                                 <h6>{{$recentpost->translation->title??$recentpost->title}}</h6><span class="date"><i class="icon-clock"></i>{{ date('d-m-Y', strtotime($recentpost->created_at)) }}</span>
@@ -182,12 +182,23 @@
                     <aside class="widget widget_categories">
                         <h3>@lang('common.categories')</h3>
                         <ul>
-                            @foreach($blog_menu as $cat)
-                                <li class="cat-item">
-                                    <a href="{{url('/blog')}}/{{$cat->slug}}" title="">
-                                        <i class="fa fa-circle-thin" aria-hidden="true"></i>  {{$cat->translation->name??$cat->name}}
-                                    </a>
-                                </li>
+                            @foreach($blog_menu as $menu)
+                                @if ( !$menu->GetMenuSubLevel1()->isEmpty() )
+                                    <li class="cat-item">
+                                        <a href="{{url('/cat/')}}/{{$menu->slug}}"><span>{{$menu->translation->name??$menu->name}}</span></a>
+                                        <ul class="sub-menu">
+                                        @foreach($menu->GetMenuSubLevel1() as $sub)
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                <a href="{{url('/cat/')}}/{{$menu->slug}}/{{$sub->slug}}"><span>{{$sub->translation->name??$sub->name}}</span></a>
+                                            </li>
+                                        @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="cat-item">
+                                        <a href="{{url('/cat/')}}/{{$menu->slug}}"><span>{{$menu->translation->name??$menu->name}}</span></a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </aside>

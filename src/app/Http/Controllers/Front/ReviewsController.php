@@ -46,7 +46,7 @@ class ReviewsController extends Controller
             'comment' => 'required|string',
         ]);
 
-//        {{dd($request);}}
+       // {{dd($request);}}
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -71,6 +71,7 @@ class ReviewsController extends Controller
 
         $product = Product::find($request->product_id);
 
+        // {{dd($product);}}
 
         $review = $product->comments()->save($review);
 
