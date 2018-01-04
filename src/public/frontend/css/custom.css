@@ -346,3 +346,7 @@
 textarea#body_popup{
     width: 100%;
 }
+
+.Recent_posts ul li .desc{
+  margin-right: 0px;
+}

@@ -110,15 +110,6 @@
                                 @foreach($lastPosts as $recentpost)
                                     <li class="post ">
                                         <a href="{{url('/posts')}}/{{$recentpost->slug}}">
-                                            @if($recentpost->img)
-                                            <div class="photo">
-                                                <img width="80" height="80" src="{{ asset('/storage/images/blog')}}/{{$recentpost->img }}" alt="{{$recentpost->translation->title??$recentpost->title}}">
-                                            </div>
-                                            @else 
-                                            <div class="photo">
-                                                <img width="80" height="80" src="{{ asset('/storage/images/no-image.png') }}" alt="{{$recentpost->translation->title??$recentpost->title}}">
-                                            </div>
-                                            @endif
                                             <div class="desc">
                                                 <h6>{{$recentpost->translation->title??$recentpost->title}}</h6><span class="date"><i class="icon-clock"></i>{{ date('d-m-Y', strtotime($recentpost->created_at)) }}</span>
                                             </div>
