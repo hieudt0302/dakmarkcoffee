@@ -332,13 +332,21 @@
   font-size: 14px;
 }
 /* POST COMMENT */
-
-#respond input[type="text"]{
+#respond input[type="text"], #respond input[type="email"]{
     margin-bottom: 20px;
+    font-size: 15px;
 }
-#respond .review-content textarea{
+#respond button[type="submit"], #respond input[type="submit"]{
+  font-size: 15px;  
+}
+#respond textarea{
     width: 100%;
+    font-size: 15px;
 }
 textarea#body_popup{
     width: 100%;
+}
+
+.Recent_posts ul li .desc{
+  margin-right: 0px;
 }

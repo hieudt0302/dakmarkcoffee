@@ -331,3 +331,6 @@
 textarea#body_popup{
     width: 100%;
 }
+.trailer_box .desc{
+  background-color: rgba(0, 0, 0, 0.19);
+}
