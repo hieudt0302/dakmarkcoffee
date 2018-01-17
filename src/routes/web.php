@@ -61,7 +61,7 @@ Route::get('/faqs', 'Front\FaqController@index');
 Route::get('/products', 'Front\ProductsController@index');
 Route::get('/product/{id}', 'Front\ProductsController@show');
 Route::post('/add-to-cart', 'Front\ProductsController@addToCart');
-Route::post('/add-to-wishlist', 'Front\ProductsController@addToWishlist');
+Route::post('/add-to-wishlist', 'Front\ProductsController@addToWishlist', 'middleware' => 'auth']);
 
 /* POST */
 //Route::get('/posts', 'Front\PostsController@index');

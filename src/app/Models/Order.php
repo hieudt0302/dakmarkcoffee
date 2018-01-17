@@ -16,6 +16,10 @@ class Order extends Model
      {
          return $this->hasMany('App\Models\OrderDetail');
      }
+     public function ordernotes()
+     {
+         return $this->hasMany('App\Models\OrderNote')->orderBy('created_at','desc');
+     }
 
      /**
      * Get the billingaddress that owns the order.
