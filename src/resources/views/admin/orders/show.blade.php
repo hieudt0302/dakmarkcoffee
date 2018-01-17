@@ -7,7 +7,7 @@
     Chi Tiết Đơn Hàng
         <small>
             <i class="fa fa-arrow-circle-left"></i>
-            <a href="{{url('/admin/orders')}}">back to order list</a>
+            <a href="{{url('/admin/orders')}}">quay lại danh sách</a>
         </small>
     </h1>
     <ol class="breadcrumb">
@@ -34,7 +34,7 @@
                         <li class="{{$tab==2?'active':''}}"><a href="#billing_address" data-toggle="tab">Địa Chỉ Thanh Toán</a></li>
                         <li class="{{$tab==3?'active':''}}"><a href="#shipping_address" data-toggle="tab">Địa Chỉ Vận Chuyển</a></li>
                         <li class="{{$tab==4?'active':''}}"><a href="#products" data-toggle="tab">Sản  Phẩm</a></li>
-                        <!-- <li><a href="#order_notes" data-toggle="tab">Order Note(s)</a></li> -->
+                        <li class="{{$tab==5?'active':''}}"><a href="#order_notes" data-toggle="tab">Theo Dõi</a></li>
                     </ul>
                     <div class="tab-content">
                         <!-- INFO TAB -->
@@ -62,13 +62,13 @@
                                                             <div class="form-text-row">{{__('status.order.'.$order->order_status)}}</div>
                                                         </strong>
                                                         @if($order->order_status!==4)
-                                                        <button type="button" name="" id="cancelorder" class="btn bg-red" style="margin-right: 3px;" data-toggle="modal" data-target="#cancelorder-action-confirmation">
-                                                            Hủy Đơn Hàng
-                                                        </button>
+                                                            <button type="button" name="" id="cancelorder" class="btn bg-red" style="margin-right: 3px;" data-toggle="modal" data-target="#cancelorder-action-confirmation">
+                                                                Hủy Đơn Hàng
+                                                            </button>
+                                                            <button type="submit" name="btnChangeOrderStatus" onclick="toggleChangeOrderStatus(true);return false;" id="btnChangeOrderStatus" class="btn btn-primary" style="display: inline-block;">
+                                                            Đổi Trạng Thái
+                                                            </button>
                                                         @endif
-                                                        <button type="submit" name="btnChangeOrderStatus" onclick="toggleChangeOrderStatus(true);return false;" id="btnChangeOrderStatus" class="btn btn-primary" style="display: inline-block;">
-                                                        Đổi Trạng Thái
-                                                        </button>
                                                         <form action="{{url('/admin/orders')}}/{{$order->id}}/change/orderstatus" method="POST">
                                                         {{ csrf_field()}}
                                                             <div id="pnlChangeOrderStatus" style="margin-top: 3px; display: none;">
@@ -107,20 +107,20 @@
                                             <label class="col-md-3 control-label" for="CustomerId" title="">Tên Khách Hàng</label>
                                             <div class="col-md-9">
                                                 <div class="form-text-row">
-                                                    <a href="#">{{$order->billingaddress->last_name}} {{$order->billingaddress->first_name}}</a>
+                                                    <a href="#">{{$order->billingaddress->last_name??''}} {{$order->billingaddress->first_name??''}}</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="customer_email" title="">Email Khách Hàng</label>
                                             <div class="col-md-9">
-                                                <div class="form-text-row">{{$order->billingaddress->email}}</div>
+                                                <div class="form-text-row">{{$order->billingaddress->email??''}}</div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="customer_phone" title="">Điện Thoại Khách Hàng</label>
                                             <div class="col-md-9">
-                                                <div class="form-text-row">{{$order->billingaddress->phone}}</div>
+                                                <div class="form-text-row">{{$order->billingaddress->phone??''}}</div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -156,12 +156,32 @@
                                         <div class="form-group">
                                             <div class="">
                                                 <div class="label-wrapper">
-                                                
                                                 <label class="col-md-3 control-label" for="OrderTotal" title="">Tổng Tiền Đơn Hàng</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="form-text-row">{{FormatPrice::price($order->order_total)}}</div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="label-wrapper">
+                                                <label class="col-md-3 control-label" for="OrderTotal" title="">Phương Thức Vận Chuyển</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-text-row">{{__('method.shipping.'.$order->shipping_method.'.name')}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="label-wrapper">
+                                                <label class="col-md-3 control-label" for="OrderTotal" title="">Phương Thức Thanh Toán</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-text-row">{{__('method.payment.'.$order->payment_method.'.name')}}</div>
                                             </div>
                                         </div>
                                         <hr>
@@ -187,9 +207,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-9 col-md-offset-3">
+                                                    @if($order->order_status!==4)
                                                     <button type="button" name="btnEditOrderTotals" onclick="toggleOrderTotals(true);return false;" id="btnEditOrderTotals" class="btn btn-primary">
                                                     Cập Nhật Phí/Thuế
                                                     </button>
+                                                    @endif
                                                     <button type="submit" name="" id="btnSaveOrderTotals" class="btn btn-primary" style="display: none;">
                                                         Lưu
                                                     </button>
@@ -214,9 +236,11 @@
                                             <div class="col-md-9 col-md-offset-3">
                                                 <div class="input-group input-group-short">
                                                     <div class="input-group-btn">
+                                                        @if($order->order_status!==4)
                                                         <button type="submit" name="btnChangePaymentStatus" onclick="toggleChangePaymentStatus(true);return false;" id="btnChangePaymentStatus" class="btn btn-primary" style="display: inline-block;">
                                                         Đổi Trạng Thái
                                                         </button>
+                                                        @endif
                                                         <form action="{{url('/admin/orders')}}/{{$order->id}}/change/paymentstatus" method="POST">
                                                         {{ csrf_field()}}
                                                             <div id="pnlChangePaymentStatus" style="margin-top: 3px; display: none;">
@@ -251,10 +275,11 @@
                                             <div class="col-md-9 col-md-offset-3">
                                                 <div class="input-group input-group-short">
                                                     <div class="input-group-btn">
-                                                       
+                                                        @if($order->order_status!==4)
                                                         <button type="submit" name="btnChangeShippingStatus" onclick="toggleChangeShippingStatus(true);return false;" id="btnChangeShippingStatus" class="btn btn-primary" style="display: inline-block;">
                                                         Đổi Trạng Thái
                                                         </button>
+                                                        @endif
                                                         <form action="{{url('/admin/orders')}}/{{$order->id}}/change/shippingstatus" method="POST">
                                                         {{ csrf_field()}}
                                                             <div id="pnlChangeShippingStatus" style="margin-top: 3px; display: none;">
@@ -295,7 +320,7 @@
                                                 <label class="col-md-3 control-label" for="billing_address" title="">Địa chỉ thanh toán</label>
                                                 <div class="col-md-9">
                                                     <img alt="google maps" src="data:image/gif;base64,R0lGODlhEAAQANUAAAATVm+s78cjAE+tVaq2wldzvBxase3/9gAlvS23QNPZ+QsWpMLO/gdj6HyPx3qk1r/e8MTb4ygmi84UGSQ6sUy0O////6/S+hUqqiZbyykwdOX2/UZ0ygQ2sd0YEomP2RUfgG+a6Rc7k8wuIk21UgAilvf//80qABxJsM3c88H1/xMxxSAuxUJu2//1/2KEqd3r/xY/v9waAGWF2NIoDzFguBMsoNYgL4GZ3zE3sdDl/9slGg4qy+n//zy1RNEQByH5BAAHAP8ALAAAAAAQABAAAAaXwAapMqgMjb6KMuHzNSzQqFQ6elp6MFyBsurUAhDo6XlQcVaw3pUh0kB/1plILU1FoLQnTqQwTaVjFiEULn9ScBY1BoZSHk8ZKIxRN08tJX5QJgcROjopFgJPDwgOB1EMORgUHxY7TxssCwyYUDogBBYTVjASCx8bFgcHFwC4eRYmJhsFEjYrMTwoL8CuklM7Tdna2z4yQQA7">
-                                                    <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;ie=UTF8&amp;oe=UTF8&amp;geocode=&amp;q={{$order->billingaddress->address1}}+{{$order->billingaddress->district}}+{{$order->billingaddress->city}}+{{$order->billingaddress->country}}" style="margin-bottom: 10px;" target="_blank">View address on Google Maps</a>
+                                                    <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;ie=UTF8&amp;oe=UTF8&amp;geocode=&amp;q={{$order->billingaddress->address1??''}}+{{$order->billingaddress->district??''}}+{{$order->billingaddress->city??''}}+{{$order->billingaddress->country??''}}" style="margin-bottom: 10px;" target="_blank">View address on Google Maps</a>
                                                     <table class="table table-hover table-bordered" style="max-width: 600px;">
                                                         <tbody>
                                                             <tr>
@@ -303,10 +328,10 @@
                                                                     Tên
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->first_name}}
+                                                                    {{$order->billingaddress->first_name??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingFirstName" style="display:none;">
-                                                                    <input type="text" name="first_name">
+                                                                    <input type="text" name="first_name" value="{{$order->billingaddress->first_name??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -314,10 +339,10 @@
                                                                     Họ
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->last_name}}
+                                                                    {{$order->billingaddress->last_name??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingLastName" style="display:none;">
-                                                                    <input type="text" name="last_name">
+                                                                    <input type="text" name="last_name" value="{{$order->billingaddress->last_name??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -325,10 +350,10 @@
                                                                     Email
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->email}}
+                                                                    {{$order->billingaddress->email??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingEmail" style="display:none;">
-                                                                    <input type="text" name="email">
+                                                                    <input type="text" name="email" value="{{$order->billingaddress->email??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -336,10 +361,10 @@
                                                                     Điện Thoại
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->phone}}
+                                                                    {{$order->billingaddress->phone??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingPhone" style="display:none;">
-                                                                    <input type="text" name="phone">
+                                                                    <input type="text" name="phone" value="{{$order->billingaddress->phone??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -347,10 +372,10 @@
                                                                     Fax
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->fax}}
+                                                                    {{$order->billingaddress->fax??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingFax" style="display:none;">
-                                                                    <input type="text" name="fax">
+                                                                    <input type="text" name="fax" value="{{$order->billingaddress->fax??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -358,10 +383,10 @@
                                                                     Công Ty
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->company}}
+                                                                    {{$order->billingaddress->company??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingCompany" style="display:none;">
-                                                                    <input type="text" name="company">
+                                                                    <input type="text" name="company" value="{{$order->billingaddress->company??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -369,10 +394,10 @@
                                                                     Địa Chỉ 1
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->address1}}
+                                                                    {{$order->billingaddress->address1??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingAddress1" style="display:none;">
-                                                                    <input type="text" name="address1">
+                                                                    <input type="text" name="address1" value="{{$order->billingaddress->address1??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -380,10 +405,10 @@
                                                                     Địa Chỉ 2
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->address2}}
+                                                                    {{$order->billingaddress->address2??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingAddress2" style="display:none;">
-                                                                    <input type="text" name="address2">
+                                                                    <input type="text" name="address2" value="{{$order->billingaddress->address2??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -391,10 +416,10 @@
                                                                     Quận/Huyện
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->district}}
+                                                                    {{$order->billingaddress->district??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingDistrict" style="display:none;">
-                                                                    <input type="text" name="district">
+                                                                    <input type="text" name="district" value="{{$order->billingaddress->district??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -402,10 +427,10 @@
                                                                     Tỉnh/Thành Phố
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->city}}
+                                                                    {{$order->billingaddress->city??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingCity" style="display:none;">
-                                                                    <input type="text" name="city">
+                                                                    <input type="text" name="city" value="{{$order->billingaddress->city??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -413,10 +438,10 @@
                                                                     State / Province (Tùy chọn)
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->state_province}}
+                                                                    {{$order->billingaddress->state_province??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingStateProvince" style="display:none;">
-                                                                    <input type="text" name="state_province">
+                                                                    <input type="text" name="state_province" value="{{$order->billingaddress->state_province??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -424,10 +449,10 @@
                                                                     Zip / postal code
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->zipcode}}
+                                                                    {{$order->billingaddress->zipcode??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingZipCode" style="display:none;">
-                                                                    <input type="text" name="zipcode">
+                                                                    <input type="text" name="zipcode" value="{{$order->billingaddress->zipcode??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -435,10 +460,10 @@
                                                                     Quốc Gia
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->billingaddress->country}}
+                                                                    {{$order->billingaddress->country??''}}
                                                                 </td>
                                                                 <td id="tdEditBillingCountry" style="display:none;">
-                                                                    <input type="text" name="country">
+                                                                    <input type="text" name="country" value="{{$order->billingaddress->country??''}}">
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -449,9 +474,11 @@
                                                 <div class="col-md-9 col-md-offset-3">
                                                     <div class="input-group input-group-short">
                                                         <div class="input-group-btn">
+                                                           @if($order->order_status!==4)
                                                             <button type="button" id="btnEditChangeBillingAddress" onclick="toggleChangeBillingAddress(true);return false;" class="btn btn-primary">
                                                             Cập Nhật
                                                             </button>
+                                                            @endif
                                                             <button type="submit" id="btnSaveChangeBillingAddress" class="btn btn-primary" style="margin-left: 3px; display: none;">
                                                             Lưu
                                                             </button>
@@ -479,7 +506,7 @@
                                                 <label class="col-md-3 control-label" for="shipping_address" title="">Shipping address</label>
                                                 <div class="col-md-9">
                                                     <img alt="google maps" src="data:image/gif;base64,R0lGODlhEAAQANUAAAATVm+s78cjAE+tVaq2wldzvBxase3/9gAlvS23QNPZ+QsWpMLO/gdj6HyPx3qk1r/e8MTb4ygmi84UGSQ6sUy0O////6/S+hUqqiZbyykwdOX2/UZ0ygQ2sd0YEomP2RUfgG+a6Rc7k8wuIk21UgAilvf//80qABxJsM3c88H1/xMxxSAuxUJu2//1/2KEqd3r/xY/v9waAGWF2NIoDzFguBMsoNYgL4GZ3zE3sdDl/9slGg4qy+n//zy1RNEQByH5BAAHAP8ALAAAAAAQABAAAAaXwAapMqgMjb6KMuHzNSzQqFQ6elp6MFyBsurUAhDo6XlQcVaw3pUh0kB/1plILU1FoLQnTqQwTaVjFiEULn9ScBY1BoZSHk8ZKIxRN08tJX5QJgcROjopFgJPDwgOB1EMORgUHxY7TxssCwyYUDogBBYTVjASCx8bFgcHFwC4eRYmJhsFEjYrMTwoL8CuklM7Tdna2z4yQQA7">
-                                                    <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;ie=UTF8&amp;oe=UTF8&amp;geocode=&amp;q={{$order->shippingaddress->address1}}+{{$order->shippingaddress->district}}+{{$order->shippingaddress->city}}+{{$order->shippingaddress->country}}" style="margin-bottom: 10px;" target="_blank">View address on Google Maps</a>
+                                                    <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;ie=UTF8&amp;oe=UTF8&amp;geocode=&amp;q={{$order->shippingaddress->address1??''}}+{{$order->shippingaddress->district??''}}+{{$order->shippingaddress->city??''}}+{{$order->shippingaddress->country??''}}" style="margin-bottom: 10px;" target="_blank">View address on Google Maps</a>
                                                     <table class="table table-hover table-bordered" style="max-width: 600px;">
                                                         <tbody>
                                                             <tr>
@@ -487,10 +514,10 @@
                                                                     Tên
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->first_name}}
+                                                                    {{$order->shippingaddress->first_name??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingFirstName" style="display:none;">
-                                                                    <input type="text" name="first_name">
+                                                                    <input type="text" name="first_name" value="{{$order->shippingaddress->first_name??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -498,10 +525,10 @@
                                                                     Họ
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->last_name}}
+                                                                    {{$order->shippingaddress->last_name??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingLastName" style="display:none;">
-                                                                    <input type="text" name="last_name">
+                                                                    <input type="text" name="last_name" value="{{$order->shippingaddress->last_name??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -509,10 +536,10 @@
                                                                     Email
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->email}}
+                                                                    {{$order->shippingaddress->email??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingEmail" style="display:none;">
-                                                                    <input type="text" name="email">
+                                                                    <input type="text" name="email" value="{{$order->shippingaddress->email??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -520,10 +547,10 @@
                                                                     Điện Thoại
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->phone}}
+                                                                    {{$order->shippingaddress->phone??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingPhone" style="display:none;">
-                                                                    <input type="text" name="phone">
+                                                                    <input type="text" name="phone" value="{{$order->shippingaddress->phone??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -531,10 +558,10 @@
                                                                     Fax
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->fax}}
+                                                                    {{$order->shippingaddress->fax??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingFax" style="display:none;">
-                                                                    <input type="text" name="fax">
+                                                                    <input type="text" name="fax" value="{{$order->shippingaddress->fax??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -542,10 +569,10 @@
                                                                     Công Ty
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->company}}
+                                                                    {{$order->shippingaddress->company??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingCompany" style="display:none;">
-                                                                    <input type="text" name="company">
+                                                                    <input type="text" name="company" value="{{$order->shippingaddress->company??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -553,10 +580,10 @@
                                                                     Địa Chỉ 1
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->address1}}
+                                                                    {{$order->shippingaddress->address1??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingAddress1" style="display:none;">
-                                                                    <input type="text" name="address1">
+                                                                    <input type="text" name="address1" value="{{$order->shippingaddress->address1??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -564,10 +591,10 @@
                                                                     Địa Chỉ 2
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->address2}}
+                                                                    {{$order->shippingaddress->address2??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingAddress2" style="display:none;">
-                                                                    <input type="text" name="address2">
+                                                                    <input type="text" name="address2" value="{{$order->shippingaddress->address2??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -575,10 +602,10 @@
                                                                     Quận/Huyện
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->district}}
+                                                                    {{$order->shippingaddress->district??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingDistrict" style="display:none;">
-                                                                    <input type="text" name="district">
+                                                                    <input type="text" name="district" value="{{$order->shippingaddress->district??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -586,10 +613,10 @@
                                                                     Tỉnh/Thành Phố
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->city}}
+                                                                    {{$order->shippingaddress->city??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingCity" style="display:none;">
-                                                                    <input type="text" name="city">
+                                                                    <input type="text" name="city" value="{{$order->shippingaddress->city??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -597,10 +624,10 @@
                                                                     State / Province (Tùy chọn)
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->state_province}}
+                                                                    {{$order->shippingaddress->state_province??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingStateProvince" style="display:none;">
-                                                                    <input type="text" name="state_province">
+                                                                    <input type="text" name="state_province" value="{{$order->shippingaddress->state_province??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -608,10 +635,10 @@
                                                                     Zip / postal code
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->zipcode}}
+                                                                    {{$order->shippingaddress->zipcode??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingZipCode" style="display:none;">
-                                                                    <input type="text" name="zipcode">
+                                                                    <input type="text" name="zipcode" value="{{$order->shippingaddress->zipcode??''}}">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -619,10 +646,10 @@
                                                                     Quốc Gia
                                                                 </td>
                                                                 <td>
-                                                                    {{$order->shippingaddress->country}}
+                                                                    {{$order->shippingaddress->country??''}}
                                                                 </td>
                                                                 <td id="tdEditShippingCountry" style="display:none;">
-                                                                    <input type="text" name="country">
+                                                                    <input type="text" name="country" value="{{$order->shippingaddress->country??''}}">
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -633,9 +660,11 @@
                                                 <div class="col-md-9 col-md-offset-3">
                                                     <div class="input-group input-group-short">
                                                         <div class="input-group-btn">
+                                                             @if($order->order_status!==4)
                                                             <button type="button" id="btnEditChangeShippingAddress" onclick="toggleChangeShippingAddress(true);return false;" class="btn btn-primary">
                                                             Cập Nhật
                                                             </button>
+                                                            @endif
                                                             <button type="submit" id="btnSaveChangeShippingAddress" class="btn btn-primary" style="margin-left: 3px; display: none;">
                                                             Lưu
                                                             </button>
@@ -697,15 +726,17 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($order->orderdetails as $detail)
+                                                    @if(empty($detail->product))
+                                                    @continue
+                                                    @endif
                                                     <form action="{{url('admin/orders')}}/{{$order->id}}/details/update" method="post">
                                                     {{ csrf_field()}}
                                                         <input type="hidden" name="order_detail_id" value="{{$detail->id}}">
                                                         <tr>
-                                                            <!-- <td >
-                                                                <img src="{{asset('/images/no-image.png')}}" alt="{{$detail->product->name}}" title="{{$detail->product->name}}"  style="width: 120px;">
-                                                            </td> -->
                                                             <td style="text-align: left; width: 15%;">
-                                                                <em><a href="{{url('/admin/products')}}/{{$detail->product->slug}}">{{$detail->product->name}}</a></em>
+                                                                <em>
+                                                                    <a href="{{url('/admin/products')}}/{{$detail->product->slug}}">{{$detail->product->name}}</a>
+                                                                </em>
                                                                 <p>
                                                                     <strong>SKU</strong><text>:</text> {{$detail->product->sku}}
                                                                 </p>
@@ -744,11 +775,12 @@
                                                                 {{FormatPrice::price($detail->total)}}
                                                             </td>
                                                             <td style="width: 15%;">
+                                                                @if($order->order_status!==4)
                                                                 <button id="btnEditOrderItem{{$detail->id}}" type="button" class="btn btn-primary"  onclick="toggleOrderItemEdit(true, {{$detail->id}});return false;">
                                                                     <i class="fa fa-pencil"></i>
                                                                     Cập Nhật
                                                                 </button>
-                                                                
+                                                                @endif
                                                                 <button id="btnSaveOrderItem{{$detail->id}}" type="submit" class="btn btn-primary" style="display:none; width:80px;">
                                                                     <i class="fa fa-floppy-o"></i>
                                                                     Lưu
@@ -775,46 +807,43 @@
                             </div>
                         </div>
                         <!-- ORDER NOTE(s) TAB -->
-                        <!-- <div class="tab-pane" id="order_notes">
+                        <div class="tab-pane {{$tab==5?'active':''}} " id="order_notes">
                             <div class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div id="ordernotes-grid" data-role="grid" class="k-grid k-widget">
-                                            <table role="grid">
+                                            <table style="table-layout: fixed; width: 100%">
                                                 <colgroup>
+                                                    <col style="width:60px">
                                                     <col style="width:200px">
-                                                    <col>
-                                                    <col style="width:200px">
-                                                    <col style="width:150px">
+                                                    <col style="width:95%">
                                                     <col style="width:100px">
                                                 </colgroup>
-                                                <thead class="k-grid-header" role="rowgroup">
+                                                <thead>
                                                     <tr role="row">
-                                                        <th role="columnheader" data-field="CreatedOn" data-title="Created on" class="k-header">Created on</th>
-                                                        <th role="columnheader" data-field="Note" data-title="Note" class="k-header">Note</th>
-                                                        <th role="columnheader" data-field="DownloadId" data-title="Attached file" style="text-align:center" class="k-header">Attached file</th>
-                                                        <th role="columnheader" data-field="DisplayToCustomer" data-title="Display to customer" style="text-align:center" class="k-header">Display to customer</th>
-                                                        <th class="k-header">Delete</th>
+                                                        <th>No.</th>
+                                                        <th >Ngày Tạo</th>
+                                                        <th >Nội Dung</th>
+                                                        <th >Xóa</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody role="rowgroup">
-                                                    <tr data-uid="8ab853c8-a5ed-40df-8fc9-7bb05fe14f9f" role="row">
-                                                        <td role="gridcell">10/14/2017 11:18:25 PM</td>
-                                                        <td role="gridcell">Order item has been edited</td>
-                                                        <td style="text-align:center" role="gridcell"> No file attached </td>
-                                                        <td style="text-align:center" role="gridcell"> <i class="fa fa-close false-icon"></i> </td>
-                                                        <td role="gridcell"><a class="k-button k-button-icontext k-grid-delete" href="#"><span class="k-icon k-delete"></span>Delete</a></td>
+                                                    @php($note_index = count($order->ordernotes))
+                                                    @foreach($order->ordernotes as $key =>$note)
+                                                    <tr style="margin-top:4px;">
+                                                        <td >{{$note_index - $key}}</td>
+                                                        <td >{{$note->created_at}}</td>
+                                                        <td title="{{$note->note}}" style="word-wrap: break-word">{{$note->note}}</td>
+                                                        <td >
+                                                            <a type="button" class="btn btn-danger" data-note-id="{{$note->id}}" data-toggle="modal" data-target="#modal-delete-note">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a> 
+                                                        </td>
                                                     </tr>
-                                                    <tr class="k-alt" data-uid="0d3f2714-1d0a-4fc0-91fb-bbf382388290" role="row">
-                                                        <td role="gridcell">3/13/2017 6:20:09 PM</td>
-                                                        <td role="gridcell">Order placed</td>
-                                                        <td style="text-align:center" role="gridcell"> No file attached </td>
-                                                        <td style="text-align:center" role="gridcell"> <i class="fa fa-close false-icon"></i> </td>
-                                                        <td role="gridcell"><a class="k-button k-button-icontext k-grid-delete" href="#"><span class="k-icon k-delete"></span>Delete</a></td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
-                                            <div class="k-pager-wrap k-grid-pager k-widget" data-role="pager"><a href="#" class="k-pager-refresh k-link" title="Refresh"><span class="k-icon k-i-refresh">Refresh</span></a></div>
+                                            <!-- <div ><a id="note-refresh" type="button" class="fa fa-refresh" href="javascript:void(0)" title="Refresh"><span >Làm Mới</span></a></div> -->
                                         </div>
 
                                     </div>
@@ -822,38 +851,31 @@
                                 <div class="panel panel-default">
                                     
                                     <div class="panel-heading">
-                                        Add order note
+                                        Thêm Nội Dung
                                     </div>
                                     <div class="panel-body">
-                                        <div class="form-group">
-                                            <div class="col-md-3">
-                                                <div class="label-wrapper"><label class="col-md-3 control-label" for="AddOrderNoteMessage" title="">Note</label>
+                                        <form action="{{url('admin/orders/')}}/{{$order->id}}/notes/create" method="POST" class="form-horizontal">
+                                         {{ csrf_field() }}
+                                         <input type="hidden" name="order_id" value="{{$order->id}}">
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <div ><label class="col-md-3 control-label" title="">Nội Dung</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control" cols="20" id="order_note" name="order_note" rows="4"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control" cols="20" id="AddOrderNoteMessage" name="AddOrderNoteMessage" rows="4"></textarea>
-                                                <span class="field-validation-valid" data-valmsg-for="AddOrderNoteMessage" data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-3">
-                                                <div class="label-wrapper"><label class="col-md-3 control-label" for="AddOrderNoteDisplayToCustomer" title="">Display to customer</label>
+                                            <div class="form-group">
+                                                <div class="col-md-9 col-md-offset-3">
+                                                    <button type="submit" class="btn btn-primary">Thêm</button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <input class="check-box" id="AddOrderNoteDisplayToCustomer" name="AddOrderNoteDisplayToCustomer" type="checkbox" value="true"><input name="AddOrderNoteDisplayToCustomer" type="hidden" value="false">
-                                                <span class="field-validation-valid" data-valmsg-for="AddOrderNoteDisplayToCustomer" data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-9 col-md-offset-3">
-                                                <button type="button" id="addOrderNote" class="btn btn-primary">Add order note</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>                        
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -868,17 +890,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="cancelorder-action-confirmation-title">Are you sure?</h4>
+                <h4 class="modal-title" id="cancelorder-action-confirmation-title">Cảnh báo!</h4>
             </div>
             <div class="modal-body">
-                Are you sure you want to cancel this order?
+                Bạn có chắc chắn muốn hủy đơn hàng này không?
             </div>
             <div class="modal-footer">
                 <form action="{{url('/admin/orders')}}/{{$order->id}}/cancel/orderstatus" method="POST">
                     {{ csrf_field()}}
-                    <button type="submit" class="btn btn-danger pull-right">Yes </button>
+                    <button type="submit" class="btn btn-danger pull-right">Hủy Đơn Hàng </button>
                 </form>
-                <span class="btn btn-default pull-right margin-r-5" data-dismiss="modal">No, cancel</span>
+                <span class="btn btn-default pull-right margin-r-5" data-dismiss="modal">Không, Đừng Hủy</span>
             </div>
         </div>
     </div>
@@ -886,30 +908,56 @@
 
 <!-- QUESTION TO DELETE -->
 <div class="modal modal-danger fade" id="modal-delete-detail">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Cảnh Báo</h4>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cảnh Báo</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xóa sản phẩm này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Đóng</button>
+                <form name="form-detail-delete"  method="POST">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-outline" value="Xóa Sản Phẩm">
+                </form>
+            </div>
         </div>
-        <div class="modal-body">
-            <p>Bạn có muốn xóa sản phẩm này không?</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Đóng</button>
-            <form name="form-detail-delete"  method="POST">
-                {!! csrf_field() !!}
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" class="btn btn-outline" value="Xóa Sản Phẩm">
-            </form>
-        </div>
+        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-content -->
-</div>
 <!-- /.modal-dialog -->
 </div>
 
+
+<!-- QUESTION TO DELETE NOTE-->
+<div class="modal modal-danger fade" id="modal-delete-note">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cảnh Báo</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xóa ghi chú theo dõi này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Không, đừng xóa</button>
+                <form name="form-note-delete"  method="POST">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-outline" value="Xóa">
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection 
 
 @section('scripts') 
@@ -941,11 +989,22 @@
         });
 
        $('#cancelorder').attr("data-toggle", "modal").attr("data-target", "#cancelorder-action-confirmation");
+
        $('#modal-delete-detail').on('show.bs.modal', function (e) {
             var detailID = $(e.relatedTarget).data('detail-id');
             var action = "{{url('admin/orders')}}/"+'{{$order->id}}/details/' + detailID;
             $(e.currentTarget).find('form[name="form-detail-delete"]').attr("action", action);
         })  
+
+        $('#modal-delete-note').on('show.bs.modal', function (e) {
+            var noteID = $(e.relatedTarget).data('note-id');
+            var action = "{{url('admin/orders')}}/"+'{{$order->id}}/notes/' + noteID;
+            $(e.currentTarget).find('form[name="form-note-delete"]').attr("action", action);
+        })  
+
+        $('#note-refresh').on('click', function(e){
+            location.reload(true);
+        })
     });
 
     function toggleChangeOrderStatus(editmode) {

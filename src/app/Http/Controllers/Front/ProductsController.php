@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -22,10 +23,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $bodyclass = 'product-page page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left';
         $tags = Tag::has('products')->get();
         $results = Product::where('published',1)->paginate(12);
-        return View('front/products/index',compact('results','tags', 'bodyclass'));
+        return View('front/products/index',compact('results','tags'));
     }
   
     /**
@@ -57,7 +57,6 @@ class ProductsController extends Controller
      */
     public function show($slug)
     {
-        $bodyclass="product-page single single-product postid-70 woocommerce woocommerce-page template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left";
         $product = Product::where('slug',$slug)->firstOrFail();
         if(empty($product))
             return abort(404);
@@ -70,7 +69,7 @@ class ProductsController extends Controller
             }
         }
 
-        return View('front.products.show', compact('product','starAvg','is_sales', 'bodyclass'));
+        return View('front.products.show', compact('product','starAvg','is_sales'));
     }
 
     /**
@@ -136,6 +135,13 @@ class ProductsController extends Controller
 
     public function addToWishlist(Request $request)
     {
+        if(Auth::guest())
+            return response()->json([
+                'message' => 'Vui lòng đăng nhập trước!',
+                'status' => 'error',
+                'newWishlistItemCount' => 0
+            ]);
+
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'name' => 'required',
@@ -152,7 +158,16 @@ class ProductsController extends Controller
         }
        
         $product = Product::find($request->id);
-        $cartItem = Cart::instance('wishlist')->add($request->id, $request->name, $request->quantity, $request->price, ['summary'=>$product->translation->summary??'', 'source' =>  $product->GetMediaByOrderAsc()->source??'']);
+
+        //Restore from data if exist
+        $owner = Auth::user();
+        Cart::instance('wishlist')->restore($owner->id);
+
+        // Add new item
+        Cart::instance('wishlist')->add($request->id, $request->name, $request->quantity, $request->price, ['summary'=>$product->translation->summary??'', 'source' =>  $product->GetMediaByOrderAsc()->source??'']);
+
+        // Save to data
+        Cart::instance('wishlist')->store($owner->id);
 
         return response()->json([
             'message' => 'Đã thêm '. $request->quantity .' sản phẩm vào wishlist!',
