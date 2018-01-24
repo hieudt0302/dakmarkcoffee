@@ -17,6 +17,6 @@ return [
     'subscribe' => '구독', 
     'about-us' => '연락', 
     'subscribe-success' => '성공적으로 구독하셨습니다!',   
-    'message' => 'CN:DakMark Coffee là thương hiệu đã được đăng ký SHTT của Công ty TNHH MTV Cà phê Nguyên Huy Hùng. Chúng tôi đã có 10 năm kinh nghiệm sản xuất, phân phối và xuất khẩu cà phê.',    
+    'message' => 'DakMark Coffee는 Nguyen Huy Hung 커피 유한 책임 회사의 등록 상표입니다. 우리는 커피를 생산, 유통 및 수출하는 데 10 년의 경험을 가지고 있습니다.',    
 
 ];

@@ -4,7 +4,7 @@
             <!-- One full width row-->
             <div class="column one column_column">
                 <div class="column_attr ">
-                    <h3 class="title themecolor">Chứng Nhận Cà Phê</h3>
+                    <h3 class="title themecolor">@lang('home.coffee-certificates')</h3>
                 </div>
             </div>
             <!-- One Fourth Column -->
@@ -17,7 +17,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="desc">Bộ nguyên tắc chung cho cộng đồng cà phê.</div>
+                    <div class="desc">@lang('home.cert1')</div>
                 </div>
             </div>
             <!-- One Fourth Column -->
@@ -30,7 +30,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="desc">Bộ nguyên tắc chung cho cộng đồng cà phê.</div>
+                    <div class="desc">@lang('home.cert2')</div>
                 </div>
             </div>
             <!-- One Fourth Column -->
@@ -43,7 +43,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="desc">Bộ nguyên tắc chung cho cộng đồng cà phê.</div>
+                    <div class="desc">@lang('home.cert3')</div>
                 </div>
             </div>
             <!-- One Fourth Column -->
@@ -56,7 +56,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="desc">Bộ nguyên tắc chung cho cộng đồng cà phê.</div>
+                    <div class="desc">@lang('home.cert4')</div>
                 </div>
             </div>
         </div>

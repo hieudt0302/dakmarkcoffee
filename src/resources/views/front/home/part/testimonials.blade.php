@@ -4,7 +4,7 @@
             <!-- One full width row-->
             <div class="column one column_column">
                 <div class="column_attr aligncenter">
-                    <h3 class="title themecolor" style="font-size: 24px;"><b>KHÁCH HÀNG NÓI GÌ VỀ <span style="font-size: 35px;">D</span>AK<span style="font-size: 35px;">M</span>ARK</b></h3>
+                    <h3 class="title themecolor" style="font-size: 24px;"><b>@lang('home.test-intro') <span style="font-size: 35px;">D</span>AK<span style="font-size: 35px;">M</span>ARK</b></h3>
                 </div>
             </div>
             <!-- One full width row-->
@@ -17,11 +17,11 @@
                             </div>
                             <div class="bq_wrapper">
                                 <blockquote>
-                                    Cà phê túi lọc của DakMark thật tiện dụng. Từ nay, tôi không cần phải ra ngoài mới có thể thưởng thức được những tách cà phê thơm ngon. Hương vị của DakMark cũng rất nguyên sơ, uống đến đâu, tỉnh đến đó
+                                    @lang('home.test1')
                                 </blockquote>
                             </div>
                             <div class="author">
-                                <h5><a target="_blank" href="#">Tùng</a></h5><span class="company">Cty Ăn Chơi Ngồi Không</span>
+                                <h5><a target="_blank" href="#">Tùng</a></h5><span class="company">@lang('home.role1')</span>
                             </div>
                         </li>
                         <li>
@@ -30,11 +30,11 @@
                             </div>
                             <div class="bq_wrapper">
                                 <blockquote>
-                                    Tôi đã cho các bạn Hàn Quốc của tôi dùng thử DakMark, họ đã khen ngợi hết lời và đánh giá đây đúng là cà phê hàng đầu của Việt Nam. Khi nào về nước, tôi sẽ mua thật nhiều cà phê DakMark về biếu mọi người
+                                    @lang('home.test2')
                                 </blockquote>
                             </div>
                             <div class="author">
-                                <h5><a target="_blank" href="#">Hiếu</a></h5><span class="company">Cty Nhật</span>
+                                <h5><a target="_blank" href="#">Hiếu</a></h5><span class="company">@lang('home.role2')</span>
                             </div>
                         </li>
                         <li>
@@ -43,11 +43,11 @@
                             </div>
                             <div class="bq_wrapper">
                                 <blockquote>
-                                    Cà phê DakMark thật tuyệt vời, đã lâu lắm rồi tôi mới có cơ hội được thưởng thức một tách cà phê ngon và thơm đến như vậy. Chắc chắn từ nay, DakMark sẽ là lựa chọn số 1 của tôi.
+                                    @lang('home.test3')
                                 </blockquote>
                             </div>
                             <div class="author">
-                                <h5><a target="_blank" href="#">Tuấn</a></h5><span class="company">Cty Mỹ</span>
+                                <h5><a target="_blank" href="#">Tuấn</a></h5><span class="company">@lang('home.role3')</span>
                             </div>
                         </li>
                     </ul>

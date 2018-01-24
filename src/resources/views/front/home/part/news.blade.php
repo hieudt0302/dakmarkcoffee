@@ -4,7 +4,7 @@
             <div class="column mcb-column one column_fancy_heading ">
                 <div class="fancy_heading fancy_heading_arrows">
                     <div class="animate fadeInUp" data-anim-type="fadeInUp">
-                        <h2 class="title"><i class="icon-right-dir"></i>Tin Tức - Khuyến Mãi<i class="icon-left-dir"></i></h2>
+                        <h2 class="title"><i class="icon-right-dir"></i>@lang('home.news') - @lang('home.sales')<i class="icon-left-dir"></i></h2>
                     </div>
                 </div>
             </div>

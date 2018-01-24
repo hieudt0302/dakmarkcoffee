@@ -20,6 +20,6 @@ return [
     'subscribe-success' => 'You have successfully subscribed !',
     'subscribe-failed' => 'This email is already subscribed !',       
     'about-us' => 'About',  
-    'message' => 'EN:DakMark Coffee là thương hiệu đã được đăng ký SHTT của Công ty TNHH MTV Cà phê Nguyên Huy Hùng. Chúng tôi đã có 10 năm kinh nghiệm sản xuất, phân phối và xuất khẩu cà phê.',    
+    'message' => 'DakMark Coffee is a registered trademark of Nguyen Huy Hung coffee limited liability company. We have 10 years of experience in producing, distributing and exporting coffee.',    
 
 ];
