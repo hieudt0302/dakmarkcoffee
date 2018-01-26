@@ -77,15 +77,33 @@
                 <aside class="widget widget_text">
                     <h5>@lang('footer.follow-us')</h5>
                     <div class="textwidget">
-                        <span class="big">@lang('footer.newsletter-message')</span>
-                        <form iid="mailchimp" class="form aligncenter clearfix" style="margin-top: 10px; margin-bottom: 20px;">
+                        
+                        <div class="form" id="mailchimp">
+                            <div class="mb-20">@lang('footer.newsletter-message')</div>
+                            <div class="mb-20">
+                                <input placeholder="{{ __('profile.email') }}" name="subscribe_email" class="form-control input-md round mb-10" type="text"  required/>
+                                <button type="button" class="subscribe2 btn btn-mod btn-gray btn-medium btn-round form-control mb-xs-10">@lang('footer.subscribe')</button>
+                            </div>
+                            <div id="subscribe-result">
+                                <div class="subscribe-success" style="display:none;">@lang('footer.subscribe-success')</div>
+                                <div class="subscribe-failed" style="display:none;">@lang('footer.subscribe-failed')</div>   
+                            </div>
+                        </div>
+                        <!-- 
+                            <span class="big">@lang('footer.newsletter-message')</span>
+                        <form id="mailchimp" class="form aligncenter clearfix">
                             <span>
                                 <input type="email" name="subscribe_email" id="email" aria-required="true" aria-invalid="false" placeholder="{{ __('profile.email') }}" style="width: 100%; margin-bottom: 10px;">
                             </span>
                             <span class="alignleft" style="margin:0">
                                 <input type="submit" value="@lang('footer.subscribe')" id="submit_popup" onclick="return check_values_popup();">
                             </span>
-                        </form>
+
+                        </form> -->
+                        <br>
+                        <div class="column one">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCapheDakMark%2F&tabs=timeline&width=270&height=230&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1745821872413145" width="270" height="230" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                        </div>
                         <div class="column one">
                             <div class="column_attr">
                                 <a href="http://www.facebbook.com/{{ Setting::config('facebook') }}" class="icon_bar icon_bar_facebook icon_bar_small">

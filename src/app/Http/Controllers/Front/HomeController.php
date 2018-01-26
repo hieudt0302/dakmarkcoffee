@@ -183,11 +183,24 @@ class HomeController extends Controller
         if(Subscribe::existEmail($request->email)){
             return response()->json(['success' => false]);
         }
+        if(empty($request->email) || strlen($request->email) < 0 ){
+            return response()->json(['success' => false]);
+        }
+
         $subscribe = new Subscribe();
         $subscribe->email = $request->email;
         $subscribe->locale = \App::getLocale(); 
         $subscribe->save();
+
         return response()->json(['success' => true]);
+        // if(Subscribe::existEmail($request->email)){
+        //     return response()->json(['success' => false]);
+        // }
+        // $subscribe = new Subscribe();
+        // $subscribe->email = $request->email;
+        // $subscribe->locale = \App::getLocale(); 
+        // $subscribe->save();
+        // return response()->json(['success' => true]);
     }
 
     public function unsubscribe($email){
