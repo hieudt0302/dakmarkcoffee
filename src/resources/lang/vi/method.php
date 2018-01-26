@@ -3,12 +3,12 @@
 return [
     'shipping' => [
         1 => [
-            'name' => 'Pickup',
-            'description' => 'Get your order directly from us.'
+            'name' => 'Đến lấy',
+            'description' => 'Lấy hàng tại cửa hàng.'
         ],
         2 => [
-            'name' => 'Shipping',
-            'description' => 'Your order will be sent to you by our shipping partners.'
+            'name' => 'Chuyển đến nhà',
+            'description' => 'Sản phẩm sẽ được chuyển đến nhà thông qua dịch vụ chuyển phát.'
         ],
         // 3 => [
         //     'name' => '',
@@ -18,12 +18,12 @@ return [
 
     'payment' => [
         1 => [
-           'name' => 'Cash on delivery',
-           'description' => 'Once your order is placed, you will be contacted by our staff to confirm the order.'
+           'name' => 'Thanh toán khi nhận hàng',
+           'description' => ''
         ],
         2 =>[
-            'name' => 'Prepayment',
-            'description' =>'Once your order is placed, you will be contacted by our staff to confirm the order.'
+            'name' => 'Thanh toán trước',
+            'description' =>'Sau khi nhận được đơn hàng, chúng tôi sẽ liên lạc để xác nhận về đơn hàng và thanh toán.'
         ],
         // 3 => [
         //     'name' => '',
