@@ -13,6 +13,7 @@ use App\Models\PostTranslation;
 use App\Models\Language;
 use Validator;
 use App\Models\Comment;
+use DB;
 
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
