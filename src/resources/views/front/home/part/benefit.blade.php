@@ -11,9 +11,9 @@
                                     <img src="{{asset('frontend/images/icons/icon-1.png')}}" alt="">
                                 </div>
                                 <div class="desc_wrapper">
-                                    <h4 class="title themecolor">Bạn thông minh hơn</h4>
+                                    <h4 class="title themecolor">@lang('home.benefit1')</h4>
                                     <div class="desc">
-                                        Caffeine làm tăng hiệu ứng kích thích lưới thần kinh và cải thiện não. Nghiên cứu cho thấy cà phê cải thiện suy nghĩ và đưa ra vấn đề tốt hơn.
+                                        @lang('home.benefit1-details')
                                     </div>
                                 </div>
                             </a>
@@ -48,9 +48,9 @@
                                     <img src="{{asset('frontend/images/icons/icon-2.png')}}" alt="">
                                 </div>
                                 <div class="desc_wrapper">
-                                    <h4 class="title themecolor">Bạn làm việc tốt hơn</h4>
+                                    <h4 class="title themecolor">@lang('home.benefit2')</h4>
                                     <div class="desc">
-                                        Cà phê tạo ra chất endophins trong cơ thể, giúp bạn có một tâm trạng tốt hơn và làm tăng hiệu suất làm việc.
+                                        @lang('home.benefit2-details')
                                     </div>
                                 </div>
                             </a>
@@ -76,9 +76,9 @@
                                     <img src="{{asset('frontend/images/icons/icon-3.png')}}" alt="">
                                 </div>
                                 <div class="desc_wrapper">
-                                    <h4 class="title themecolor">Giúp kéo dài tuổi thọ</h4>
+                                    <h4 class="title themecolor">@lang('home.benefit3')</h4>
                                     <div class="desc">
-                                        Không chỉ tốt cho gan, cà phê giúp chống oxy hóa, giảm nguy cơ bệnh tật và phòng chống ung thư.
+                                        @lang('home.benefit3-details')
                                     </div>
                                 </div>
                             </a>
@@ -113,9 +113,9 @@
                                     <img src="{{asset('frontend/images/icons/icon-4.png')}}" alt="">
                                 </div>
                                 <div class="desc_wrapper">
-                                    <h4 class="title themecolor">Cà phê giúp giảm cân</h4>
+                                    <h4 class="title themecolor">@lang('home.benefit4')</h4>
                                     <div class="desc">
-                                        Là thức uống có lượng calo thấp, sử dụng cà phê vào buổi sáng có tác dụng tốt bởi nó làm tăng quá trình trao đổi chất, giúp đốt cháy calo.
+                                        @lang('home.benefit4-details')
                                     </div>
                                 </div>
                             </a>

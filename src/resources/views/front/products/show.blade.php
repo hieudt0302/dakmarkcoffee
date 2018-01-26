@@ -304,9 +304,11 @@
 					 'price': {{$product->price}},
 					 'quantity': 1,
 				 },
-				 success:function(response){
+                 success:function(response){
 					 console.log(response['message']); //debug
-				 },
+				     if(response['status'] === 'error')
+				   	 window.location.href = "/login";
+                 },
 				 error:function(response){
 					 console.log(response['message']); //debug
 				 }

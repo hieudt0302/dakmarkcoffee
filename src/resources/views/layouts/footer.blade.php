@@ -65,6 +65,9 @@
                             <li><a href="{{ url('/Account/Orders') }}"><i class="icon-right-open-mini"></i> @lang('footer.order-history')</i></a></li>
                             <!-- <li><a href="{{ url('/logout') }}"><i class="icon-right-open-mini"></i> @lang('auth.logout')</i></a></li> -->
                             <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-right-open-mini"></i>@lang('auth.logout')</a></li>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>                            
                         @endif
                         </ul>
                     </div>

@@ -4,9 +4,9 @@
             <div class="column mcb-column one column_fancy_heading ">
                 <div class="fancy_heading fancy_heading_arrows">
                     <div class="animate fadeInUp" data-anim-type="fadeInUp">
-                        <h2 class="title"><i class="icon-right-dir"></i>Hoạt Động Cộng Đồng<i class="icon-left-dir"></i></h2>
+                        <h2 class="title"><i class="icon-right-dir"></i>@lang('home.community-intro')<i class="icon-left-dir"></i></h2>
                         <div class="inside">
-                            <p style="color: white;">Đời sống bà con nông dân trở nên tốt đẹp hơn khi giờ đây việc tham gia sản xuất cà phê chứng nhận thương mại công bằng đã giúp ổn định và nâng cao giá cà phê cũng như chất lượng của sản phẩm. Tiền phúc lợi từ việc bán cà phê thương mại công bằng không những giúp các thành viên có khoản đầu tư vào sản xuất mà còn giúp họ chia sẻ sự sung túc với cộng đồng.</p>
+                            <p style="color: white;">@lang('home.community-message')</p>
                         </div>
                     </div>
                 </div>

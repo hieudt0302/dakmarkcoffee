@@ -149,7 +149,7 @@
 
                     <!--Tag Cloud -->
                     <aside class="widget widget_tag_cloud">
-                        <h3>Tags (CHƯA CÓ LANG)</h3>
+                        <h3>Tags</h3>
                         <div class="tagcloud">
                             @foreach($tags as $tag)
                                 <a href="{{url('/tag')}}/{{$tag->slug}}" class="tag-link-20" title="">{{$tag->translation->name??$tag->name}}</a>
