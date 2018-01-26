@@ -13,7 +13,6 @@ return [
     */
 
     'order' => [
-    'order' => [
         1 => 'Pending',
         2 => 'Processing',
         3 => 'Complete',
