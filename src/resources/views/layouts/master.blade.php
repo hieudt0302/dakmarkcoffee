@@ -52,7 +52,10 @@
 	<link rel='stylesheet' id='style-static' href='{{asset('frontend/css/skins/coffee/stylec721.css')}}'>
 	<link rel='stylesheet' href='{{asset('frontend/css/custom.css')}}'>
 	<link rel="stylesheet" href="{{asset('frontend/plugins/rs-plugin/css/settings.css')}}">
+	<script src="{{asset('frontend/js/jquery-2.1.4.min.js')}}"></script>
+	<!-- <script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.2.min.js') }}"></script> -->
 	@yield('header')
+	<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 <meta name="google-site-verification" content="SBNKsjbUQHBBai8E7O5TxOH4R1pHOiD1F2qaSZbPxBk" />	
 </head>
 <body class="{{ (isset($bodyclass) ? $bodyclass : 'page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left') }}">
@@ -107,7 +110,8 @@
 
  	</div>
 	<!-- JS -->
-	<script src="{{asset('frontend/js/jquery-2.1.4.min.js')}}"></script>
+	<!-- <script src="{{asset('frontend/js/jquery-2.1.4.min.js')}}"></script> -->
+	<!-- <script src="{!!url('frontend/js/jquery-2.1.4.min.js')!!}"></script> -->
 	<script src="{{asset('frontend/js/mfn.menu.js')}}"></script>
 	<script src="{{asset('frontend/js/jquery.plugins.js')}}"></script>
 	<script src="{{asset('frontend/js/jquery.jplayer.min.js')}}"></script>
@@ -128,7 +132,7 @@
 	<script src="{{asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.parallax.min.js')}}"></script>
 	{{--<script src="{{asset('frontend/js/plugins.js')}}"></script>--}}
 	{{--<script src="{{asset('frontend/js/custom.js')}}"></script>--}}
-	{{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
+	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 	{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 	{{--<script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>--}}
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJyWgPF1EBDeQjx4ctp4e_DuoLi7Zf8OA" type="text/javascript"></script>
@@ -202,6 +206,7 @@
                 });
             }
         }); /*ready*/
+
 	</script>
 	<script>
         jQuery(window).load(function() {
@@ -210,20 +215,53 @@
                 var retinaEl = jQuery("#logo img");
                 var retinaLogoW = retinaEl.width();
                 var retinaLogoH = retinaEl.height();
-                retinaEl.attr("src", "frontend/images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
+                retinaEl.attr("src", "frontend/images/logo-retina.png").width(retinaLogoW).height(retinaLogoH);
             }
         });
 	</script>
-
-	{{--<script>--}}
-		{{--(function() {--}}
-			{{--$.ajaxSetup({--}}
-				{{--headers: {--}}
-					{{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-				{{--}--}}
-			{{--});--}}
-		{{--})();--}}
-	{{--</script>--}}
     @yield('scripts')
+
+    <script>
+		if (typeof jQuery == 'undefined') {
+		    document.write(unescape("%3Cscript src='{{asset('frontend/js/jquery-2.1.4.min.js')}}'' type='text/javascript'%3E%3C/script%3E")); //Load the Local file (if google is down for some reason) 
+		}
+		jQuery(document).ready(function($){
+			$.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+			$("button.subscribe2").click(function () {
+				var email = $("input[name='subscribe_email']").val();
+				var postURL = "{{url('/subscribe')}}";
+				console.log("Email: "+email+" URL: "+postURL);
+				$.ajax({
+		            type: "POST",
+		            url: postURL ,
+		            data: {
+		                "email": email,
+		            },
+		            success: function(res){
+		                if(res.success){
+		                    $(".subscribe-success").show();
+		                    $(".subscribe-failed").hide();
+		                }
+		                else{
+		                    $(".subscribe-success").hide();
+		                    $(".subscribe-failed").show();
+		                }
+		                
+		            },
+		            error:function(res){
+		                console.log("Error!");  
+		                console.log(res);  
+		            }
+		        });
+			});
+		});
+		    
+	</script>
+
+    
 </body>
 </html>

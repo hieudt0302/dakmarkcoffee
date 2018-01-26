@@ -23,36 +23,23 @@
                     <div class="section mcb-section" style="padding-top:30px; padding-bottom:30px;">
                         <div class="section_wrapper mcb-section-inner">
                             <div class="wrap mcb-wrap one clearfix">
-                                <div class="column one column_blog">
-                                    <div class="blog_wrapper isotope_wrapper">
-                                        <div class="post-wrapper-content">
-                                            <div class="section the_content has_content">
-                                                <div class="section_wrapper">
-                                                    <div class="the_content_wrapper">
-                                                        <div class="panel-group" id="accordion">
-                                                            @foreach ($faqs as $faq)
-                                                            <div class="panel panel-default">
-                                                               <div class="panel-heading">
-                                                                  <h4 class="panel-title">
-                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{$faq->id}}">
-                                                                     {{$faq->translation->question}}
-                                                                     </a>
-                                                                  </h4>
-                                                               </div><!--/.panel-heading -->
-                                                               <div id="collapse-{{$faq->id}}" class="panel-collapse collapse">
-                                                                  <div class="panel-body">
-                                                                     <p>{{$faq->translation->answer}}</p>
-                                                                  </div><!--/.panel-body -->
-                                                               </div><!--/.panel-collapse -->
-                                                            </div><!-- /.panel --> 
-                                                            @endforeach                       
-                                                        </div><!-- /.panel-group -->
-                                                    </div>
-                                                </div>
-                                            </div>
+                              <div class="column one column_faq">
+                                <div class="faq">
+                                  <div class="mfn-acc faq_wrapper">
+                                    @foreach ($faqs as $key => $faq)
+                                      <div class="question">
+                                        <div class="title">
+                                          <span class="num">{{$key+1}}</span><i class="icon-plus acc-icon-plus"></i><i class="icon-minus acc-icon-minus"></i> {{$faq->translation->question}}
                                         </div>
-                                    </div>
+                                        <div class="answer">
+                                          <p>{{$faq->translation->answer}}</p>
+                                        </div>
+                                      </div>
+                                    @endforeach
+                                  </div>
                                 </div>
+                              </div>
+                                
                             </div>
                         </div>
                     </div>
