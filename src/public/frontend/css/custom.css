@@ -350,3 +350,9 @@ textarea#body_popup{
 .Recent_posts ul li .desc{
   margin-right: 0px;
 }
+.gallery .gallery-item {
+    float: left;
+    margin-top: 10px;
+    text-align: center;
+    width: 25% !important;
+}

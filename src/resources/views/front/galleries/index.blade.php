@@ -17,45 +17,34 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Blog -->
+                    @foreach($galleries as $gallery)
                     <div class="section mcb-section" style="padding-top:30px; padding-bottom:30px;">
                         <div class="section_wrapper mcb-section-inner">
-                            <div class="wrap mcb-wrap one clearfix">
-                             <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <ul class="menu-filter">
-                                        <li class="active" data-filter="*"><a href="#">All</a></li>
-                                        @foreach($galleries as $gallery)
-                                        <li  data-filter=".{{str_slug($gallery->name, "-")}}"><a href="#">{{$gallery->name}}</a></li>
-                                        @endforeach
-
-                                        <!-- <li  data-filter=".fruits"><a href="#">Fruits</a></li>
-                                        <li  data-filter=".vegetable"><a href="#">vegetable</a></li>
-                                        <li  data-filter=".juices"><a href="#">juices</a></li>
-                                        <li  data-filter=".dried"><a href="#">dried fruits</a></li> -->
-                                    </ul>
+                            <div class="items_group clearfix">
+                                <div class="wrap mcb-wrap one clearfix">
+                                 <div class="row">
+                                    <h3 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;">{{$gallery->name}}</h3>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="grid gallery-items">
-                                    @foreach($galleries as $gallery)
-                                        @foreach($gallery->medias as $m)
-                                            <div class="grid-item {{str_slug($gallery->name, "-")}} gallery-it it pro-it">
-                                                <a href="{{asset('/storage')}}/{{$m->thumb}}" data-lightbox="test1">
-                                                    <img class="pro-img" src="{{asset('/storage')}}/{{$m->source}}" alt="">
-                                                    <div class="hover-inner">   
-                                                        <h1>{{$m->name}}</h1>
-                                                        <span class="sub">{{$m->description}}</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
-                                    @endforeach
-                                </div>  
-                            </div>
+                                <div class="row">
+                                    <div class="column one column_column">
+                                        <div class="column_attr ">
+                                            <div class="gallery gallery-columns-4 gallery-size-thumbnail">
+                                                @foreach($gallery->medias as $m)
+                                                    <dl class='gallery-item'>
+                                                        <dt class='gallery-icon landscape'>
+                                                            <a href="{{asset('/storage')}}/{{$m->source}}"><img width="300" height="300" src="{{asset('/storage')}}/{{$m->thumb}}" class="attachment-thumbnail" alt="hoodie_6_front" /></a>
+                                                        </dt>
+                                                        <dd></dd>
+                                                    </dl>
+                                                @endforeach
+                                            </div>  
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
