@@ -53,8 +53,8 @@ return [
     'info5-title' => '블렌더:',
     'info5-details' => '산업용 블렌더는 순수 커피의 맛을 유지하기 위해 커피 콩을 크기가 작은 조각으로 자릅니다. 산업용 커터는 커피 콩을 보관할 수 있도록 작은 크기로 자릅니다.',
     //news part message
-    'news' => 'Tin Tức ',   
-    'sales' => 'Khuyến Mãi',
+    'news' => '뉴스 ',   
+    'sales' => '매상',
     //certificates part message
     'coffee-certificates' => '커피 인증',
     'cert1' => '커피 커뮤니티를위한 공통 코드.',
