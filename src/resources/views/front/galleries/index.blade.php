@@ -9,7 +9,7 @@
                 <div class="entry-content">
                     <div class="section head-sect" style="padding-top:30px; padding-bottom:60px;">
                         <div class="section_wrapper">
-                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>{{$info_page_translation->title}}</b></h2>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>Dakmark Album</b></h2>
                             <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
                                 <div class="image_wrapper">
                                     <img class="scale-with-grid" src="{{ asset('/frontend/images/home/home_coffee_heading.png') }}" alt="" width="78" height="10">
