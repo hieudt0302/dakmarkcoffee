@@ -146,7 +146,7 @@ Route::get('/Order/Details/{id}', 'Front\OrdersController@show');
 
 
 /* GALLERIES */
-Route::get('/galleries', 'Front\GalleriesController@index');
+Route::get('/album-dakmark', 'Front\GalleriesController@index');
 
 /* ADMIN */
 //Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function() {
