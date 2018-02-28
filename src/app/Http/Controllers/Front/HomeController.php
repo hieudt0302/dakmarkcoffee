@@ -21,7 +21,7 @@ use App\Models\Category;
 use App\Models\MailTemplate;
 use App\Models\MailTemplateTranslation;
 use Setting;
-
+use Validator;
 class HomeController extends Controller
 {
     /**
@@ -180,12 +180,17 @@ class HomeController extends Controller
     }
 
     public function subscribe(Request $request){
-        if(Subscribe::existEmail($request->email)){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:subscribe'           
+        ]);
+
+        if ($validator->fails()) {
             return response()->json(['success' => false]);
         }
-        if(empty($request->email) || strlen($request->email) < 0 ){
-            return response()->json(['success' => false]);
-        }
+
+        // if(Subscribe::existEmail($request->email)){
+        //     return response()->json(['success' => false]);
+        // }
 
         $subscribe = new Subscribe();
         $subscribe->email = $request->email;
