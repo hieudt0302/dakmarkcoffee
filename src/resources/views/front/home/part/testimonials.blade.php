@@ -12,9 +12,6 @@
                 <div class="testimonials_slider single-photo">
                     <ul class="testimonials_slider_ul">
                         <li>
-                            <div class="single-photo-img">
-                                <img width="85" height="85" src="{{asset('frontend/images/Untitled-1_01_96-85x85.png')}}">
-                            </div>
                             <div class="bq_wrapper">
                                 <blockquote>
                                     @lang('home.test1')
@@ -25,9 +22,6 @@
                             </div>
                         </li>
                         <li>
-                            <div class="single-photo-img">
-                                <img width="85" height="85" src="{{asset('frontend/images/Untitled-1_01_96-85x85.png')}}">
-                            </div>
                             <div class="bq_wrapper">
                                 <blockquote>
                                     @lang('home.test2')
@@ -38,9 +32,6 @@
                             </div>
                         </li>
                         <li>
-                            <div class="single-photo-img">
-                                <img width="85" height="85" src="{{asset('frontend/images/Untitled-1_01_96-85x85.png')}}">
-                            </div>
                             <div class="bq_wrapper">
                                 <blockquote>
                                     @lang('home.test3')
