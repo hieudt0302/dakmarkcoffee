@@ -147,6 +147,13 @@
         filebrowserImageUploadUrl : '/backend/dist/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
         filebrowserFlashUploadUrl : '/backend/dist/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
     });
+	CKFinder.setupCKEditor(
+         ckeditor,
+         {
+            basePath: '/ckfinder/',
+            startupPath: 'Images:/test/'
+         }
+      );
 </script>
 @endsection
 @section('scripts')    
