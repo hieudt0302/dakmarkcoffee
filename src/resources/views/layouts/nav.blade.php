@@ -1,4 +1,4 @@
-<!-- BEGIN | Header -->
+BEGIN | Header -->
 <!-- Header Wrapper -->
 <div id="Header_wrapper">
     <!-- Header -->
@@ -101,7 +101,7 @@
                                                     中文
                                                 </a>
                                             </li>
-                                            <li class="menu-item">
+<!--                                             <li class="menu-item">
                                                 <a href="{{URL::asset('')}}language/jp">
                                                     日本語
                                                 </a>
@@ -110,7 +110,7 @@
                                                 <a href="{{URL::asset('')}}language/kr">
                                                     한국어
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </li>
                                 </ul>
@@ -145,4 +145,4 @@
     </header>
 </div>
 
-<!-- END | Header -->
+<!-- END | Header
