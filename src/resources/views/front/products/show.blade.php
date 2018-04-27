@@ -77,7 +77,6 @@
 													@if(!$is_sales)
 														<p class="price">
 															<ins><span class="amount">{{FormatPrice::price($product->price)}}</span></ins>
-															<del><span class="amount">{{FormatPrice::price($product->old_price)}}</span></del>
 														</p>
 													@else
 														<p class="price">
