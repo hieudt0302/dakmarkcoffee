@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -59,12 +58,6 @@
 <meta name="google-site-verification" content="SBNKsjbUQHBBai8E7O5TxOH4R1pHOiD1F2qaSZbPxBk" />	
 </head>
 <body class="{{ (isset($bodyclass) ? $bodyclass : 'page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left') }}">
-	 
-	<!-- Mobile Menu -->
-	{{--<div class="mobile-menu">--}}
-    	{{--@include('layouts.mobile_menu')--}}
-    {{--</div>--}}
-    <!-- End Mobile Menu -->
 
     <!-- Main Page -->
 	<div id="Wrapper">
@@ -87,7 +80,7 @@
 			{{--<div class="popup-inner">--}}
 				{{--<div class="fancy_heading fancy_heading_icon">--}}
 					{{--<span class="icon_top"><i class="icon-paper-plane-line"></i></span>--}}
-					{{--<h2 class="title">ĐỪNG BỎ LỞ!</h2>--}}
+					{{--<h2 class="title">ĐỪNG BỎ LỠ!</h2>--}}
 					{{--<div class="inside">--}}
 						{{--<p style="line-height: 1.5em;">--}}
 							{{--Đăng ký ngay để nhận được những khuyến mãi hấp dẫn nhất từ DAKMARK COFFEE--}}
