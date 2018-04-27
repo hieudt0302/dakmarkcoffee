@@ -101,16 +101,6 @@ BEGIN | Header -->
                                                     中文
                                                 </a>
                                             </li>
-<!--                                             <li class="menu-item">
-                                                <a href="{{URL::asset('')}}language/jp">
-                                                    日本語
-                                                </a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="{{URL::asset('')}}language/kr">
-                                                    한국어
-                                                </a>
-                                            </li> -->
                                         </ul>
                                     </li>
                                 </ul>
