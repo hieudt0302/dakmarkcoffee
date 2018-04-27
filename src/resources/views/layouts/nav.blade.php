@@ -1,4 +1,3 @@
-BEGIN | Header -->
 <!-- Header Wrapper -->
 <div id="Header_wrapper">
     <!-- Header -->
