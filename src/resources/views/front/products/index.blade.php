@@ -35,7 +35,12 @@
                             <div class="column one woocommerce-content">
                                 <div class="products_wrapper isotope_wrapper">
                                     <ul class="products grid">
+                                    @php($curDate = Carbon\Carbon::now())    
                                     @foreach($results as $key => $product)
+                                        @php($isSale = 0)
+                                        @if($product->special_price != 0 && $product->special_price_start_date  <= $curDate && $curDate <= $product->special_price_end_date )
+                                            @php($isSale = 1)
+                                        @endif                                      
                                         <!-- Product Item -->
                                         <li class="product item has-post-thumbnail">
                                             <div class="item_wrapper">
@@ -51,7 +56,7 @@
                                                     <h4 class="title themecolor">
                                                         <a href="{{url('/product')}}/{{$product->slug}}" class="themecolor">{{$product->translation->name??$product->name}}</a>
                                                     </h4>
-                                                    @if($product->special_price != 0 && $product->special_price_start_date  <= $product->special_price_end_date )
+                                                    @if ($isSale == 1)
                                                         <del>
                                                             <span class="amount">{{FormatPrice::price($product->price)}}</span>
                                                         </del>
@@ -59,11 +64,6 @@
                                                             <span class="amount">{{FormatPrice::price($product->special_price)}}</span>
                                                         </span>
                                                     @else
-                                                        @if($product->old_price > 0)
-                                                            <del>
-                                                                <span class="amount">{{FormatPrice::price($product->old_price)}}</span>
-                                                            </del>
-                                                        @endif
                                                         <span class="price">
                                                             <span class="amount">{{FormatPrice::price($product->price)}}</span>
                                                         </span>

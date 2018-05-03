@@ -78,11 +78,13 @@
 														<p class="price">
 															<ins><span class="amount">{{FormatPrice::price($product->price)}}</span></ins>
 														</p>
+														@php($final_price = $product->price)
 													@else
 														<p class="price">
 															<ins><span class="amount">{{FormatPrice::price($product->special_price)}}</span></ins>
 															<del><span class="amount">{{FormatPrice::price($product->price)}}</span></del>
 														</p>
+														@php($final_price = $product->special_price)
 													@endif
 												@endif
 											</div>
@@ -276,7 +278,7 @@
 				 data: {
 					 'id': '{{$product->id}}',
 					 'name': '{{$product->name}}',
-					 'price': {{$product->price}},
+					 'price': {{$final_price}},
 					 'quantity': quantity,
 				 },
 				 success:function(response){
