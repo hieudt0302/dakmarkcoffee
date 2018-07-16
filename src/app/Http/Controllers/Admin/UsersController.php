@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 use DB;
 use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class UsersController extends Controller
 {
 
@@ -19,8 +20,8 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(21);
-        return view('admin.users.index',compact('data'))
+        $data = User::orderBy('id', 'DESC')->paginate(21);
+        return view('admin.users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 21);
     }
 
@@ -31,8 +32,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('display_name','id');
-        return view('admin.users.create',compact('roles'));
+        $roles = Role::pluck('display_name', 'id');
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -50,25 +51,23 @@ class UsersController extends Controller
             'password' => 'required|same:confirm_password',
             // 'roles' => 'required'
         ]);
-        
-        $input =  $request->except(['confirm_password','roles']);
+
+        $input = $request->except(['confirm_password', 'roles']);
 
         $input['password'] = Hash::make($input['password']);
         $input['activated'] = $request->input('activated');
 
         $user = User::create($input);
 
-        if(!empty($request->input('roles')))
-        {
-            foreach ($request->input('roles') as $key => $value) 
-            {
+        if (!empty($request->input('roles'))) {
+            foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
             }
         }
 
         return redirect()->route('admin.users.index')
-                        ->with('message', 'Sản phẩm đã được cập nhật.')
-                        ->with('status', 'success');                  
+            ->with('message', 'Sản phẩm đã được cập nhật.')
+            ->with('status', 'success');
     }
 
     /**
@@ -80,7 +79,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.users.show',compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -92,16 +91,18 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        if($user->hasRole('admin') && $id != Auth::id())
-        {
-            if(!Auth::user()->hasRole('admin'))
+        if ($user->hasRole('admin') && $id != Auth::id()) {
+            if (!Auth::user()->hasRole('admin')) {
                 return abort(404);
+            }
+
         }
 
-        $roles = Role::where('name','!=','admin')->orWhereNull('name')->pluck('display_name','id');
-        $userRole = $user->roles->pluck('id','id')->toArray();
+        // $roles = Role::where('name', '!=', 'admin')->orWhereNull('name')->pluck('display_name', 'id');
+        $roles = Role::whereNull('name')->pluck('display_name', 'id');
+        $userRole = $user->roles->pluck('id', 'id')->toArray();
 
-        return view('admin.users.edit',compact('user','roles','userRole'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -115,39 +116,33 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'username' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'string|nullable',
             'password' => 'same:confirm_password',
             // 'roles' => 'required'
         ]);
 
-        $input =  $request->except(['confirm_password','roles']);
-      
-        if(!empty($input['password'])){ 
+        $input = $request->except(['confirm_password', 'roles']);
+
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));    
+        } else {
+            $input = array_except($input, array('password'));
         }
-        
 
         $user = User::find($id);
         $user->update($input);
 
-     
-        
-        DB::table('role_user')->where('user_id',$id)->delete();
+        DB::table('role_user')->where('user_id', $id)->delete();
 
-        if(!empty($request->input('roles')))
-        {
-           foreach ($request->input('roles') as $key => $value) 
-           {
+        if (!empty($request->input('roles'))) {
+            foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
-           }
+            }
         }
-        
 
         return redirect()->route('admin.users.index')
-                        ->with('success','User updated successfully');
+            ->with('success', 'User updated successfully');
     }
 
     /**
@@ -159,13 +154,12 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if($user->hasRole('admin'))
-        {
+        if ($user->hasRole('admin')) {
             return abort(404);
         }
-        
-        $user ->delete();
+
+        $user->delete();
         return redirect()->route('admin.users.index')
-                        ->with('success','User deleted successfully');
+            ->with('success', 'User deleted successfully');
     }
 }
