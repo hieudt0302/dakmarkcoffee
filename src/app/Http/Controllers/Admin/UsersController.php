@@ -94,12 +94,15 @@ class UsersController extends Controller
         if ($user->hasRole('admin') && $id != Auth::id()) {
             if (!Auth::user()->hasRole('admin')) {
                 return abort(404);
+            } else {
+                $roles = Role::where('name', '!=', 'admin')->whereNotNull('name')->pluck('display_name', 'id');
             }
-
+        } else {
+            $roles = Role::whereNotNull('name')->pluck('display_name', 'id');
         }
 
         // $roles = Role::where('name', '!=', 'admin')->orWhereNull('name')->pluck('display_name', 'id');
-        $roles = Role::whereNotNull('name')->pluck('display_name', 'id');
+        
         $userRole = $user->roles->pluck('id', 'id')->toArray();
 
         return view('admin.users.edit', compact('user', 'roles', 'userRole'));
