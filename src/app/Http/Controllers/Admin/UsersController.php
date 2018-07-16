@@ -99,7 +99,7 @@ class UsersController extends Controller
         }
 
         // $roles = Role::where('name', '!=', 'admin')->orWhereNull('name')->pluck('display_name', 'id');
-        $roles = Role::whereNull('name')->pluck('display_name', 'id');
+        $roles = Role::whereNotNull('name')->pluck('display_name', 'id');
         $userRole = $user->roles->pluck('id', 'id')->toArray();
 
         return view('admin.users.edit', compact('user', 'roles', 'userRole'));
