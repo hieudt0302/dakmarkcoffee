@@ -9,7 +9,7 @@
                     <div class="top_bar_left clearfix">
                         <!-- Logo-->
                         <div class="logo">
-                            <a id="logo" href="{{ url('/')}}" title="DARMARK COFFEE"><img class="scale-with-grid" src="{{asset('frontend/images/retina-theme.png')}}" alt="DARMARK COFFEE" /></a>
+                            <a id="logo" href="{{ url('/')}}" title="DARMARK COFFEE"><img class="scale-with-grid" src="{{asset('images/logo/logo.jpg')}}" alt="DARMARK COFFEE" /></a>
                         </div>
                         <!-- Main menu-->
                         <div class="menu_wrapper">
