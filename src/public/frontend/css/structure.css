@@ -2105,7 +2105,7 @@ body.header-below:not(.template-slider) #Header {
 }
 
 .header-stack #Top_bar .logo {
-    width: 100%;
+    width: 240px;
     margin: 0;
     padding: 0 30px;
     text-align: left;
