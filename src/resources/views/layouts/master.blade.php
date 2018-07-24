@@ -16,6 +16,7 @@
 	<meta name="author" content="">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="profile" href="#">
+	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
 	<!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:bold,black,regular"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display:bold,italic,bolditalic"> -->
