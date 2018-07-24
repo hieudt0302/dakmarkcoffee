@@ -177,8 +177,8 @@
                         }
                     },
                     visibilityLevels: [1240, 1024, 778, 480],
-                    gridwidth: 1100,
-                    gridheight: 720,
+                    gridwidth: 1920,
+                    gridheight: 750,
                     lazyType: "none",
                     shadow: 0,
                     spinner: "spinner0",
