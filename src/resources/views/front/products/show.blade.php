@@ -30,7 +30,7 @@
 														@if($key === 1)
 														<div class="thumbnails">
 															<div class="image_frame scale-with-grid" ontouchstart="this.classList.toggle('hover');">
-																<div class="image_wrapper">
+																<div class="image_wrapper thumb-wrapper">
 																	<a href="{{asset('/storage')}}/{{$media->source}}" class="woocommerce-main-image zoom" title="{{$media->description}}" data-rel="prettyPhoto[product-gallery]">
 																		<div class="mask"></div><img width="80" height="100" src="{{asset('/storage')}}/{{$media->source}}" class="attachment-shop_thumbnail size-shop_thumbnail" alt="{{$media->description}}" title="{{$media->description}}" caption="{{$media->description}}">
 																	</a>
@@ -38,7 +38,7 @@
 															</div>
 														@else
 															<div class="image_frame scale-with-grid" ontouchstart="this.classList.toggle('hover');">
-																<div class="image_wrapper">
+																<div class="image_wrapper thumb-wrapper">
 																	<a href="{{asset('/storage')}}/{{$media->source}}" class="woocommerce-main-image zoom" title="{{$media->description}}" data-rel="prettyPhoto[product-gallery]">
 																		<div class="mask"></div><img width="80" height="100" src="{{asset('/storage')}}/{{$media->source}}" class="attachment-shop_thumbnail size-shop_thumbnail" alt="{{$media->description}}" title="{{$media->description}}" caption="{{$media->description}}">
 																	</a>

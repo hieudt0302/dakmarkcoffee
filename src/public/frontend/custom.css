@@ -334,3 +334,9 @@ textarea#body_popup{
 .trailer_box .desc{
   background-color: rgba(0, 0, 0, 0.19);
 }
+
+/*Added by Hieu 20181229*/
+.thumb-wrapper{
+  float:left;
+  padding:3px;
+}
