@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.master')
 @section('title','Dakmark Coffee')
 
 @section('content')
@@ -27,7 +27,7 @@
                                             <div class="section the_content has_content">
                                                 <div class="section_wrapper">
                                                     <div class="the_content_wrapper">
-                                                        {!! $info_page_translation->content !!}
+                                                        {!! $info_page->translation->content??$info_page->content !!}
                                                     </div>
                                                 </div>
                                             </div>
