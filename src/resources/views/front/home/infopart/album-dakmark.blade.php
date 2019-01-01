@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.master')
 @section('title','Dakmark Coffee')
 
 @section('content')
@@ -9,7 +9,7 @@
                 <div class="entry-content">
                     <div class="section head-sect" style="padding-top:30px; padding-bottom:60px;">
                         <div class="section_wrapper">
-                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>{{$info_page_translation->title}}</b></h2>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>{{$info_page->translation->title??$info_page->title}}</b></h2>
                             <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
                                 <div class="image_wrapper">
                                     <img class="scale-with-grid" src="{{ asset('/frontend/images/home/home_coffee_heading.png') }}" alt="" width="78" height="10">
@@ -43,7 +43,7 @@
                                             <div class="grid-item {{str_slug($gallery->name, "-")}} gallery-it it pro-it">
                                                 <a href="{{asset('/storage')}}/{{$m->thumb}}" data-lightbox="test1">
                                                     <img class="pro-img" src="{{asset('/storage')}}/{{$m->source}}" alt="">
-                                                    <div class="hover-inner">   
+                                                    <div class="hover-inner">
                                                         <h1>{{$m->name}}</h1>
                                                         <span class="sub">{{$m->description}}</span>
                                                     </div>
@@ -51,7 +51,7 @@
                                             </div>
                                         @endforeach
                                     @endforeach
-                                </div>  
+                                </div>
                             </div>
                             </div>
                         </div>
