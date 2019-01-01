@@ -15,12 +15,12 @@
 						<tbody>
 						<tr>
 							<td>
-								<h2><span style="boder-radius: 2px; font-size: 32pt; font-weight: 300; color: #fff;">{{$slider->translation->description}}</span></h2>
+								<h2><span style="boder-radius: 2px; font-size: 32pt; font-weight: 300; color: #fff;">{{$slider->translation->description??$slider->description}}</span></h2>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-				</div>			
+				</div>
 			</li>
 			@endforeach
 		</ul>
