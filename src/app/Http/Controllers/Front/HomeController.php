@@ -59,99 +59,113 @@ class HomeController extends Controller
                                 ->where('special_price_end_date', '>=', date('Y-m-d', time()))
                                 ->orderBy('created_at', 'desc')
                                 ->limit(4)
-                                ->get();                
+                                ->get();
         $new_blogs = Post::where('published',1)->orderBy('updated_at', 'desc')->limit(3)->get();
-        $sliders = Slider::where('is_show',1)->get();      
+        $sliders = Slider::where('is_show',1)->get();
 
-        //var_dump($best_sellers_products); die();  
+        //var_dump($best_sellers_products); die();
         return View("front/home/index",compact('about_us', 'product_origin', 'product_quality', 'new_products', 'best_sellers_products', 'sale_products', 'new_blogs','sliders'));
 
     }
 
     public function about()
-    { 
-        $info_page_translation = $this->getInfoPageTranslation('about');
-        return View("front.home.infopage",compact('info_page_translation'));
+    {
+        $info_page_translation = $this->getInfoPageTranslation('about'); // should removed
+        $info_page = InfoPage::where('slug', 'about')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
     }
 
     public function sx_coffee_ben_vung()
     {
-        $info_page_translation = $this->getInfoPageTranslation('tht-san-xuat-ca-phe-ben-vung');
-        return View("front.home.infopart.sx-coffee-ben-vung",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('tht-san-xuat-ca-phe-ben-vung');  // should removed
+        $info_page = InfoPage::where('slug', 'tht-san-xuat-ca-phe-ben-vung')->first();
+        return View("front.home.infopart.sx-coffee-ben-vung", compact('info_page', 'info_page_translation'));
     }
 
     public function htx_cscc()
     {
-        $info_page_translation = $this->getInfoPageTranslation('htx-cscc');
-        return View("front.home.infopart.htx-cscc",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('htx-cscc');  // should removed
+        $info_page = InfoPage::where('slug', 'htx-cscc')->first();
+        return View("front.home.infopart.htx-cscc",compact('info_page', 'info_page_translation'));
     }
 
     public function album_dakmark()
     {
-        $info_page_translation = $this->getInfoPageTranslation('album-dakmark');
-        return View("front.home.infopart.album-dakmark",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('album-dakmark');  // should removed
+        $info_page = InfoPage::where('slug', 'album-dakmark')->first();
+        return View("front.home.infopart.album-dakmark",compact('info_page', 'info_page_translation'));
     }
 
     public function chung_nhan()
     {
-        $info_page_translation = $this->getInfoPageTranslation('chung-nhan');
-        return View("front.home.cers.chung-nhan",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan');  // should removed
+        $info_page = InfoPage::where('slug', 'chung-nhan')->first();
+        return View("front.home.cers.chung-nhan",compact('info_page', 'info_page_translation'));
     }
 
     public function chung_nhan_rainforest_alliance()
     {
-        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-rainforest-alliance');
-        return View("front.home.cers.chung-nhan-rainforest-alliance",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-rainforest-alliance');  // should removed
+        $info_page = InfoPage::where('slug', 'chung-nhan-rainforest-alliance')->first();
+        return View("front.home.cers.chung-nhan-rainforest-alliance",compact('info_page', 'info_page_translation'));
     }
 
     public function chung_nhan_4c()
     {
-        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-4c');
-        return View("front.home.cers.chung-nhan-4c",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-4c');  // should removed
+        $info_page = InfoPage::where('slug', 'chung-nhan-4c')->first();
+        return View("front.home.cers.chung-nhan-4c",compact('info_page', 'info_page_translation'));
     }
 
     public function chung_nhan_haccp()
     {
-        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-haccp');
-        return View("front.home.cers.chung-nhan-haccp",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('chung-nhan-haccp');  // should removed
+        $info_page = InfoPage::where('slug', 'chung-nhan-haccp')->first();
+        return View("front.home.cers.chung-nhan-haccp",compact('info_page', 'info_page_translation'));
     }
 
     public function tieu_chuan_iso_22000()
     {
-        $info_page_translation = $this->getInfoPageTranslation('tieu-chuan-iso-22000');
-        return View("front.home.cers.tieu-chuan-iso-22000",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('tieu-chuan-iso-22000');  // should removed
+        $info_page = InfoPage::where('slug', 'tieu-chuan-iso-22000')->first();
+        return View("front.home.cers.tieu-chuan-iso-22000",compact('info_page', 'info_page_translation'));
     }
 
 
     public function returns()
     {
-        $info_page_translation = $this->getInfoPageTranslation('returns');
-        return View("front.home.infopage",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('returns');  // should removed
+        $info_page = InfoPage::where('slug', 'returns')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
     }
 
     public function purchase_flow()
     {
-        $info_page_translation = $this->getInfoPageTranslation('purchase-flow');
-        return View("front.home.infopage",compact('info_page_translation'));
-    }    
+        $info_page_translation = $this->getInfoPageTranslation('purchase-flow');  // should removed
+        $info_page = InfoPage::where('slug', 'purchase-flow')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
+    }
 
     public function showrooms()
     {
-        $info_page_translation = $this->getInfoPageTranslation('showrooms');
-        return View("front.home.infopage",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('showrooms');  // should removed
+        $info_page = InfoPage::where('slug', 'showrooms')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
     }
-    
+
     public function product_origin()
     {
-        $info_page_translation = $this->getInfoPageTranslation('product-origin');
-        return View("front.home.infopage",compact('info_page_translation'));
+        $info_page_translation = $this->getInfoPageTranslation('product-origin');  // should removed
+        $info_page = InfoPage::where('slug', 'product-origin')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
     }
 
     public function product_quality()
     {
-        $info_page_translation = $this->getInfoPageTranslation('product-quality');
-        return View("front.home.infopage",compact('info_page_translation'));
-    }   
+        $info_page_translation = $this->getInfoPageTranslation('product-quality');  // should removed
+        $info_page = InfoPage::where('slug', 'product-quality')->first();
+        return View("front.home.infopage",compact('info_page', 'info_page_translation'));
+    }
 
     public function promotion()
     {
@@ -160,9 +174,9 @@ class HomeController extends Controller
                                 ->where('special_price_start_date', '<=', date('Y-m-d', time()))
                                 ->where('special_price_end_date', '>=', date('Y-m-d', time()))
                                 ->orderBy('created_at', 'desc')
-                                ->paginate(12);          
+                                ->paginate(12);
         return View("front.products.index",compact('results','promo'));
-    }       
+    }
 
     public function contact()
     {
@@ -181,7 +195,7 @@ class HomeController extends Controller
 
     public function subscribe(Request $request){
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:subscribe'           
+            'email' => 'required|email|unique:subscribe'
         ]);
 
         if ($validator->fails()) {
@@ -194,7 +208,7 @@ class HomeController extends Controller
 
         $subscribe = new Subscribe();
         $subscribe->email = $request->email;
-        $subscribe->locale = \App::getLocale(); 
+        $subscribe->locale = \App::getLocale();
         $subscribe->save();
 
         return response()->json(['success' => true]);
@@ -203,7 +217,7 @@ class HomeController extends Controller
         // }
         // $subscribe = new Subscribe();
         // $subscribe->email = $request->email;
-        // $subscribe->locale = \App::getLocale(); 
+        // $subscribe->locale = \App::getLocale();
         // $subscribe->save();
         // return response()->json(['success' => true]);
     }
@@ -342,13 +356,13 @@ class HomeController extends Controller
 
     function getInfoPageTranslation($slug){
         $language_id = 1; //make vietnamese as default alternative
-        $locale = \App::getLocale(); 
+        $locale = \App::getLocale();
         $language = Language::where('code',$locale)->first();
         if ($language != null){
             $language_id = $language->id; //make english as default alternative
         }
-        $info_page = InfoPage::where('slug',$slug)->first(); 
-        $info_page_translation = InfoPageTranslation::where('info_page_id',$info_page->id)->where('language_id',$language_id)->first();  
+        $info_page = InfoPage::where('slug',$slug)->first();
+        $info_page_translation = InfoPageTranslation::where('info_page_id',$info_page->id)->where('language_id',$language_id)->first();
         return $info_page_translation;
     }
 

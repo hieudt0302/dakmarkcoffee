@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('layouts.master')
 @section('title','Dakmark Coffee')
 
 @section('content')
@@ -9,7 +9,7 @@
                 <div class="entry-content">
                     <div class="section head-sect" style="padding-top:30px; padding-bottom:60px;">
                         <div class="section_wrapper">
-                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>{{$info_page_translation->title}}</b></h2>
+                            <h2 class="title themecolor aligncenter" style="padding-top:20px; padding-bottom:20px; font-size: 35px;"><b>{{$info_page->translation->title}}</b></h2>
                             <div class="image_frame image_item no_link scale-with-grid aligncenter no_border">
                                 <div class="image_wrapper">
                                     <img class="scale-with-grid" src="{{ asset('/frontend/images/home/home_coffee_heading.png') }}" alt="" width="78" height="10">
@@ -27,7 +27,7 @@
                                             <div class="section the_content has_content">
                                                 <div class="section_wrapper">
                                                     <div class="the_content_wrapper">
-                                                        {!! $info_page_translation->content !!}
+                                                        {!! $info_page->translation->content !!}
                                                     </div>
                                                 </div>
                                             </div>

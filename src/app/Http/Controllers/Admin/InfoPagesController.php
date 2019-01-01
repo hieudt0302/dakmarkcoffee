@@ -25,7 +25,7 @@ class InfoPagesController extends Controller
 
         $info_pages = InfoPage::orderBy('id', 'desc')->paginate(10);
         return view('admin.info-pages.index',compact('info_pages'))
-        ->with('i', ($request->input('page', 1) - 1) * 10);        
+        ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -35,7 +35,7 @@ class InfoPagesController extends Controller
      */
     public function create()
     {
-        $language_list = Language::all();        
+        $language_list = Language::all();
         return view('admin.info-pages.create',compact('language_list'));
     }
 
@@ -62,12 +62,12 @@ class InfoPagesController extends Controller
             ->withErrors($validator)
             ->withInput();
         }
-        
-        $info_page = new InfoPage;        
+
+        $info_page = new InfoPage;
         $info_page->title = $request->input("title");
-        $info_page->slug = $request->input("slug");   
+        $info_page->slug = $request->input("slug");
         $info_page->save();
-       
+
         return redirect()->action(
             'Admin\InfoPagesController@edit', ['id' => $info_page->id]
         );
@@ -84,7 +84,7 @@ class InfoPagesController extends Controller
         $language_list = Language::all();
         $info_page = InfoPage::find($id);
         $info_page_translations = $info_page->translations()->get();
-        return view('admin.info-pages.show',compact('language_list','info_page','info_page_translations'));        
+        return view('admin.info-pages.show',compact('language_list','info_page','info_page_translations'));
     }
 
     /**
@@ -105,7 +105,7 @@ class InfoPagesController extends Controller
             $translation = InfoPageTranslation::where('info_page_id',$id)->where('language_id', $language_id)->withoutGlobalScopes()->first();
             $tab= 2;
         }
-        return View('admin.info-pages.edit',compact('info_page','languages', 'translation','tab','language_id'));            
+        return View('admin.info-pages.edit',compact('info_page','languages', 'translation','tab','language_id'));
     }
 
     /**
@@ -129,10 +129,10 @@ class InfoPagesController extends Controller
         }
 
         $info_page = InfoPage::find($id);
-        
+
         $info_page->title = $request->title;
         $info_page->slug = $request->slug;
-     
+
         $info_page->save();
 
         return redirect()->back()
@@ -178,7 +178,7 @@ class InfoPagesController extends Controller
             $infoPageTranslation->info_page_id = $id;
             $infoPageTranslation->save();
         }
-        
+
         return redirect()->back()
         ->with('message', 'Cập nhật nội dung mới thành công')
         ->with('status', 'success')
@@ -195,7 +195,7 @@ class InfoPagesController extends Controller
     {
         $info_page = InfoPage::find($id);
         $info_page->delete();
-       
+
         return redirect()->route('admin.info-pages.index')
         ->with('message', 'Xóa thành công!')
         ->with('status', 'success');
@@ -205,7 +205,7 @@ class InfoPagesController extends Controller
         $slug = str_slug($title, "-");
         if(InfoPage::where('slug',$slug)->count() >0 )
         {
-            $slug = $slug . '-' .  date('y') . date('m'). date('d'). date('H'). date('i'). date('s'); 
+            $slug = $slug . '-' .  date('y') . date('m'). date('d'). date('H'). date('i'). date('s');
         }
         return response()->json([
             'slug' =>  $slug,
