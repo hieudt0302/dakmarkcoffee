@@ -223,7 +223,7 @@
 <script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script>
 
 <script type="text/javascript">
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
     $('form input').on('keypress', function(e) {
         return e.which !== 13;
     });
