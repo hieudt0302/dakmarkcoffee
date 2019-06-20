@@ -12,16 +12,15 @@
 
         var imgtodrag = $('.product-main-img');
         // If is single
-        if ($('.single-product').length) {
-            imgtodrag = $('.single-product .product-main-img');
-        } else {
-            //Not single (multiple product image)
-            imgtodrag = $(this).closest('.item').find('.product-main-img').first();
-            console.log(imgtodrag);
-        }
+        // if ($('.single-product').length) {
+        //     imgtodrag = $('.single-product .product-main-img');
+        // } else {
+        //     //Not single (multiple product image)
+        //     imgtodrag = $(this).closest('.item').find('.product-main-img').first();
+        // }
 
         if (imgtodrag) {
-            var imgclone = imgtodrag.clone()
+            var imgclone = imgtodrag[0].clone()
                 .offset({
                     top: imgtodrag.offset().top,
                     left: imgtodrag.offset().left
