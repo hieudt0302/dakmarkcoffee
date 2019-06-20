@@ -11,7 +11,7 @@
         var imgtodrag = $('.product-main-img');
 
         if (imgtodrag) {
-            console.log(imgtodrag.first());
+
             var imgclone = imgtodrag
                 .first()
                 .clone()

@@ -47,7 +47,7 @@ var AjaxCart = (function ($, window, document, undefined) {
 			// HACK (MC)!
 			// we changed the ModelType of the _AddToCart
 			// from ...ProductModel.AddToCart to .ProductModel.
-			// Therefore input names are not in the form anymore as the ShoppingCartController 
+			// Therefore input names are not in the form anymore as the ShoppingCartController
 			// expects them. Hacking here ist much easier than refactoring the controller method.
 			// But change this in future of couse.
 			arr = str.split(".");
@@ -99,7 +99,7 @@ var AjaxCart = (function ($, window, document, undefined) {
 				success: function (response) {
 					if (response.redirect) {
 						// when the controller sets the "redirect"
-						// property (either to cart, product page etc.), 
+						// property (either to cart, product page etc.),
 						// it's mandatory to do so and useless to do ajax stuff.
 						location.href = response.redirect;
 						return false;
@@ -151,7 +151,7 @@ var AjaxCart = (function ($, window, document, undefined) {
 
 })(jQuery, this, document);
 
-$(function () {
+jQuery(function () {
     var shopBar = $(".shopbar");
     var shouldOpen = !$("body").hasClass("no-offcanvas-cart");
 
@@ -174,7 +174,7 @@ $(function () {
         }
     });
 
-    // Register for tab change event 
+    // Register for tab change event
     $('#offcanvas-cart a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tool = $(e.target);
 
@@ -208,7 +208,7 @@ $(function () {
     		}
     	});
     });
-}); 
+});
 
 var ShopBar = (function($) {
 
@@ -242,7 +242,7 @@ var ShopBar = (function($) {
         var tool = tools[data.type];
         var button = buttons[data.type];
         var badge = $("span.label", button);
-        
+
         if (badge.hasClass("d-none")) {
         	badge.removeClass("d-none");
         }
@@ -255,7 +255,7 @@ var ShopBar = (function($) {
 
         var action = data.action;
 
-        if (action == "addfromwishlist" || action == "addfromcart") 
+        if (action == "addfromwishlist" || action == "addfromcart")
         {
             $('.nav-tabs ' + (action == "addfromcart" ? "#wishlist-tab" : "#cart-tab")).tab('show');
         }
@@ -271,7 +271,7 @@ var ShopBar = (function($) {
 
     EventBroker.subscribe("ajaxcart.item.removed", function (msg, data) {
     	var tool = tools[data.type];
-        
+
         ShopBar.loadHtml(tool, function () {
         	ShopBar.hideThrobber();
         });
@@ -303,7 +303,7 @@ var ShopBar = (function($) {
         	throbber.show();
 		},
 
-        hideThrobber: function () {      	
+        hideThrobber: function () {
         	var cnt = $(".tab-content", offcanvasCart);
         	_.delay(function () { cnt.data("throbber").hide(); }, 100);
 		},
