@@ -56,7 +56,7 @@
 	<!-- <script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.2.min.js') }}"></script> -->
 	@yield('header')
 	<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-<meta name="google-site-verification" content="SBNKsjbUQHBBai8E7O5TxOH4R1pHOiD1F2qaSZbPxBk" />	
+<meta name="google-site-verification" content="SBNKsjbUQHBBai8E7O5TxOH4R1pHOiD1F2qaSZbPxBk" />
 </head>
 <body class="{{ (isset($bodyclass) ? $bodyclass : 'page-parent template-slider color-custom layout-full-width header-stack header-left subheader-transparent sticky-header sticky-white subheader-title-left') }}">
 
@@ -209,7 +209,7 @@
                 var retinaEl = jQuery("#logo img");
                 var retinaLogoW = retinaEl.width();
                 var retinaLogoH = retinaEl.height();
-                retinaEl.attr("src", "frontend/images/logo-retina.png").width(retinaLogoW).height(retinaLogoH);
+                retinaEl.attr("src", "{{asset('frontend/images/logo-retina.png')}}").width(retinaLogoW).height(retinaLogoH);
             }
         });
 	</script>
@@ -217,7 +217,7 @@
 
     <script>
 		if (typeof jQuery == 'undefined') {
-		    document.write(unescape("%3Cscript src='{{asset('frontend/js/jquery-2.1.4.min.js')}}'' type='text/javascript'%3E%3C/script%3E")); //Load the Local file (if google is down for some reason) 
+		    document.write(unescape("%3Cscript src='{{asset('frontend/js/jquery-2.1.4.min.js')}}'' type='text/javascript'%3E%3C/script%3E")); //Load the Local file (if google is down for some reason)
 		}
 		jQuery(document).ready(function($){
 			$.ajaxSetup({
@@ -244,18 +244,18 @@
 		                    $(".subscribe-success").hide();
 		                    $(".subscribe-failed").show();
 		                }
-		                
+
 		            },
 		            error:function(res){
-		                console.log("Error!");  
-		                console.log(res);  
+		                console.log("Error!");
+		                console.log(res);
 		            }
 		        });
 			});
 		});
-		    
+
 	</script>
 
-    
+
 </body>
 </html>
