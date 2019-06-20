@@ -219,6 +219,7 @@
     if (typeof jQuery == 'undefined') {
         document.write(unescape("%3Cscript src='{{asset('frontend/js/jquery-2.1.4.min.js')}}'' type='text/javascript'%3E%3C/script%3E")); //Load the Local file (if google is down for some reason)
     }
+    window.$ = window.jQuery; //JQUERY
     jQuery(document).ready(function($){
       $.ajaxSetup({
                 headers: {
