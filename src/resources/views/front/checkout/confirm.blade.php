@@ -340,7 +340,7 @@
 <script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        jQuery(document).ready(function () {
             $("#terms-of-service-trigger").on("click", function (event) {
                 event.preventDefault();
                 $("#terms-of-service-modal .modal-body").html(
