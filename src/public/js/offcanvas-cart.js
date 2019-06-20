@@ -151,7 +151,7 @@ var AjaxCart = (function ($, window, document, undefined) {
 
 })(jQuery, this, document);
 
-jQuery(function () {
+jQuery(function ($) {
     var shopBar = $(".shopbar");
     var shouldOpen = !$("body").hasClass("no-offcanvas-cart");
 
