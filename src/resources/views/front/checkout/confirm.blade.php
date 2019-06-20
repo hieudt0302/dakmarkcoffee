@@ -54,7 +54,7 @@
                     <div class="page-title">
                         <h1 class="h3">@lang('checkout.confirm-order')</h1>
                     </div>
-                    <div class="page-body checkout-data">                       
+                    <div class="page-body checkout-data">
                             <p class="page-intro lead">
                                 @lang('checkout.confirm-message')
                             </p>
@@ -68,7 +68,7 @@
                             </div>
                             <div class="confirm-order">
                             </div>
-                  
+
                         <div class="order-summary-body mb-4">
                             <div class="order-summary-content">
                                 <div class="card card-block order-review-data-box mb-3">
@@ -182,10 +182,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <form action="{{url('/Checkout/Confirm/Next')}}" id="confirm-order-form" method="post">
-                                    {{ csrf_field() }}	
+                                    {{ csrf_field() }}
                                     <div class="comment-box card mb-3">
                                         <div class="card-header h5">
                                             @lang('checkout.checkout-comment')
@@ -219,7 +219,7 @@
                                                 <div class="cart-col cart-col-main">
                                                     <div class="row row-hardcode sm-gutters">
                                                         <div class="col cart-item-img">
-                                                            <img class="img-fluid" alt="Picture of Item" 
+                                                            <img class="img-fluid" alt="Picture of Item"
                                                             src="{{asset('/storage')}}/{{$row->options->source}}"
                                                                 title="Show details for Herren T-Shirt">
                                                         </div>
@@ -319,26 +319,26 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.js"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>  -->
-<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/SmoothScroll.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>     
-<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script> 
- 
+<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/SmoothScroll.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#terms-of-service-trigger").on("click", function (event) {
@@ -355,9 +355,9 @@
             });
         });
     </script>
-	
+
 <script>
-    $(function () {
+    jQuery(function () {
         $('#confirm-order-form').submit(function () {
             $('.btn-buy', this).attr('disabled', 'disabled');
         });

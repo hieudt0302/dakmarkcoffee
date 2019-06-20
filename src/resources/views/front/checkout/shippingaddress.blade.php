@@ -1,5 +1,5 @@
-@extends('layouts.master') 
-@section('title','Địa Chỉ Nhận Hàng - Giỏ Hàng') 
+@extends('layouts.master')
+@section('title','Địa Chỉ Nhận Hàng - Giỏ Hàng')
 
 @section('header')
 @parent
@@ -48,7 +48,7 @@
                 </a>
             </div>
 		</div>
-		
+
         <div id="content-body" class="row row-hardcode mt-4">
             <div id="content-center" class="col-lg-12">
                 <div class="page billing-address-page">
@@ -101,7 +101,7 @@
                                 <span>
                                     @if(count(Auth::user()->bookaddresses()) > 0)
                                     @lang('checkout.or-enter')
-                                    @else 
+                                    @else
                                     @lang('checkout.enter')
                                     @endif
                                     @lang('checkout.new-address')
@@ -139,26 +139,26 @@
 <!-- <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.js') }}"></script>  -->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>  -->
-<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>     
-<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script>
 
     <!-- Select2 -->
 	<script src="{{asset('js/select2.full.min.js')}}"></script>
 	<script type="text/javascript">
-                                            $(function() {
+                                            jQuery(function() {
                                                 $("#NewAddress_CountryId").change(function() {
                                                     var selectedItem = $(this).val();
                                                     var ddlStates = $("#NewAddress_StateProvinceId");

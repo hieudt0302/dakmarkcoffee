@@ -55,15 +55,15 @@
                     </div>
                     <div class="page-body checkout-data">
                         <form action="{{url('/Checkout/PaymentMethod/Next')}}" method="post">
-                        {{ csrf_field() }}  
+                        {{ csrf_field() }}
                             <ul class="list-group opt-list payment-methods">
                             @foreach(\Lang::get('method.payment') as $key =>$value)
                                 <li class="list-group-item opt-list-item payment-method-item {{$key==1?'active':''}} ">
                                     <div class="opt-data">
                                         <div class="form-check opt-control option-name radio">
                                             <label class="form-check-label">
-                                                <input id="paymentmethod_{{$key}}" 
-                                                type="radio" name="paymentmethod" 
+                                                <input id="paymentmethod_{{$key}}"
+                                                type="radio" name="paymentmethod"
                                                 class="opt-radio form-check-input"
                                                 value="{{$key}}" {{$key==1?'checked="checked"':''}}>
                                                 <span class="opt-name">{{$value['name']}}</span>
@@ -103,25 +103,25 @@
     <!-- <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.js') }}"></script>  -->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>  -->
-<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>     
-<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('js/viewport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/eventbroker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.mixins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/underscore.string.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/system.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/public.common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/throbber.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/doAjax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.bootstrap-touchspin.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/offcanvas-cart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/pnotify/pnotify.animate.js') }}"></script>
 
 
     <script type="text/javascript">
-        $(function() {
+        jQuery(function() {
             $('.checkout-data .opt-radio').on('change', function (e) {
                 var radio = $(this);
                 var systemName = radio.val();

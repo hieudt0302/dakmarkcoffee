@@ -1,5 +1,5 @@
-@extends('layouts.master') 
-@section('title','Địa Chỉ Thanh Toán Hóa Đơn - Giỏ Hàng') 
+@extends('layouts.master')
+@section('title','Địa Chỉ Thanh Toán Hóa Đơn - Giỏ Hàng')
 @section('header')
 @parent
 <!-- OVERRIDER MASTER CSS -->
@@ -8,7 +8,7 @@
 
 @section('content')
 <div id="content-wrapper">
-    <section id="content" class="container mt-3">        
+    <section id="content" class="container mt-3">
         <div class="costeps row row-hardcode no-gutters">
             <div class="col-2 costep visited" data-step="cart">
                 <a class="costep-link" href="{{url('/cart')}}"> <i class="costep-icon"></i>
@@ -91,7 +91,7 @@
                                 <span>
                                     @if(count(Auth::user()->bookaddresses()) > 0)
                                     @lang('checkout.or-enter')
-                                    @else 
+                                    @else
                                     @lang('checkout.enter')
                                     @endif
                                     @lang('checkout.new-address')
@@ -150,7 +150,7 @@
 <!-- Select2 -->
 <script src="{{asset('js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
-    $(function() {
+    jQuery(function() {
         $("#NewAddress_CountryId").change(function() {
             var selectedItem = $(this).val();
             var ddlStates = $("#state_province");
