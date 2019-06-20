@@ -180,7 +180,7 @@
                                             <div id="start-checkout-buttons" class="">
                                                 <div class="checkout-buttons">
                                                     <input type="submit" name="startcheckout" value="startcheckout" id="startcheckout" class="d-none">
-                                                    <button type="button" id="checkout" name="checkout" class="btn btn-danger btn-lg btn-block btn-checkout" onclick="$('#startcheckout').trigger('click'); return false;">
+                                                    <button type="button" id="checkout" name="checkout" class="btn btn-danger btn-lg btn-block btn-checkout" onclick="jQuery('#startcheckout').trigger('click'); return false;">
                                                         <span>@lang('shoppings.checkout')</span>
                                                         <i class="fa fa-angle-right ml-3"></i>
                                                     </button>
